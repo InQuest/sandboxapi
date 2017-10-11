@@ -1,0 +1,25 @@
+{
+  "response_code": 0,
+  "response": {
+    "total": {
+      "quota_reached": false
+    },
+    "apikey": {
+      "used": {
+        "hour": 0,
+        "day": 0,
+        "week": 0,
+        "month": 0,
+        "omega": 0
+      },
+      "quota": {
+        "hour": 10
+      },
+      "available": {
+        "hour": 10
+      },
+      "quota_reached": false
+    },
+    "quota_reached": false
+  }
+}

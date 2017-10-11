@@ -1,0 +1,33 @@
+{
+    "tasks": {
+        "reported": 165,
+        "running": 2,
+        "total": 167,
+        "completed": 0,
+        "pending": 0
+    },
+    "diskspace": {
+        "analyses": {
+            "total": 491271233536,
+            "free": 71403470848,
+            "used": 419867762688
+        },
+        "binaries": {
+            "total": 491271233536,
+            "free": 71403470848,
+            "used": 419867762688
+        },
+        "temporary": {
+            "total": 491271233536,
+            "free": 71403470848,
+            "used": 419867762688
+        }
+    },
+    "version": "1.0",
+    "protocol_version": 1,
+    "hostname": "Patient0",
+    "machines": {
+        "available": 4,
+        "total": 5
+    }
+}

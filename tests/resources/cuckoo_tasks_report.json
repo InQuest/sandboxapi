@@ -1,0 +1,35 @@
+{
+    "signatures": [], 
+    "virustotal": {
+    }, 
+    "static": {
+    }, 
+    "dropped": [], 
+    "network": {
+    }, 
+    "info": {
+        "category": "file", 
+        "package": "", 
+        "started": "2016-08-26 15:24:51", 
+        "custom": "", 
+        "machine": {}, 
+        "ended": "2016-08-26 15:28:08", 
+        "version": "1.1", 
+        "duration": 197, 
+        "id": 8
+    }, 
+    "target": {
+        "category": "file", 
+        "file": {
+        }
+    }, 
+    "behavior": {
+    "memory": {}, 
+    "debug": {
+    }, 
+    "strings": [
+        "!This program cannot be run in DOS mode.", 
+        "`.rdata", 
+        "@.data"
+    ]
+}

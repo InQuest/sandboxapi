@@ -1,0 +1,25 @@
+{
+    "data": {
+        "webid": "1",
+        "status": "running",
+        "comments": "a sample comment",
+        "filename": "sample.exe",
+        "scriptname": "default.jbs",
+        "time": "2017-08-11T16:06:32+02:00",
+        "md5": "0cbc6611f5540bd0809a388dc95a615b",
+        "sha1": "640ab2bae07bedc4c163f679a746f7ab7fb5d1fa",
+        "sha256": "532eaabd9574880 [...] 299550d7a6e0f345e25",
+        "runs": [{
+            "detection": "unknown",
+            "error": "Unable to run",
+            "system": "w7",
+            "yara": false
+        }, {
+            "detection": "malicious",
+            "error": null,
+            "system": "w7x64",
+            "yara": false
+        }]
+    }
+}
+

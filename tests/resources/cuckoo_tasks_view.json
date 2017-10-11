@@ -1,0 +1,27 @@
+{
+    "task": {
+        "category": "url",
+        "machine": null,
+        "errors": [],
+        "target": "http://www.malicious.site",
+        "package": null,
+        "sample_id": null,
+        "guest": {},
+        "custom": null,
+        "owner": "",
+        "priority": 1,
+        "platform": null,
+        "options": null,
+        "status": "pending",
+        "enforce_timeout": false,
+        "timeout": 0,
+        "memory": false,
+        "tags": [
+                    "32bit",
+                    "acrobat_6"
+                ],
+        "id": 1,
+        "added_on": "2012-12-19 14:18:25",
+        "completed_on": null
+    }
+}
