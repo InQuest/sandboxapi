@@ -42,7 +42,7 @@ Basic usage is as follows::
     import sandboxapi
 
     # connect to the sandbox
-    sandbox = sandboxapi.cuckoo.CuckooSandbox('192.168.0.20')
+    sandbox = sandboxapi.cuckoo.CuckooAPI('192.168.0.20')
 
     # verify connectivity
     if not sandbox.is_available():
@@ -68,11 +68,11 @@ Cuckoo
 
 Constructor signature::
 
-    CuckooSandbox(host, port=8090, api_path='/', verify_ssl=False)
+    CuckooAPI(host, port=8090, api_path='/', verify_ssl=False)
 
 Example::
 
-    CuckooSandbox('192.168.0.20')
+    CuckooAPI('192.168.0.20')
 
 There is an `unofficial Cuckoo library`_ written by @keithjjones with much
 more functionality. For more information on the Cuckoo API, see the `Cuckoo API
@@ -83,11 +83,11 @@ FireEye
 
 Constructor signature::
 
-    FireEyeSandbox(username, password, url, profile)
+    FireEyeAPI(username, password, url, profile)
 
 Example::
 
-    FireEyeSandbox('myusername', 'mypassword', 'https://192.168.0.20', 'winxp-sp3')
+    FireEyeAPI('myusername', 'mypassword', 'https://192.168.0.20', 'winxp-sp3')
 
 There is some limited `FireEye API documentation`_ on their blog. For more
 information on FireEye's sandbox systems, see the `AX Series product page`_.
@@ -97,11 +97,11 @@ Joe
 
 Constructor signature::
 
-    JoeSandbox(apikey, apiurl, accept_tac, timeout=None, verify_ssl=True, retries=3)
+    JoeAPI(apikey, apiurl, accept_tac, timeout=None, verify_ssl=True, retries=3)
 
 Example::
 
-    JoeSandbox('mykey', 'https://jbxcloud.joesecurity.org/api', True)
+    JoeAPI('mykey', 'https://jbxcloud.joesecurity.org/api', True)
 
 There is an `official Joe Sandbox library`_ with much more functionality.
 This library is installed as a dependency of sandboxapi, and wrapped by the
@@ -112,22 +112,22 @@ VMRay
 
 Constructor signature::
 
-    VMRaySandbox(api_key, url='https://cloud.vmray.com')
+    VMRayAPI(api_key, url='https://cloud.vmray.com')
 
 Example::
 
-    VMRaySandbox('mykey')
+    VMRayAPI('mykey')
 
 VxStream
 ~~~~~~~~
 
 Constructor signature::
 
-    VxStreamSandbox(key, secret, url='https://www.reverse.it', env=100)
+    VxStreamAPI(key, secret, url='https://www.reverse.it', env=100)
 
 Example::
 
-    VxStreamSandbox('mykey', 'mysecret')
+    VxStreamAPI('mykey', 'mysecret')
 
 There is an `official VxStream library`_ with much more functionality,
 that only supports Python 3.4+.
