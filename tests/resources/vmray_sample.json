@@ -1,0 +1,25 @@
+{
+  "data": {
+    "sample_created": "2017-10-23T19:50:17", 
+    "sample_filename": "privatetunnel-win-2.7.exe", 
+    "sample_filesize": 30736384, 
+    "sample_highest_vti_score": 67, 
+    "sample_highest_vti_severity": "suspicious", 
+    "sample_id": 1169850, 
+    "sample_is_multipart": false, 
+    "sample_last_md_score": null, 
+    "sample_last_reputation_severity": "unknown", 
+    "sample_last_vt_score": null, 
+    "sample_md5hash": "7371a86afb7446f6db2582ab43e4f974", 
+    "sample_priority": 1, 
+    "sample_score": 67, 
+    "sample_severity": "suspicious", 
+    "sample_sha1hash": "e2b1ddf0ba3536caf1788d79da9d2fac0a1fc1e5", 
+    "sample_sha256hash": "c3cd7a4ee74d0444435bbb3eecddc58254dd0ca6d9e93a5d3e48b95d3a78c5e7", 
+    "sample_type": "Windows Exe (x86-32)", 
+    "sample_url": null, 
+    "sample_vti_score": 67, 
+    "sample_webif_url": "https://cloud.vmray.com/user/sample/view?id=1169850"
+  }, 
+  "result": "ok"
+}

@@ -1,0 +1,32 @@
+{
+  "analysis_details": {
+    "creation_time": "2017-10-23 22:01 (UTC+2)",
+    "execution_successful": true,
+    "number_of_processes": 15,
+    "reputation_enabled": true,
+    "termination_reason": "timeout",
+    "type": "analysis_details",
+    "version": 2,
+    "vm_analysis_duration_time": "00:02:27"
+  },
+  "artifacts": {},
+  "extracted_files": [],
+  "process_dumps": [],
+  "processes": [],
+  "remarks": {},
+  "sample_details": {},
+  "screenshots": [],
+  "type": "",
+  "version": 1,
+  "vm_and_analyzer_details": {},
+  "vti": {},
+  "vti": {
+    "type": "vti",
+    "version": 1,
+    "vti_built_in_rules_version": "2.6",
+    "vti_rule_type": "Default (PE, ...)",
+    "vti_rule_matches": [],
+    "vti_score": 20
+  },
+  "yara": {}
+}

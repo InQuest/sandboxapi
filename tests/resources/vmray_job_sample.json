@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "job_analyzer_id": 1, 
+      "job_analyzer_name": "vmray", 
+      "job_configuration_id": 48, 
+      "job_configuration_name": "exe", 
+      "job_created": "2017-10-23T19:50:17", 
+      "job_document_password": null, 
+      "job_id": 1097212, 
+      "job_jobrule_id": 13, 
+      "job_jobrule_sampletype": "Windows PE (x86-32)", 
+      "job_parent_analysis_id": null, 
+      "job_prescript_id": null, 
+      "job_priority": 1, 
+      "job_reputation_job_id": 5880, 
+      "job_sample_id": 1169850, 
+      "job_sample_md5": "7371a86afb7446f6db2582ab43e4f974", 
+      "job_sample_sha1": "e2b1ddf0ba3536caf1788d79da9d2fac0a1fc1e5", 
+      "job_sample_sha256": "c3cd7a4ee74d0444435bbb3eecddc58254dd0ca6d9e93a5d3e48b95d3a78c5e7", 
+      "job_snapshot_id": 1, 
+      "job_snapshot_name": "def", 
+      "job_status": "inwork", 
+      "job_statuschanged": "2017-10-23T20:00:57", 
+      "job_submission_id": 1374306, 
+      "job_tracking_state": "//running/vm/executing", 
+      "job_type": "full_analysis", 
+      "job_user_email": "a@example.com", 
+      "job_user_id": 0, 
+      "job_vm_id": 18, 
+      "job_vm_name": "win8.1_64", 
+      "job_vmhost_id": 4, 
+      "job_vmhost_name": "cloud-worker-02", 
+      "job_vminstance_num": 6, 
+      "job_vnc_token": ""
+    }
+  ], 
+  "result": "ok"
+}

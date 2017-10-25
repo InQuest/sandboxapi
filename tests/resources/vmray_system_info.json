@@ -1,0 +1,16 @@
+{
+  "data": {
+    "api_items_per_request": 100, 
+    "file_param_http_scheme_enabled": true, 
+    "max_api_items": 1000, 
+    "version": "2.1.0", 
+    "version_major": 2, 
+    "version_minor": 1, 
+    "version_revision": 0, 
+    "webif_alias": "Cloud", 
+    "webif_base_url": "https://cloud.vmray.com", 
+    "webif_max_sample_size": 209715200, 
+    "webif_max_upload_size": 209715200
+  }, 
+  "result": "ok"
+}

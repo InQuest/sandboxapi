@@ -1,0 +1,30 @@
+{
+  "data": {
+    "submission_comment": null, 
+    "submission_created": "2017-10-23T19:50:17", 
+    "submission_document_password": null, 
+    "submission_filename": "privatetunnel-win-2.7.exe", 
+    "submission_finish_time": "2017-10-23T20:04:51", 
+    "submission_finished": true, 
+    "submission_has_errors": false, 
+    "submission_id": 1374306, 
+    "submission_ip_id": 0, 
+    "submission_ip_ip": "10.10.10.10", 
+    "submission_original_filename": "privatetunnel-win-2.7.exe", 
+    "submission_prescript_id": null, 
+    "submission_priority": 1, 
+    "submission_reputation_mode": "auxiliary", 
+    "submission_sample_id": 1169850, 
+    "submission_sample_md5": "7371a86afb7446f6db2582ab43e4f974", 
+    "submission_sample_sha1": "e2b1ddf0ba3536caf1788d79da9d2fac0a1fc1e5", 
+    "submission_sample_sha256": "c3cd7a4ee74d0444435bbb3eecddc58254dd0ca6d9e93a5d3e48b95d3a78c5e7", 
+    "submission_shareable": false, 
+    "submission_tags": [], 
+    "submission_triage_error_handling": null, 
+    "submission_type": "api", 
+    "submission_user_email": "a@example.com", 
+    "submission_user_id": 0, 
+    "submission_webif_url": "https://cloud.vmray.com/user/sample/view?id=1169850"
+  }, 
+  "result": "ok"
+}
