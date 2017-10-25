@@ -8,6 +8,7 @@ __all__ = [
     'cuckoo',
     'fireeye',
     'joe',
+    'vmray',
     'vxstream',
 ]
 
