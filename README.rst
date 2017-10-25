@@ -8,6 +8,7 @@ This library currently supports the following sandbox systems:
 * `Cuckoo Sandbox`_
 * `FireEye AX Series`_
 * `Joe Sandbox`_
+* `VMRay Analyzer`_
 * `VxStream Sandbox`_
 
 It provides at least the following methods for each sandbox:
@@ -106,6 +107,17 @@ There is an `official Joe Sandbox library`_ with much more functionality.
 This library is installed as a dependency of sandboxapi, and wrapped by the
 ``sandboxapi.joe.JoeSandbox`` class.
 
+VMRay
+~~~~~
+
+Constructor signature::
+
+    VMRaySandbox(api_key, url='https://cloud.vmray.com')
+
+Example::
+
+    VMRaySandbox('mykey')
+
 VxStream
 ~~~~~~~~
 
@@ -124,6 +136,7 @@ that only supports Python 3.4+.
 .. _Cuckoo Sandbox: https://www.cuckoosandbox.org/
 .. _Fireeye AX Series: https://www.fireeye.com/products/malware-analysis.html
 .. _Joe Sandbox: https://www.joesecurity.org/
+.. _VMRay Analyzer: https://www.vmray.com/
 .. _VxStream Sandbox: https://www.vxstream-sandbox.com/
 .. _unofficial Cuckoo library: https://github.com/keithjjones/cuckoo-api
 .. _Cuckoo API documentation: https://cuckoo.sh/docs/usage/api.html
