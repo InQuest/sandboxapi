@@ -118,6 +118,9 @@ Example::
 
     VMRayAPI('mykey')
 
+VMRay customers have access to a Python library with much more functionality.
+Check your VMRay documentation for more details.
+
 VxStream
 ~~~~~~~~
 
