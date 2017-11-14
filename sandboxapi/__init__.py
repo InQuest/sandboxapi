@@ -85,7 +85,10 @@ class SandboxAPI(object):
         # raise an exception.
         msg = "exceeded 3 attempts with sandbox API: {u}, p:{p}, f:{f}".format(u=full_url,
                                                                                p=params, f=files)
-        msg += "\n" + response.content
+        try:
+            msg += "\n" + response.content
+        except AttributeError:
+            pass
 
         raise SandboxError(msg)
 

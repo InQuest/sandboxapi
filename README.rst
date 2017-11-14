@@ -136,6 +136,16 @@ There is an `official VxStream library`_ with much more functionality,
 that only supports Python 3.4+.
 
 
+Notes
+-----
+
+For more information on this library and the services it supports, check out the
+`release annoucement`_ on the InQuest blog.
+
+You may also be interested in `malsub`_, a similar project with support for a
+number of online analysis services.
+
+
 .. _Cuckoo Sandbox: https://www.cuckoosandbox.org/
 .. _Fireeye AX Series: https://www.fireeye.com/products/malware-analysis.html
 .. _Joe Sandbox: https://www.joesecurity.org/
@@ -147,3 +157,4 @@ that only supports Python 3.4+.
 .. _AX Series product page: https://www.fireeye.com/products/malware-analysis.html
 .. _official Joe Sandbox library: https://github.com/joesecurity/joesandboxcloudapi
 .. _official VxStream library: https://github.com/PayloadSecurity/VxAPI
+.. _malsub: https://github.com/diogo-fernan/malsub

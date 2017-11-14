@@ -1,0 +1,25 @@
+{
+    "msg": "concise",
+    "alertsCount": 1,
+    "version": "MAS (MAS) 7.7.7.777777",
+    "appliance": "MAS",
+    "alert": [
+        {
+            "src": {},
+            "product": "MAS",
+            "name": "MALWARE_OBJECT",
+            "explanation": {
+                "osChanges": [],
+                "malwareDetected": {
+                    "malware": [{"md5Sum": "68b329da9893e34099c7d8ad5cb9c940"}]
+                }
+            },
+            "occurred": 1000000000000,
+            "alertUrl": "https://10.10.10.10/malware_analysis/analyses?maid=1",
+            "id": 1,
+            "action": "notified",
+            "dst": {},
+            "severity": "MAJR"
+        }
+    ]
+}

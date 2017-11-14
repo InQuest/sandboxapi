@@ -1,7 +1,7 @@
 {
     "data": {
         "webid": "1",
-        "status": "running",
+        "status": "finished",
         "comments": "a sample comment",
         "filename": "sample.exe",
         "scriptname": "default.jbs",

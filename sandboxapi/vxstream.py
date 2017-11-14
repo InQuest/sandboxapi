@@ -112,9 +112,9 @@ class VxStreamAPI(sandboxapi.SandboxAPI):
         # otherwise, we have to check with the cloud.
         else:
 
-            response = self._request("/api/quota")
-
             try:
+                response = self._request("/api/quota")
+
                 # we've got vxstream.
                 if response.status_code == 200:
                     self.server_available = True

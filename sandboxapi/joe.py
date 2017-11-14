@@ -28,7 +28,7 @@ class JoeAPI(sandboxapi.SandboxAPI):
         handle.seek(0)
 
         try:
-            return self.jbx.submit_sample(handle)
+            return self.jbx.submit_sample(handle)['webids'][0]
         except jbxapi.JoeException as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
@@ -66,6 +66,8 @@ class JoeAPI(sandboxapi.SandboxAPI):
 
             try:
                 self.server_available = self.jbx.server_online()
+                print self.server_available
+                print 'here'
                 return self.server_available
             except jbxapi.JoeException:
                 pass
