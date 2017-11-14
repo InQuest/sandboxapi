@@ -12,7 +12,7 @@
         "priority": 1,
         "platform": null,
         "options": null,
-        "status": "pending",
+        "status": "completed",
         "enforce_timeout": false,
         "timeout": 0,
         "memory": false,

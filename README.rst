@@ -51,7 +51,7 @@ Basic usage is as follows::
 
     # submit a file
     with open('myfile.exe', "rb") as handle:
-        file_id = sandbox.analyze(handle, filename)
+        file_id = sandbox.analyze(handle, 'myfile.exe')
         print("file {f} submitted for analysis, id {i}".format(f=filename, i=file_id))
 
     # wait for the analysis to complete

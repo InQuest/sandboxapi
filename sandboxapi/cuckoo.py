@@ -26,7 +26,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
 
         return json.loads(response.content)['tasks']
 
-    def analyze(self, handle):
+    def analyze(self, handle, filename):
         """Submit a file for analysis.
 
         @type  handle:   File handle
@@ -38,7 +38,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         @return: Task ID as a string
         """
         # multipart post files.
-        files = {"file": (handle.name, handle)}
+        files = {"file": (filename, handle)}
 
         # ensure the handle is at offset 0.
         handle.seek(0)
