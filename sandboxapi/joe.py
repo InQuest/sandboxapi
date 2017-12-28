@@ -1,3 +1,5 @@
+import json
+
 import jbxapi
 
 import sandboxapi
@@ -11,7 +13,7 @@ class JoeAPI(sandboxapi.SandboxAPI):
     def __init__(self, apikey, apiurl, accept_tac, timeout=None, verify_ssl=True, retries=3):
         """Initialize the interface to Joe Sandbox API"""
         sandboxapi.SandboxAPI.__init__(self)
-        self.jbx = jbxapi.JoeSandbox(apikey, apiurl, accept_tac, timeout, verify_ssl, retries)
+        self.jbx = jbxapi.JoeSandbox(apikey, apiurl or jbxapi.API_URL, accept_tac, timeout, verify_ssl, retries)
 
     def analyze(self, handle, filename):
         """Submit a file for analysis.
@@ -66,8 +68,6 @@ class JoeAPI(sandboxapi.SandboxAPI):
 
             try:
                 self.server_available = self.jbx.server_online()
-                print self.server_available
-                print 'here'
                 return self.server_available
             except jbxapi.JoeException:
                 pass
@@ -93,10 +93,10 @@ class JoeAPI(sandboxapi.SandboxAPI):
             report_format = "jsonfixed"
 
         try:
-            return self.jbx.download(file_id, report_format)
-        except jbxapi.JoeException as e:
+            return json.loads(self.jbx.download(file_id, report_format)[1])
+        except (jbxapi.JoeException, ValueError, IndexError) as e:
             raise sandboxapi.SandboxError("error in report fetch: {e}".format(e=e))
 
 
 if __name__ == "__main__":
-    print "use jbxapi.py instead"
+    print("use jbxapi.py instead")
