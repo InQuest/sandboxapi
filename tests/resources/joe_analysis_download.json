@@ -1,0 +1,47 @@
+{
+    "analysis": {
+        "signatureconfidence": {},
+        "signatureinfo": {},
+        "simulations": null,
+        "droppedinfo": null,
+        "fileinfo": {},
+        "signatureclassifications": {},
+        "patches": null,
+        "eventlog": {},
+        "comments": {},
+        "sigscore": {},
+        "avhit": {},
+        "patterninfo": null,
+        "behavior": {},
+        "domaininfo": null,
+        "successnotices": null,
+        "generalinfo": {},
+        "warninginfo": {},
+        "signaturedetections": {
+          "strategy": [
+            {
+              "@count": "0",
+              "@name": "atleastonemalicioussig",
+              "$": "false"
+            },
+            {
+              "malicious": false,
+              "@name": "empiric",
+              "unknown": false,
+              "minScore": 0,
+              "suspicious": false,
+              "detection": "CLEAN",
+              "score": 1,
+              "clean": true,
+              "maxScore": 100
+            }
+          ]
+        },
+        "yara": {},
+        "ipinfo": null,
+        "runtimemessages": "",
+        "analysistime": {},
+        "context": {},
+        "errorinfo": null
+    }
+}

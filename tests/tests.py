@@ -70,7 +70,6 @@ class TestJoe(unittest.TestCase):
                       json=read_resource('joe_analysis_submit'))
         self.assertEquals(self.sandbox.analyze(io.BytesIO('test'), 'filename'), '100001')
 
-"""FIXME: Joe isn't ready yet
     @responses.activate
     def test_check(self):
         responses.add(responses.GET, 'http://joe.mock/api/v2/analysis/info',
@@ -92,10 +91,9 @@ class TestJoe(unittest.TestCase):
 
     @responses.activate
     def test_report(self):
-        responses.add(responses.GET, 'http://joe.mock/api/v2/analysis/download',
+        responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/download',
                       json=read_resource('joe_analysis_download'))
-        self.assertEquals(self.sandbox.report(8)['info']['id'], 8)
-"""
+        self.assertEquals(self.sandbox.report(8)['analysis']['signaturedetections']['strategy'][1]['score'], 1)
 
 
 class TestFireEye(unittest.TestCase):
