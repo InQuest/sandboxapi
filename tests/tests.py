@@ -9,7 +9,7 @@ import sandboxapi.cuckoo
 import sandboxapi.fireeye
 import sandboxapi.joe
 import sandboxapi.vmray
-import sandboxapi.vxstream
+import sandboxapi.falcon
 
 def read_resource(resource):
     with open(os.path.join('tests', 'resources', '{r}.json'.format(r=resource)), 'r') as f:
@@ -182,38 +182,38 @@ class TestVMRay(unittest.TestCase):
         self.assertEquals(self.sandbox.report(1)['version'], 1)
 
 
-class TestVxStream(unittest.TestCase):
+class TestFalcon(unittest.TestCase):
 
     def setUp(self):
-        self.sandbox = sandboxapi.vxstream.VxStreamAPI('key', 'secret', 'http://vxstream.mock')
+        self.sandbox = sandboxapi.falcon.FalconAPI('key', 'secret', 'http://falcon.mock')
 
     @responses.activate
     def test_analyze(self):
-        responses.add(responses.POST, 'http://vxstream.mock/api/submit',
-                      json=read_resource('vxstream_submit'))
+        responses.add(responses.POST, 'http://falcon.mock/api/submit',
+                      json=read_resource('falcon_submit'))
         self.assertEquals(self.sandbox.analyze(io.BytesIO('test'), 'filename'), '040c0111aef474d8b7bfa9a7caa0e06b4f1049c7ae8c66611a53fc2599f0b90f')
 
     @responses.activate
     def test_check(self):
-        responses.add(responses.GET, 'http://vxstream.mock/api/state/1',
-                      json=read_resource('vxstream_state'))
+        responses.add(responses.GET, 'http://falcon.mock/api/state/1',
+                      json=read_resource('falcon_state'))
         self.assertEquals(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
-        responses.add(responses.GET, 'http://vxstream.mock/api/quota',
-                      json=read_resource('vxstream_quota'))
+        responses.add(responses.GET, 'http://falcon.mock/api/quota',
+                      json=read_resource('falcon_quota'))
         self.assertTrue(self.sandbox.is_available())
 
     @responses.activate
     def test_not_is_available(self):
         self.assertFalse(self.sandbox.is_available())
-        responses.add(responses.GET, 'http://vxstream.mock/api/quota',
+        responses.add(responses.GET, 'http://falcon.mock/api/quota',
                       status=500)
         self.assertFalse(self.sandbox.is_available())
 
     @responses.activate
     def test_report(self):
-        responses.add(responses.GET, 'http://vxstream.mock/api/scan/1',
-                      json=read_resource('vxstream_scan'))
+        responses.add(responses.GET, 'http://falcon.mock/api/scan/1',
+                      json=read_resource('falcon_scan'))
         self.assertEquals(self.sandbox.report(1)['response_code'], 0)

@@ -3,11 +3,11 @@ import json
 
 import sandboxapi
 
-class VxStreamAPI(sandboxapi.SandboxAPI):
-    """VxStream Sandbox API wrapper"""
+class FalconAPI(sandboxapi.SandboxAPI):
+    """Falcon Sandbox API wrapper"""
 
     def __init__(self, key, secret, url=None, env=100):
-        """Initialize the interface to VxStream Sandbox API with key and secret"""
+        """Initialize the interface to Falcon Sandbox API with key and secret"""
         sandboxapi.SandboxAPI.__init__(self)
 
         self.api_url = url or 'https://www.reverse.it'
@@ -33,10 +33,10 @@ class VxStreamAPI(sandboxapi.SandboxAPI):
             }
 
         if headers:
-            headers['User-Agent'] = 'VxStream Sandbox Lib'
+            headers['User-Agent'] = 'Falcon Sandbox Lib'
         else:
             headers = {
-                'User-Agent': 'VxStream Sandbox Lib',
+                'User-Agent': 'Falcon Sandbox Lib',
             }
 
         return sandboxapi.SandboxAPI._request(self, uri, method, params, files, headers)
@@ -97,14 +97,14 @@ class VxStreamAPI(sandboxapi.SandboxAPI):
         return False
 
     def is_available(self):
-        """Determine if the VxStream API server is alive.
+        """Determine if the Falcon API server is alive.
 
         @rtype:  bool
         @return: True if service is available, False otherwise.
         """
         # if the availability flag is raised, return True immediately.
         # NOTE: subsequent API failures will lower this flag. we do this here
-        # to ensure we don't keep hitting VxStream with requests while
+        # to ensure we don't keep hitting Falcon with requests while
         # availability is there.
         if self.server_available:
             return True
@@ -115,7 +115,7 @@ class VxStreamAPI(sandboxapi.SandboxAPI):
             try:
                 response = self._request("/api/quota")
 
-                # we've got vxstream.
+                # we've got falcon.
                 if response.status_code == 200:
                     self.server_available = True
                     return True
@@ -127,7 +127,7 @@ class VxStreamAPI(sandboxapi.SandboxAPI):
         return False
 
     def queue_size(self):
-        """Determine VxStream sandbox queue length
+        """Determine Falcon sandbox queue length
 
         @rtype:  str
         @return: Details on the queue size.
@@ -188,8 +188,8 @@ if __name__ == "__main__":
     else:
         usage()
 
-    # instantiate VxStream Sandbox API interface.
-    vxstream = VxStreamAPI(key, secret)
+    # instantiate Falcon Sandbox API interface.
+    falcon = FalconAPI(key, secret)
 
     # process command line arguments.
     if "analyze" in cmd:
@@ -197,19 +197,19 @@ if __name__ == "__main__":
             usage()
         else:
             with open(arg, "rb") as handle:
-                print vxstream.analyze(handle, arg)
+                print falcon.analyze(handle, arg)
 
     elif "available" in cmd:
-        print vxstream.is_available()
+        print falcon.is_available()
 
     elif "queue" in cmd:
-        print vxstream.queue_size()
+        print falcon.queue_size()
 
     elif "report" in cmd:
         if arg is None:
             usage()
         else:
-            print vxstream.report(arg)
+            print falcon.report(arg)
 
     else:
         usage()

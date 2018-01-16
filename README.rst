@@ -9,7 +9,7 @@ This library currently supports the following sandbox systems:
 * `FireEye AX Series`_
 * `Joe Sandbox`_
 * `VMRay Analyzer`_
-* `VxStream Sandbox`_
+* `Falcon Sandbox`_
 
 It provides at least the following methods for each sandbox:
 
@@ -121,18 +121,18 @@ Example::
 VMRay customers have access to a Python library with much more functionality.
 Check your VMRay documentation for more details.
 
-VxStream
+Falcon
 ~~~~~~~~
 
 Constructor signature::
 
-    VxStreamAPI(key, secret, url='https://www.reverse.it', env=100)
+    FalconAPI(key, secret, url='https://www.reverse.it', env=100)
 
 Example::
 
-    VxStreamAPI('mykey', 'mysecret')
+    FalconAPI('mykey', 'mysecret')
 
-There is an `official VxStream library`_ with much more functionality,
+There is an `official Falcon library`_ with much more functionality,
 that only supports Python 3.4+.
 
 
@@ -150,11 +150,11 @@ number of online analysis services.
 .. _Fireeye AX Series: https://www.fireeye.com/products/malware-analysis.html
 .. _Joe Sandbox: https://www.joesecurity.org/
 .. _VMRay Analyzer: https://www.vmray.com/
-.. _VxStream Sandbox: https://www.vxstream-sandbox.com/
+.. _Falcon Sandbox: https://www.vxstream-sandbox.com/
 .. _unofficial Cuckoo library: https://github.com/keithjjones/cuckoo-api
 .. _Cuckoo API documentation: https://cuckoo.sh/docs/usage/api.html
 .. _FireEye API documentation: https://www.fireeye.com/blog/products-and-services/2015/12/restful_apis_thatdo.html
 .. _AX Series product page: https://www.fireeye.com/products/malware-analysis.html
 .. _official Joe Sandbox library: https://github.com/joesecurity/joesandboxcloudapi
-.. _official VxStream library: https://github.com/PayloadSecurity/VxAPI
+.. _official Falcon library: https://github.com/PayloadSecurity/VxAPI
 .. _malsub: https://github.com/diogo-fernan/malsub
