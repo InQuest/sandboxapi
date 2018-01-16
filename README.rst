@@ -139,9 +139,6 @@ that only supports Python 3.4+.
 Notes
 -----
 
-For more information on this library and the services it supports, check out the
-`release annoucement`_ on the InQuest blog.
-
 You may also be interested in `malsub`_, a similar project with support for a
 number of online analysis services.
 
