@@ -23,7 +23,7 @@ setup(
     long_description=README,
     url='https://github.com/InQuest/python-sandboxapi',
     author='InQuest Labs',
-    author_email='support@inquest.net',
+    author_email='labs@inquest.net',
     classifiers=[
         'Intended Audience :: Developers',
         'Intended Audience :: Information Technology',
