@@ -72,20 +72,20 @@ class TestJoe(unittest.TestCase):
 
     @responses.activate
     def test_check(self):
-        responses.add(responses.GET, 'http://joe.mock/api/v2/analysis/info',
+        responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/info',
                       json=read_resource('joe_analysis_info'))
         self.assertEquals(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
-        responses.add(responses.GET, 'http://joe.mock/api/v2/server/online',
+        responses.add(responses.POST, 'http://joe.mock/api/v2/server/online',
                       json=read_resource('joe_server_online'))
         self.assertTrue(self.sandbox.is_available())
 
     @responses.activate
     def test_not_is_available(self):
         self.assertFalse(self.sandbox.is_available())
-        responses.add(responses.GET, 'http://joe.mock/api/v2/server/online',
+        responses.add(responses.POST, 'http://joe.mock/api/v2/server/online',
                       status=500)
         self.assertFalse(self.sandbox.is_available())
 
