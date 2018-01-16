@@ -1,3 +1,4 @@
 *.py[cdo]
 .coverage
 *.xml
+*.egg-info/
