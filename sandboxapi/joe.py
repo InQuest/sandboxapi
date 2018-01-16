@@ -31,7 +31,7 @@ class JoeAPI(sandboxapi.SandboxAPI):
 
         try:
             return self.jbx.submit_sample(handle)['webids'][0]
-        except jbxapi.JoeException as e:
+        except (jbxapi.JoeException, KeyError, IndexError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
     def check(self, file_id):
