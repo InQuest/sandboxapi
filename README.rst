@@ -39,10 +39,10 @@ Basic usage is as follows::
     import time
     import pprint
 
-    import sandboxapi
+    from sandboxapi import cuckoo
 
     # connect to the sandbox
-    sandbox = sandboxapi.cuckoo.CuckooAPI('192.168.0.20')
+    sandbox = cuckoo.CuckooAPI('192.168.0.20')
 
     # verify connectivity
     if not sandbox.is_available():
