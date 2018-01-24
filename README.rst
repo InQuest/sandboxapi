@@ -24,9 +24,9 @@ This library currently supports the following sandbox systems:
 It provides at least the following methods for each sandbox:
 
 * ``is_available()``: Check if the sandbox is operable and reachable; returns a boolean
-* ``analyze(handle, filename)``: Submit a file for analysis; returns a ``file_id``
-* ``check(file_id)``: Check if analysis has completed for a file; returns a boolean
-* ``report(file_id, report_format='json')``: Retrieve the report for a submitted file
+* ``analyze(handle, filename)``: Submit a file for analysis; returns an ``item_id``
+* ``check(item_id)``: Check if analysis has completed for a file; returns a boolean
+* ``report(item_id, report_format='json')``: Retrieve the report for a submitted file
 
 Some sandbox classes may have additional methods implemented. See inline
 documentation for more details.
