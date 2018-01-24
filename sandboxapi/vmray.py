@@ -3,8 +3,6 @@ from __future__ import print_function
 import sys
 import time
 
-from requests.auth import HTTPBasicAuth
-
 import sandboxapi
 
 class VMRayAPI(sandboxapi.SandboxAPI):
