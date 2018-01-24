@@ -151,7 +151,7 @@ class SandboxAPI(object):
         """
         raise NotImplementedError
 
-    def report(self, item_id, **kwargs):
+    def report(self, item_id, report_format="json"):
         """Retrieves the specified report for the analyzed item, referenced by item_id.
 
         @type  item_id: int | str
