@@ -86,7 +86,7 @@ class SandboxAPI(object):
         msg = "exceeded 3 attempts with sandbox API: {u}, p:{p}, f:{f}".format(u=full_url,
                                                                                p=params, f=files)
         try:
-            msg += "\n" + response.content
+            msg += "\n" + response.content.decode('utf-8')
         except AttributeError:
             pass
 
