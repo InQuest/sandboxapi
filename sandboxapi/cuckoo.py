@@ -53,16 +53,16 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         except KeyError:
             return str(json.loads(response.content.decode('utf-8'))["task_ids"][0])
 
-    def check(self, task_id):
+    def check(self, item_id):
         """Check if an analysis is complete
 
-        @type  task_id: int
-        @param task_id: task_id to check.
+        @type  item_id: int
+        @param item_id: task_id to check.
 
         @rtype:  bool
         @return: Boolean indicating if a report is done or not.
         """
-        response = self._request("tasks/view/{id}".format(id=task_id))
+        response = self._request("tasks/view/{id}".format(id=item_id))
 
         if response.status_code == 404:
             # probably an unknown task id
@@ -79,17 +79,17 @@ class CuckooAPI(sandboxapi.SandboxAPI):
 
         return False
 
-    def delete(self, task_id):
-        """Delete the reports associated with the given task_id.
+    def delete(self, item_id):
+        """Delete the reports associated with the given item_id.
 
-        @type  task_id: int
-        @param task_id: Report ID to delete.
+        @type  item_id: int
+        @param item_id: Report ID to delete.
 
         @rtype:  bool
         @return: True on success, False otherwise.
         """
         try:
-            response = self._request("tasks/delete/{id}".format(id=task_id))
+            response = self._request("tasks/delete/{id}".format(id=item_id))
 
             if response.status_code == 200:
                 return True
@@ -141,13 +141,13 @@ class CuckooAPI(sandboxapi.SandboxAPI):
 
         return len([t for t in tasks if t['status'] == 'pending'])
 
-    def report(self, task_id, report_format="json"):
-        """Retrieves the specified report for the analyzed item, referenced by task_id.
+    def report(self, item_id, report_format="json"):
+        """Retrieves the specified report for the analyzed item, referenced by item_id.
 
         Available formats include: json, html, all, dropped, package_files.
 
-        @type  task_id:       int
-        @param task_id:       Task ID number
+        @type  item_id:       int
+        @param item_id:       Task ID number
         @type  report_format: str
         @param report_format: Return format
 
@@ -157,7 +157,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         """
         report_format = report_format.lower()
 
-        response = self._request("tasks/report/{id}/{format}".format(id=task_id, format=report_format))
+        response = self._request("tasks/report/{id}/{format}".format(id=item_id, format=report_format))
 
         # if response is JSON, return it as an object
         if report_format == "json":

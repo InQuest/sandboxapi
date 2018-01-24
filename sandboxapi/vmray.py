@@ -47,16 +47,16 @@ class VMRayAPI(sandboxapi.SandboxAPI):
         except (ValueError, KeyError, IndexError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
-    def check(self, file_id):
+    def check(self, item_id):
         """Check if an analysis is complete.
 
-        @type  file_id: str
-        @param file_id: File ID to check.
+        @type  item_id: str
+        @param item_id: File ID to check.
 
         @rtype:  bool
         @return: Boolean indicating if a report is done or not.
         """
-        response = self._request("/submission/sample/{sample_id}".format(sample_id=file_id), headers=self.headers)
+        response = self._request("/submission/sample/{sample_id}".format(sample_id=item_id), headers=self.headers)
 
         if response.status_code == 404:
             # unknown id
@@ -103,13 +103,13 @@ class VMRayAPI(sandboxapi.SandboxAPI):
         self.server_available = False
         return False
 
-    def report(self, file_id, report_format="json"):
-        """Retrieves the specified report for the analyzed item, referenced by file_id.
+    def report(self, item_id, report_format="json"):
+        """Retrieves the specified report for the analyzed item, referenced by item_id.
 
         Available formats include: json.
 
-        @type  file_id:       str
-        @param file_id:       File ID number
+        @type  item_id:       str
+        @param item_id:       File ID number
         @type  report_format: str
         @param report_format: Return format
 
@@ -121,7 +121,7 @@ class VMRayAPI(sandboxapi.SandboxAPI):
             return "Report Unavailable"
 
         # grab an analysis id from the submission id.
-        response = self._request("/analysis/sample/{sample_id}".format(sample_id=file_id),
+        response = self._request("/analysis/sample/{sample_id}".format(sample_id=item_id),
                 headers=self.headers)
 
         try:

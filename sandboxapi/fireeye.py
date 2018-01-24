@@ -98,16 +98,16 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         except (ValueError, KeyError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
-    def check(self, file_id):
+    def check(self, item_id):
         """Check if an analysis is complete.
 
-        @type  file_id: str
-        @param file_id: File ID to check.
+        @type  item_id: str
+        @param item_id: File ID to check.
 
         @rtype:  bool
         @return: Boolean indicating if a report is done or not.
         """
-        response = self._request("/submissions/status/{file_id}".format(file_id=file_id))
+        response = self._request("/submissions/status/{file_id}".format(file_id=item_id))
 
         if response.status_code == 404:
             # unknown id
@@ -152,13 +152,13 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         self.server_available = False
         return False
 
-    def report(self, file_id, report_format="json"):
-        """Retrieves the specified report for the analyzed item, referenced by file_id.
+    def report(self, item_id, report_format="json"):
+        """Retrieves the specified report for the analyzed item, referenced by item_id.
 
         Available formats include: json.
 
-        @type  file_id:       str
-        @param file_id:       File ID number
+        @type  item_id:       str
+        @param item_id:       File ID number
         @type  report_format: str
         @param report_format: Return format
 
@@ -170,7 +170,7 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
             return "Report Unavailable"
 
         # else we try JSON
-        response = self._request("/submissions/results/{file_id}?info_level=extended".format(file_id=file_id))
+        response = self._request("/submissions/results/{file_id}?info_level=extended".format(file_id=item_id))
 
         # if response is JSON, return it as an object
         try:

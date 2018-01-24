@@ -109,26 +109,26 @@ class SandboxAPI(object):
         @param filename: File name.
 
         @rtype:  str
-        @return: Task ID as a string
+        @return: Item ID as a string
         """
         raise NotImplementedError
 
-    def check(self, task_id):
+    def check(self, item_id):
         """Check if an analysis is complete
 
-        @type  task_id: int | str
-        @param task_id: task_id to check.
+        @type  item_id: int | str
+        @param item_id: item_id to check.
 
         @rtype:  bool
         @return: Boolean indicating if a report is done or not.
         """
         raise NotImplementedError
 
-    def delete(self, task_id):
-        """Delete the reports associated with the given task_id.
+    def delete(self, item_id):
+        """Delete the reports associated with the given item_id.
 
-        @type  task_id: int | str
-        @param task_id: Report ID to delete.
+        @type  item_id: int | str
+        @param item_id: Report ID to delete.
 
         @rtype:  bool
         @return: True on success, False otherwise.
@@ -151,11 +151,11 @@ class SandboxAPI(object):
         """
         raise NotImplementedError
 
-    def report(self, task_id, **kwargs):
-        """Retrieves the specified report for the analyzed item, referenced by task_id.
+    def report(self, item_id, **kwargs):
+        """Retrieves the specified report for the analyzed item, referenced by item_id.
 
-        @type  task_id: int | str
-        @param task_id: Task ID
+        @type  item_id: int | str
+        @param item_id: Item ID
 
         @rtype:  dict
         @return: Dictionary representing the JSON parsed data or raw, for other

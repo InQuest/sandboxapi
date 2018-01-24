@@ -34,17 +34,17 @@ class JoeAPI(sandboxapi.SandboxAPI):
         except (jbxapi.JoeException, KeyError, IndexError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
-    def check(self, file_id):
+    def check(self, item_id):
         """Check if an analysis is complete.
 
-        @type  file_id: str
-        @param file_id: File ID to check.
+        @type  item_id: str
+        @param item_id: File ID to check.
 
         @rtype:  bool
         @return: Boolean indicating if a report is done or not.
         """
         try:
-            return self.jbx.info(file_id).get('status').lower() == 'finished'
+            return self.jbx.info(item_id).get('status').lower() == 'finished'
         except jbxapi.JoeException:
             return False
 
@@ -75,13 +75,13 @@ class JoeAPI(sandboxapi.SandboxAPI):
         self.server_available = False
         return False
 
-    def report(self, file_id, report_format="json"):
-        """Retrieves the specified report for the analyzed item, referenced by file_id.
+    def report(self, item_id, report_format="json"):
+        """Retrieves the specified report for the analyzed item, referenced by item_id.
 
         For available report formats, see online Joe Sandbox documentation.
 
-        @type  file_id:       str
-        @param file_id:       File ID number
+        @type  item_id:       str
+        @param item_id:       File ID number
         @type  report_format: str
         @param report_format: Return format
 
@@ -93,7 +93,7 @@ class JoeAPI(sandboxapi.SandboxAPI):
             report_format = "jsonfixed"
 
         try:
-            return json.loads(self.jbx.download(file_id, report_format)[1].decode('utf-8'))
+            return json.loads(self.jbx.download(item_id, report_format)[1].decode('utf-8'))
         except (jbxapi.JoeException, ValueError, IndexError) as e:
             raise sandboxapi.SandboxError("error in report fetch: {e}".format(e=e))
 

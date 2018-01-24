@@ -72,16 +72,16 @@ class FalconAPI(sandboxapi.SandboxAPI):
         except (ValueError, KeyError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
-    def check(self, file_hash):
+    def check(self, item_id):
         """Check if an analysis is complete.
 
-        @type  file_hash: str
-        @param file_hash: File hash to check.
+        @type  item_id: str
+        @param item_id: File hash to check.
 
         @rtype:  bool
         @return: Boolean indicating if a report is done or not.
         """
-        response = self._request("/api/state/{hash}".format(hash=file_hash))
+        response = self._request("/api/state/{hash}".format(hash=item_id))
 
         if response.status_code == 404:
             # probably an unknown task id
@@ -138,13 +138,13 @@ class FalconAPI(sandboxapi.SandboxAPI):
 
         return response.content
 
-    def report(self, file_hash, report_format="json"):
-        """Retrieves the specified report for the analyzed item, referenced by file_hash.
+    def report(self, item_id, report_format="json"):
+        """Retrieves the specified report for the analyzed item, referenced by item_id.
 
         Available formats include: json, html.
 
-        @type  file_hash:     str
-        @param file_hash:     File ID number
+        @type  item_id:     str
+        @param item_id:     File ID number
         @type  report_format: str
         @param report_format: Return format
 
@@ -154,7 +154,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
         """
         report_format = report_format.lower()
 
-        response = self._request("/api/scan/{file_hash}".format(file_hash=file_hash),
+        response = self._request("/api/scan/{file_hash}".format(file_hash=item_id),
                                  params={'type':report_format})
 
         # if response is JSON, return it as an object
