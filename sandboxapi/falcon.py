@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import sys
 import json
 
@@ -170,7 +172,7 @@ if __name__ == "__main__":
 
     def usage():
         msg = "%s: <key> <secret> <analyze <fh> | available | queue | report <id>>"
-        print msg % sys.argv[0]
+        print(msg % sys.argv[0])
         sys.exit(1)
 
     if len(sys.argv) == 4:
@@ -197,19 +199,19 @@ if __name__ == "__main__":
             usage()
         else:
             with open(arg, "rb") as handle:
-                print falcon.analyze(handle, arg)
+                print(falcon.analyze(handle, arg))
 
     elif "available" in cmd:
-        print falcon.is_available()
+        print(falcon.is_available())
 
     elif "queue" in cmd:
-        print falcon.queue_size()
+        print(falcon.queue_size())
 
     elif "report" in cmd:
         if arg is None:
             usage()
         else:
-            print falcon.report(arg)
+            print(falcon.report(arg))
 
     else:
         usage()

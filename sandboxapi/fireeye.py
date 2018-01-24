@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import sys
 import time
 
@@ -184,21 +186,21 @@ def fireeye_loop(fireeye, filename):
     # test run
     with open(arg, "rb") as handle:
         fileid = fireeye.analyze(handle, filename)
-        print "file {f} submitted for analysis, id {i}".format(f=filename, i=fileid)
+        print("file {f} submitted for analysis, id {i}".format(f=filename, i=fileid))
 
     while not fireeye.check(fileid):
-        print "not done yet, sleeping 10 seconds..."
+        print("not done yet, sleeping 10 seconds...")
         time.sleep(10)
 
-    print "analysis complete. fetching report..."
-    print fireeye.report(fileid)
+    print("analysis complete. fetching report...")
+    print(fireeye.report(fileid))
 
 
 if __name__ == "__main__":
 
     def usage():
         msg = "%s: <url> <username> <password> <submit <fh> | available | report <id> | analyze <fh>"
-        print msg % sys.argv[0]
+        print(msg % sys.argv[0])
         sys.exit(1)
 
     if len(sys.argv) == 5:
@@ -227,16 +229,16 @@ if __name__ == "__main__":
             usage()
         else:
             with open(arg, "rb") as handle:
-                print fireeye.analyze(handle, arg)
+                print(fireeye.analyze(handle, arg))
 
     elif "available" in cmd:
-        print fireeye.is_available()
+        print(fireeye.is_available())
 
     elif "report" in cmd:
         if arg is None:
             usage()
         else:
-            print fireeye.report(arg)
+            print(fireeye.report(arg))
 
     elif "analyze" in cmd:
         if arg is None:

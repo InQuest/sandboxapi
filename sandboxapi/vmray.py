@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import sys
 import time
 
@@ -155,21 +157,21 @@ def vmray_loop(vmray, filename):
     # test run
     with open(arg, "rb") as handle:
         fileid = vmray.analyze(handle, filename)
-        print "file {f} submitted for analysis, id {i}".format(f=filename, i=fileid)
+        print("file {f} submitted for analysis, id {i}".format(f=filename, i=fileid))
 
     while not vmray.check(fileid):
-        print "not done yet, sleeping 10 seconds..."
+        print("not done yet, sleeping 10 seconds...")
         time.sleep(10)
 
-    print "analysis complete. fetching report..."
-    print vmray.report(fileid)
+    print("analysis complete. fetching report...")
+    print(vmray.report(fileid))
 
 
 if __name__ == "__main__":
 
     def usage():
         msg = "%s: <url> <api_key> <submit <fh> | available | report <id> | analyze <fh>"
-        print msg % sys.argv[0]
+        print(msg % sys.argv[0])
         sys.exit(1)
 
     if len(sys.argv) == 4:
@@ -196,16 +198,16 @@ if __name__ == "__main__":
             usage()
         else:
             with open(arg, "rb") as handle:
-                print vmray.analyze(handle, arg)
+                print(vmray.analyze(handle, arg))
 
     elif "available" in cmd:
-        print vmray.is_available()
+        print(vmray.is_available())
 
     elif "report" in cmd:
         if arg is None:
             usage()
         else:
-            print vmray.report(arg)
+            print(vmray.report(arg))
 
     elif "analyze" in cmd:
         if arg is None:

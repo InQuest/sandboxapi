@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import sys
 import json
 
@@ -172,7 +174,7 @@ if __name__ == "__main__":
 
     def usage():
         msg = "%s: <host> <analyses | analyze <fh> | available | delete <id> | queue | report <id>"
-        print msg % sys.argv[0]
+        print(msg % sys.argv[0])
         sys.exit(1)
 
     if len(sys.argv) == 3:
@@ -194,32 +196,32 @@ if __name__ == "__main__":
     # process command line arguments.
     if "analyses" in cmd:
         for a in cuckoo.analyses():
-            print a["id"], a["status"], a["tags"], a["target"]
+            print(a["id"], a["status"], a["tags"], a["target"])
 
     elif "analyze" in cmd:
         if arg is None:
             usage()
         else:
             with open(arg, "rb") as handle:
-                print cuckoo.analyze(handle)
+                print(cuckoo.analyze(handle))
 
     elif "available" in cmd:
-        print cuckoo.is_available()
+        print(cuckoo.is_available())
 
     elif "delete" in cmd:
         if arg is None:
             usage()
         else:
-            print cuckoo.delete(arg)
+            print(cuckoo.delete(arg))
 
     elif "queue" in cmd:
-        print cuckoo.queue_size()
+        print(cuckoo.queue_size())
 
     elif "report" in cmd:
         if arg is None:
             usage()
         else:
-            print cuckoo.report(arg)
+            print(cuckoo.report(arg))
 
     else:
         usage()
