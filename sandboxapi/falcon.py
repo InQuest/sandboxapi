@@ -17,7 +17,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
         self.secret = secret
         self.env_id = str(env)
 
-    def _request(self, uri, method='GET', params=None, files=None, headers=None):
+    def _request(self, uri, method='GET', params=None, files=None, headers=None, auth=None):
         """Override the parent _request method.
 
         We have to do this here because FireEye requires some extra

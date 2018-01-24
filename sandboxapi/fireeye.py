@@ -21,7 +21,7 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         self.profile = profile or 'winxp-sp3'
         self.api_token = None
 
-    def _request(self, uri, method='GET', params=None, files=None, headers=None):
+    def _request(self, uri, method='GET', params=None, files=None, headers=None, auth=None):
         """Override the parent _request method.
 
         We have to do this here because FireEye requires some extra
