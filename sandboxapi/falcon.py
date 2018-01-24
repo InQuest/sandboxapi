@@ -122,7 +122,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
                     self.server_available = True
                     return True
 
-            except Exception:
+            except sandboxapi.SandboxError:
                 pass
 
         self.server_available = False
