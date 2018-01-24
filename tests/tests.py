@@ -31,7 +31,7 @@ class TestCuckoo(unittest.TestCase):
     def test_analyze(self):
         responses.add(responses.POST, 'http://cuckoo.mock:8090/tasks/create/file',
                       json=read_resource('cuckoo_tasks_create_file'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'), 'filename'), '1')
+        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '1')
 
     @responses.activate
     def test_check(self):
@@ -68,7 +68,7 @@ class TestJoe(unittest.TestCase):
     def test_analyze(self):
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/submit',
                       json=read_resource('joe_analysis_submit'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'), 'filename'), '100001')
+        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '100001')
 
     @responses.activate
     def test_check(self):
@@ -107,7 +107,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/submissions',
                       json=read_resource('fireeye_submissions'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'), 'filename'), 1)
+        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
 
     @responses.activate
     def test_check(self):
@@ -152,7 +152,7 @@ class TestVMRay(unittest.TestCase):
     def test_analyze(self):
         responses.add(responses.POST, 'http://vmray.mock/rest/sample/submit',
                       json=read_resource('vmray_sample_submit'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'), 'filename'), 1169850)
+        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1169850)
 
     @responses.activate
     def test_check(self):
@@ -191,7 +191,7 @@ class TestFalcon(unittest.TestCase):
     def test_analyze(self):
         responses.add(responses.POST, 'http://falcon.mock/api/submit',
                       json=read_resource('falcon_submit'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'), 'filename'), '040c0111aef474d8b7bfa9a7caa0e06b4f1049c7ae8c66611a53fc2599f0b90f')
+        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '040c0111aef474d8b7bfa9a7caa0e06b4f1049c7ae8c66611a53fc2599f0b90f')
 
     @responses.activate
     def test_check(self):
