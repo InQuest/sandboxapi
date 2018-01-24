@@ -203,7 +203,7 @@ if __name__ == "__main__":
             usage()
         else:
             with open(arg, "rb") as handle:
-                print(cuckoo.analyze(handle))
+                print(cuckoo.analyze(handle, arg))
 
     elif "available" in cmd:
         print(cuckoo.is_available())
