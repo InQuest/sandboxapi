@@ -100,11 +100,13 @@ class SandboxAPI(object):
         """
         raise NotImplementedError
 
-    def analyze(self, handle):
+    def analyze(self, handle, filename):
         """Submit a file for analysis.
 
         @type  handle:   File handle
         @param handle:   Handle to file to upload for analysis.
+        @type  filename: str
+        @param filename: File name.
 
         @rtype:  str
         @return: Task ID as a string
