@@ -93,7 +93,7 @@ class JoeAPI(sandboxapi.SandboxAPI):
             report_format = "jsonfixed"
 
         try:
-            return json.loads(self.jbx.download(file_id, report_format)[1])
+            return json.loads(self.jbx.download(file_id, report_format)[1].decode('utf-8'))
         except (jbxapi.JoeException, ValueError, IndexError) as e:
             raise sandboxapi.SandboxError("error in report fetch: {e}".format(e=e))
 
