@@ -88,7 +88,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
             return False
 
         try:
-            content = json.loads(response.content)
+            content = json.loads(response.content.decode('utf-8'))
             status = content['response']['state']
             if status == 'SUCCESS' or status == 'ERROR':
                 return True
@@ -160,7 +160,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
         # if response is JSON, return it as an object
         if report_format == "json":
             try:
-                return json.loads(response.content)
+                return json.loads(response.content.decode('utf-8'))
             except ValueError:
                 pass
 

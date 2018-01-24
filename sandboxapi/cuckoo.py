@@ -26,7 +26,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         """
         response = self._request("tasks/list")
 
-        return json.loads(response.content)['tasks']
+        return json.loads(response.content.decode('utf-8'))['tasks']
 
     def analyze(self, handle, filename):
         """Submit a file for analysis.
@@ -49,9 +49,9 @@ class CuckooAPI(sandboxapi.SandboxAPI):
 
         # return task id; try v1.3 and v2.0 API response formats
         try:
-            return str(json.loads(response.content)["task_id"])
+            return str(json.loads(response.content.decode('utf-8'))["task_id"])
         except KeyError:
-            return str(json.loads(response.content)["task_ids"][0])
+            return str(json.loads(response.content.decode('utf-8'))["task_ids"][0])
 
     def check(self, task_id):
         """Check if an analysis is complete
@@ -69,7 +69,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
             return False
 
         try:
-            content = json.loads(response.content)
+            content = json.loads(response.content.decode('utf-8'))
             status = content['task']["status"]
             if status == 'completed' or status == "reported":
                 return True
@@ -137,7 +137,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         @return: Number of submissions in sandbox queue.
         """
         response = self._request("tasks/list")
-        tasks = json.loads(response.content)["tasks"]
+        tasks = json.loads(response.content.decode('utf-8'))["tasks"]
 
         return len([t for t in tasks if t['status'] == 'pending'])
 
@@ -162,7 +162,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         # if response is JSON, return it as an object
         if report_format == "json":
             try:
-                return json.loads(response.content)
+                return json.loads(response.content.decode('utf-8'))
             except ValueError:
                 pass
 
