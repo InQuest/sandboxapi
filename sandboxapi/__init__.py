@@ -53,7 +53,7 @@ class SandboxAPI(object):
 
         # make up to three attempts to dance with the API, use a jittered
         # exponential back-off delay
-        for i in xrange(3):
+        for i in range(3):
             try:
                 full_url = '{b}{u}'.format(b=self.api_url, u=uri)
 
