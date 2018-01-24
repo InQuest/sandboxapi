@@ -19,7 +19,7 @@ This library currently supports the following sandbox systems:
 * `FireEye AX Series`_
 * `Joe Sandbox`_
 * `VMRay Analyzer`_
-* `Falcon Sandbox`_
+* `Falcon Sandbox`_ (Formerly VxStream)
 
 It provides at least the following methods for each sandbox:
 
