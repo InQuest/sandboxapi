@@ -167,6 +167,56 @@ class FalconAPI(sandboxapi.SandboxAPI):
         # otherwise, return the raw content.
         return response.content
 
+    def full_report (self, item_id, report_format="json"):
+        """Retrieves a more detailed report"""
+
+        report_format = report_format.lower()
+
+        response = self._request("/api/result/{file_hash}".format(file_hash=item_id), params={'type':report_format})
+
+        # if response is JSON, return it as an object
+        if report_format == "json":
+            try:
+                return json.loads(response.content)
+            except:
+                pass
+
+        # otherwise, return the raw content.
+        return response.content
+
+    def score(self, report):
+        """Pass in the report from self.rerport(), get back an int 0-10."""
+
+        try:
+            threatlevel = int(report['response'][0]['threatlevel'])
+            threatscore = int(report['response'][0]['threatscore'])
+        except (KeyError, IndexError, ValueError, TypeError) as e:
+            return 0
+
+        # from vxstream docs:
+        # threatlevel is the verdict field with values: 0 = no threat, 1 = suspicious, 2 = malicious
+        # threascore  is the "heuristic" confidence value of VxStream Sandbox in the verdict and is a value between 0
+        # and 100. A value above 75/100 is "pretty sure", a value above 90/100 is "very sure".
+
+        # the scoring below converts these values to a scalar. modify as needed.
+        score = 0
+        if threatlevel == 2 and threatscore >= 90:
+            score = 10
+        elif threatlevel == 2 and threatscore >= 75:
+            score = 9
+        elif threatlevel == 2:
+            score = 8
+        elif threatlevel == 1 and threatscore >= 90:
+            score = 7
+        elif threatlevel == 1 and threatscore >= 75:
+            score = 6
+        elif threatlevel == 1:
+            score = 5
+        elif threatlevel == 0 and threatscore < 75:
+            score = 1
+
+        return score
+
 
 if __name__ == "__main__":
 

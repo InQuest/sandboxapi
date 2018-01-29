@@ -182,6 +182,15 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         return response.content
 
 
+    def score(self, report):
+        """Pass in the report from self.report(), get back an int."""
+        score = 0
+        if report['alert'][0]['severity'] == 'MAJR':
+            score = 8
+
+        return score
+
+
 def fireeye_loop(fireeye, filename):
     # test run
     with open(arg, "rb") as handle:

@@ -169,6 +169,19 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         # otherwise, return the raw content.
         return response.content
 
+    def score(self, report):
+        """Pass in the report from self.report(), get back an int."""
+        score = 0
+
+        try:
+            # cuckoo-modified format
+            score = report['malscore']
+        except KeyError:
+            # cuckoo-2.0 format
+            score = report.get('score', 0)
+
+        return score
+
 
 if __name__ == "__main__":
 

@@ -150,6 +150,13 @@ class VMRayAPI(sandboxapi.SandboxAPI):
         # otherwise, return the raw content.
         return response.content
 
+    def score(self, report):
+        """Pass in the report from self.report(), get back an int 0-100"""
+        try:
+            return report['vti']['vti_score']
+        except KeyError:
+            return 0
+
 
 def vmray_loop(vmray, filename):
     # test run

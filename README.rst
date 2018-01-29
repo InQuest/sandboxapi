@@ -27,9 +27,14 @@ It provides at least the following methods for each sandbox:
 * ``analyze(handle, filename)``: Submit a file for analysis; returns an ``item_id``
 * ``check(item_id)``: Check if analysis has completed for a file; returns a boolean
 * ``report(item_id, report_format='json')``: Retrieve the report for a submitted file
+* ``score(report)``: Parse out and return an integer score from the report object
 
 Some sandbox classes may have additional methods implemented. See inline
 documentation for more details.
+
+Note that the value returned from the ``score`` method may be on the range
+0-10, or 0-100, depending on the sandbox in question, so you should refer to
+the specific sandbox's documentation when interpreting this value.
 
 Installation
 ------------
@@ -71,7 +76,9 @@ Basic usage is as follows::
 
     # print the report
     print("analysis complete. fetching report...")
-    pprint.pprint(sandbox.report(file_id))
+    report = sandbox.report(file_id)
+    pprint.pprint(report)
+    print("Score: {score}".format(score=sandbox.score(report)))
 
 Cuckoo
 ~~~~~~

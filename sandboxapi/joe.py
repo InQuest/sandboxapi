@@ -97,6 +97,13 @@ class JoeAPI(sandboxapi.SandboxAPI):
         except (jbxapi.JoeException, ValueError, IndexError) as e:
             raise sandboxapi.SandboxError("error in report fetch: {e}".format(e=e))
 
+    def score(self, report):
+        """Pass in the report from self.report(), get back an int."""
+        try:
+            return report['analysis']['signaturedetections']['strategy'][1]['score']
+        except (KeyError, IndexError):
+            return 0
+
 
 if __name__ == "__main__":
     print("use jbxapi.py instead")
