@@ -58,6 +58,12 @@ class TestCuckoo(unittest.TestCase):
                       json=read_resource('cuckoo_tasks_report'))
         self.assertEquals(self.sandbox.report(8)['info']['id'], 8)
 
+    @responses.activate
+    def test_score(self):
+        responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/report/8/json',
+                      json=read_resource('cuckoo_tasks_report'))
+        self.assertEquals(self.sandbox.score(self.sandbox.report(8)), 5)
+
 
 class TestJoe(unittest.TestCase):
 
@@ -94,6 +100,12 @@ class TestJoe(unittest.TestCase):
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/download',
                       json=read_resource('joe_analysis_download'))
         self.assertEquals(self.sandbox.report(8)['analysis']['signaturedetections']['strategy'][1]['score'], 1)
+
+    @responses.activate
+    def test_score(self):
+        responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/download',
+                      json=read_resource('joe_analysis_download'))
+        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 1)
 
 
 class TestFireEye(unittest.TestCase):
@@ -142,6 +154,14 @@ class TestFireEye(unittest.TestCase):
                       json=read_resource('fireeye_submissions_results'))
         self.assertEquals(self.sandbox.report(1)['msg'], 'concise')
 
+    @responses.activate
+    def test_score(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
+                      json=read_resource('fireeye_submissions_results'))
+        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 8)
+
 
 class TestVMRay(unittest.TestCase):
 
@@ -181,6 +201,14 @@ class TestVMRay(unittest.TestCase):
                       json=read_resource('vmray_analysis_archive_logs_summary'))
         self.assertEquals(self.sandbox.report(1)['version'], 1)
 
+    @responses.activate
+    def test_score(self):
+        responses.add(responses.GET, 'http://vmray.mock/rest/analysis/sample/1',
+                      json=read_resource('vmray_analysis_sample'))
+        responses.add(responses.GET, 'http://vmray.mock/rest/analysis/1097123/archive/logs/summary.json',
+                      json=read_resource('vmray_analysis_archive_logs_summary'))
+        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 20)
+
 
 class TestFalcon(unittest.TestCase):
 
@@ -217,3 +245,9 @@ class TestFalcon(unittest.TestCase):
         responses.add(responses.GET, 'http://falcon.mock/api/scan/1',
                       json=read_resource('falcon_scan'))
         self.assertEquals(self.sandbox.report(1)['response_code'], 0)
+
+    @responses.activate
+    def test_score(self):
+        responses.add(responses.GET, 'http://falcon.mock/api/scan/1',
+                      json=read_resource('falcon_scan'))
+        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 6)
