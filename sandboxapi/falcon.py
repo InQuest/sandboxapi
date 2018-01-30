@@ -178,7 +178,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
         if report_format == "json":
             try:
                 return json.loads(response.content)
-            except:
+            except ValueError:
                 pass
 
         # otherwise, return the raw content.
@@ -190,7 +190,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
         try:
             threatlevel = int(report['response'][0]['threatlevel'])
             threatscore = int(report['response'][0]['threatscore'])
-        except (KeyError, IndexError, ValueError, TypeError) as e:
+        except (KeyError, IndexError, ValueError, TypeError):
             return 0
 
         # from vxstream docs:
