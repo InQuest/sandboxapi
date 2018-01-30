@@ -177,7 +177,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
         # if response is JSON, return it as an object
         if report_format == "json":
             try:
-                return json.loads(response.content)
+                return json.loads(response.content.decode('utf-8'))
             except ValueError:
                 pass
 
