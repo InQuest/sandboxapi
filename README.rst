@@ -91,6 +91,11 @@ Example::
 
     CuckooAPI('192.168.0.20')
 
+This library attempts to support any Cuckoo-like API, including older 1.x
+installations (though those without a score won't be able to use the `.score`
+method), compatible forks like spender-sandbox and CAPE, and the latest 2.x
+Cuckoo releases. If you find a version that doesn't work, let us know.
+
 There is an `unofficial Cuckoo library`_ written by @keithjjones with much
 more functionality. For more information on the Cuckoo API, see the `Cuckoo API
 documentation`_.
