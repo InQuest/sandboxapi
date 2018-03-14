@@ -80,6 +80,45 @@ Basic usage is as follows::
     pprint.pprint(report)
     print("Score: {score}".format(score=sandbox.score(report)))
 
+Since the library provides a consistent API, you can treat all sandoxes
+the same way::
+
+
+    import sys
+    import time
+    import pprint
+
+    from sandboxapi import cuckoo, fireeye, joe
+
+    # connect to the sandbox
+    sandboxes = [
+        cuckoo.CuckooAPI('192.168.0.20'),
+        fireeye.FireEyeAPI('myusername', 'mypassword', 'https://192.168.0.21', 'winxp-sp3'),
+        joe.JoeAPI('mykey', 'https://jbxcloud.joesecurity.org/api', True)
+    ]
+
+    for sandbox in sandboxes:
+        # verify connectivity
+        if not sandbox.is_available():
+            print("sandbox is down, exiting")
+            sys.exit(1)
+
+        # submit a file
+        with open('myfile.exe', "rb") as handle:
+            file_id = sandbox.analyze(handle, 'myfile.exe')
+            print("file {f} submitted for analysis, id {i}".format(f=filename, i=file_id))
+
+        # wait for the analysis to complete
+        while not sandbox.check(file_id):
+            print("not done yet, sleeping 10 seconds...")
+            time.sleep(10)
+
+        # print the report
+        print("analysis complete. fetching report...")
+        report = sandbox.report(file_id)
+        pprint.pprint(report)
+        print("Score: {score}".format(score=sandbox.score(report)))
+
 Cuckoo
 ~~~~~~
 
