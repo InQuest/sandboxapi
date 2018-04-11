@@ -8,13 +8,12 @@ import sandboxapi
 class FalconAPI(sandboxapi.SandboxAPI):
     """Falcon Sandbox API wrapper"""
 
-    def __init__(self, key, secret, url=None, env=100):
+    def __init__(self, key, url=None, env=100):
         """Initialize the interface to Falcon Sandbox API with key and secret"""
         sandboxapi.SandboxAPI.__init__(self)
 
-        self.api_url = url or 'https://www.reverse.it'
+        self.api_url = url or 'https://www.reverse.it/api/v2'
         self.key = key
-        self.secret = secret
         self.env_id = str(env)
 
     def _request(self, uri, method='GET', params=None, files=None, headers=None, auth=None):
@@ -24,25 +23,24 @@ class FalconAPI(sandboxapi.SandboxAPI):
         authentication steps.
         """
         if params:
-            params['apikey'] = self.key
-            params['secret'] = self.secret
-            params['environmentId'] = self.env_id
+            params['environment_id'] = self.env_id
         else:
             params = {
-                'apikey': self.key,
-                'secret': self.secret,
-                'environmentId': self.env_id,
+                'environment_id': self.env_id,
             }
 
         if headers:
-            headers['User-Agent'] = 'Falcon Sandbox Lib'
+            headers['api-key'] = self.key
+            headers['User-Agent'] = 'Falcon Sandbox'
+            headers['Accept'] = 'application/json'
         else:
             headers = {
-                'User-Agent': 'Falcon Sandbox Lib',
+                'api-key': self.key,
+                'User-Agent': 'Falcon Sandbox',
+                'Accept': 'application/json',
             }
 
         return sandboxapi.SandboxAPI._request(self, uri, method, params, files, headers)
-
 
     def analyze(self, handle, filename):
         """Submit a file for analysis.
@@ -61,14 +59,14 @@ class FalconAPI(sandboxapi.SandboxAPI):
         # ensure the handle is at offset 0.
         handle.seek(0)
 
-        response = self._request("/api/submit", method='POST', files=files)
+        response = self._request("/submit/file", method='POST', files=files)
 
         try:
-            if response.status_code == 200 and int(response.json()['response_code']) == 0:
+            if response.status_code == 201:
                 # good response
-                return response.json()['response']['sha256']
+                return response.json()['job_id']
             else:
-                raise sandboxapi.SandboxError("api error in analyze: {r}".format(r=response.content))
+                raise sandboxapi.SandboxError("api error in analyze: {r}".format(r=response.content.decode('utf-8')))
         except (ValueError, KeyError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
@@ -76,24 +74,25 @@ class FalconAPI(sandboxapi.SandboxAPI):
         """Check if an analysis is complete.
 
         @type  item_id: str
-        @param item_id: File hash to check.
+        @param item_id: Job ID to check.
 
         @rtype:  bool
         @return: Boolean indicating if a report is done or not.
         """
-        response = self._request("/api/state/{hash}".format(hash=item_id))
 
-        if response.status_code == 404:
-            # probably an unknown task id
+        response = self._request("/report/{job_id}/state".format(job_id=item_id))
+
+        if response.status_code in (404, 429):
+            # unknown job id, api request limit exceeded
             return False
 
         try:
             content = json.loads(response.content.decode('utf-8'))
-            status = content['response']['state']
+            status = content['state']
             if status == 'SUCCESS' or status == 'ERROR':
                 return True
 
-        except ValueError as e:
+        except (ValueError, KeyError) as e:
             raise sandboxapi.SandboxError(e)
 
         return False
@@ -115,7 +114,7 @@ class FalconAPI(sandboxapi.SandboxAPI):
         else:
 
             try:
-                response = self._request("/api/quota")
+                response = self._request("/system/heartbeat")
 
                 # we've got falcon.
                 if response.status_code == 200:
@@ -134,9 +133,9 @@ class FalconAPI(sandboxapi.SandboxAPI):
         @rtype:  str
         @return: Details on the queue size.
         """
-        response = self._request("/system/queuesize")
+        response = self._request("/system/queue-size")
 
-        return response.content
+        return response.content.decode('utf-8')
 
     def report(self, item_id, report_format="json"):
         """Retrieves the specified report for the analyzed item, referenced by item_id.
@@ -154,8 +153,10 @@ class FalconAPI(sandboxapi.SandboxAPI):
         """
         report_format = report_format.lower()
 
-        response = self._request("/api/scan/{file_hash}".format(file_hash=item_id),
-                                 params={'type':report_format})
+        response = self._request("/report/{job_id}/summary".format(job_id=item_id))
+
+        if response.status_code == 429:
+            raise sandboxapi.SandboxError('API rate limit exceeded while fetching report')
 
         # if response is JSON, return it as an object
         if report_format == "json":
@@ -165,14 +166,16 @@ class FalconAPI(sandboxapi.SandboxAPI):
                 pass
 
         # otherwise, return the raw content.
-        return response.content
+        return response.content.decode('utf-8')
 
-    def full_report (self, item_id, report_format="json"):
+    def full_report(self, item_id, report_format="json"):
         """Retrieves a more detailed report"""
-
         report_format = report_format.lower()
 
-        response = self._request("/api/result/{file_hash}".format(file_hash=item_id), params={'type':report_format})
+        response = self._request("/report/{job_id}/file/{report_format}".format(job_id=item_id, report_format=report_format))
+
+        if response.status_code == 429:
+            raise sandboxapi.SandboxError('API rate limit exceeded while fetching report')
 
         # if response is JSON, return it as an object
         if report_format == "json":
@@ -182,20 +185,20 @@ class FalconAPI(sandboxapi.SandboxAPI):
                 pass
 
         # otherwise, return the raw content.
-        return response.content
+        return response.content.decode('utf-8')
 
     def score(self, report):
-        """Pass in the report from self.rerport(), get back an int 0-10."""
+        """Pass in the report from self.report(), get back an int 0-10."""
 
         try:
-            threatlevel = int(report['response'][0]['threatlevel'])
-            threatscore = int(report['response'][0]['threatscore'])
-        except (KeyError, IndexError, ValueError, TypeError):
-            return 0
+            threatlevel = int(report['threat_level'])
+            threatscore = int(report['threat_score'])
+        except (KeyError, IndexError, ValueError, TypeError) as e:
+            raise sandboxapi.SandboxError(e)
 
-        # from vxstream docs:
+        # from falcon docs:
         # threatlevel is the verdict field with values: 0 = no threat, 1 = suspicious, 2 = malicious
-        # threascore  is the "heuristic" confidence value of VxStream Sandbox in the verdict and is a value between 0
+        # threascore  is the "heuristic" confidence value of Falcon Sandbox in the verdict and is a value between 0
         # and 100. A value above 75/100 is "pretty sure", a value above 90/100 is "very sure".
 
         # the scoring below converts these values to a scalar. modify as needed.
