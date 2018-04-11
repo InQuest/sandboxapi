@@ -173,7 +173,7 @@ VMRay
 
 Constructor signature::
 
-    VMRayAPI(api_key, url='https://cloud.vmray.com')
+    VMRayAPI(api_key, url='https://cloud.vmray.com', verify_ssl=True)
 
 Example::
 

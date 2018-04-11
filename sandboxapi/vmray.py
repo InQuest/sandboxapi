@@ -8,13 +8,14 @@ import sandboxapi
 class VMRayAPI(sandboxapi.SandboxAPI):
     """VMRay Sandbox API wrapper"""
 
-    def __init__(self, api_key, url=None):
+    def __init__(self, api_key, url=None, verify_ssl=True):
         """Initialize the interface to VMRay Sandbox API"""
         sandboxapi.SandboxAPI.__init__(self)
 
         self.base_url = url or 'https://cloud.vmray.com'
         self.api_url = self.base_url + '/rest'
         self.api_key = api_key
+        self.verify_ssl = verify_ssl
 
         # define once and use later
         self.headers = {'Authorization': 'api_key {a}'.format(a=api_key)}
