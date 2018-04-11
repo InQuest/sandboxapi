@@ -119,8 +119,8 @@ the same way::
         pprint.pprint(report)
         print("Score: {score}".format(score=sandbox.score(report)))
 
-Cuckoo
-~~~~~~
+Cuckoo Sandbox
+~~~~~~~~~~~~~~
 
 Constructor signature::
 
@@ -139,8 +139,8 @@ There is an `unofficial Cuckoo library`_ written by @keithjjones with much
 more functionality. For more information on the Cuckoo API, see the `Cuckoo API
 documentation`_.
 
-FireEye
-~~~~~~~
+FireEye AX
+~~~~~~~~~~
 
 Constructor signature::
 
@@ -153,8 +153,8 @@ Example::
 There is some limited `FireEye API documentation`_ on their blog. For more
 information on FireEye's sandbox systems, see the `AX Series product page`_.
 
-Joe
-~~~
+Joe Sandbox
+~~~~~~~~~~~
 
 Constructor signature::
 
@@ -168,8 +168,8 @@ There is an `official Joe Sandbox library`_ with much more functionality.
 This library is installed as a dependency of sandboxapi, and wrapped by the
 ``sandboxapi.joe.JoeSandbox`` class.
 
-VMRay
-~~~~~
+VMRay Analyzer
+~~~~~~~~~~~~~~
 
 Constructor signature::
 
@@ -182,8 +182,8 @@ Example::
 VMRay customers have access to a Python library with much more functionality.
 Check your VMRay documentation for more details.
 
-Falcon
-~~~~~~~~
+Falcon Sandbox
+~~~~~~~~~~~~~~
 
 Constructor signature::
 
