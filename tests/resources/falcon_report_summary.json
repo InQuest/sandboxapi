@@ -1,0 +1,51 @@
+{
+    "environment_id": "100", 
+    "threat_score": 5, 
+    "target_url": null, 
+    "total_processes": 0, 
+    "threat_level": 1, 
+    "size": 100000, 
+    "job_id": "1", 
+    "vx_family": null, 
+    "interesting": false, 
+    "compromised_hosts": null, 
+    "state": "SUCCESS", 
+    "certificates": null, 
+    "hosts": [], 
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b", 
+    "sha512": "be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09", 
+    "extracted_files": null, 
+    "analysis_start_time": "2018-10-10 10:10:10", 
+    "imphash": "Unknown", 
+    "total_network_connections": 0, 
+    "av_detect": 0, 
+    "classification_tags": [
+        "pdfjsc", 
+        "pidief"
+    ], 
+    "submit_name": "example.pdf", 
+    "ssdeep": "Unknown", 
+    "md5": "68b329da9893e34099c7d8ad5cb9c940", 
+    "total_signatures": 3, 
+    "processes": null, 
+    "sha1": "adc83b19e793491b1c6ea0fd8b46cd9f32e592fc", 
+    "url_analysis": false, 
+    "type": "PDF document, version 1.6", 
+    "file_metadata": {
+        "file_compositions": [], 
+        "file_analysis": [
+            "%PDF-1.6\\n", 
+            "%\\xe2\\xe3\\xcf\\xd3\\r\\n", 
+            "%%EOF\\r\\n"
+        ], 
+        "total_file_compositions_imports": null, 
+        "imported_objects": []
+    }, 
+    "environment_description": "Windows 7 32 bit", 
+    "verdict": "no verdict", 
+    "domains": [], 
+    "type_short": [
+        "pdf"
+    ]
+}
+

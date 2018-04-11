@@ -213,41 +213,41 @@ class TestVMRay(unittest.TestCase):
 class TestFalcon(unittest.TestCase):
 
     def setUp(self):
-        self.sandbox = sandboxapi.falcon.FalconAPI('key', 'secret', 'http://falcon.mock')
+        self.sandbox = sandboxapi.falcon.FalconAPI('key', 'http://falcon.mock/api/v2')
 
     @responses.activate
     def test_analyze(self):
-        responses.add(responses.POST, 'http://falcon.mock/api/submit',
-                      json=read_resource('falcon_submit'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '040c0111aef474d8b7bfa9a7caa0e06b4f1049c7ae8c66611a53fc2599f0b90f')
+        responses.add(responses.POST, 'http://falcon.mock/api/v2/submit/file',
+                      json=read_resource('falcon_submit_file'), status=201)
+        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '1')
 
     @responses.activate
     def test_check(self):
-        responses.add(responses.GET, 'http://falcon.mock/api/state/1',
-                      json=read_resource('falcon_state'))
+        responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/state',
+                      json=read_resource('falcon_report_state'))
         self.assertEquals(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
-        responses.add(responses.GET, 'http://falcon.mock/api/quota',
-                      json=read_resource('falcon_quota'))
+        responses.add(responses.GET, 'http://falcon.mock/api/v2/system/heartbeat',
+                      json=read_resource('falcon_system_heartbeat'))
         self.assertTrue(self.sandbox.is_available())
 
     @responses.activate
     def test_not_is_available(self):
         self.assertFalse(self.sandbox.is_available())
-        responses.add(responses.GET, 'http://falcon.mock/api/quota',
+        responses.add(responses.GET, 'http://falcon.mock/api/v2/system/heartbeat',
                       status=500)
         self.assertFalse(self.sandbox.is_available())
 
     @responses.activate
     def test_report(self):
-        responses.add(responses.GET, 'http://falcon.mock/api/scan/1',
-                      json=read_resource('falcon_scan'))
-        self.assertEquals(self.sandbox.report(1)['response_code'], 0)
+        responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/summary',
+                      json=read_resource('falcon_report_summary'))
+        self.assertEquals(self.sandbox.report(1)['job_id'], '1')
 
     @responses.activate
     def test_score(self):
-        responses.add(responses.GET, 'http://falcon.mock/api/scan/1',
-                      json=read_resource('falcon_scan'))
-        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 6)
+        responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/summary',
+                      json=read_resource('falcon_report_summary'))
+        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 5)
