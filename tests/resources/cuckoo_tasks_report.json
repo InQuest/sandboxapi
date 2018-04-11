@@ -7,10 +7,10 @@
     "dropped": [], 
     "network": {
     }, 
-    "score": 5,
     "info": {
         "category": "file", 
         "package": "", 
+        "score": 5,
         "started": "2016-08-26 15:24:51", 
         "custom": "", 
         "machine": {}, 

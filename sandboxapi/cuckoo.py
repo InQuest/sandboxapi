@@ -178,7 +178,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
             score = report['malscore']
         except KeyError:
             # cuckoo-2.0 format
-            score = report.get('score', 0)
+            score = report.get('info', {}).get('score', 0)
 
         return score
 
