@@ -187,14 +187,18 @@ Falcon
 
 Constructor signature::
 
-    FalconAPI(key, secret, url='https://www.reverse.it', env=100)
+    FalconAPI(key, url='https://www.reverse.it/api/v2', env=100)
 
 Example::
 
-    FalconAPI('mykey', 'mysecret')
+    FalconAPI('mykey')
 
-There is an `official Falcon library`_ with much more functionality,
-that only supports Python 3.4+.
+This class only supports version 2.0+ of the Falcon API, which is available
+in version 8.0.0+ of the Falcon Sandbox.
+
+There is an `official Falcon library`_ with much more functionality, that
+supports the current and older versions of the Falcon API. Note that the
+official library only supports Python 3.4+.
 
 
 Notes
