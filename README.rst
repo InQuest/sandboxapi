@@ -7,6 +7,9 @@ sandboxapi
 .. image:: https://api.codacy.com/project/badge/Grade/7ddb5b4791404aa2a6a9670099fe53ad
     :target: https://www.codacy.com/app/rshipp/python-sandboxapi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=InQuest/python-sandboxapi&amp;utm_campaign=Badge_Grade
     :alt: Code Health
+.. image:: https://api.codacy.com/project/badge/Coverage/7ddb5b4791404aa2a6a9670099fe53ad
+    :target: https://www.codacy.com/app/rshipp/python-sandboxapi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=InQuest/python-sandboxapi&amp;utm_campaign=Badge_Coverage
+    :alt: Test Coverage
 .. image:: http://img.shields.io/pypi/v/sandboxapi.svg
     :target: https://pypi.python.org/pypi/sandboxapi
     :alt: PyPi Version
