@@ -147,7 +147,7 @@ FireEye AX
 
 Constructor signature::
 
-    FireEyeAPI(username, password, url, profile)
+    FireEyeAPI(username, password, url, profile, verify_ssl=True)
 
 Example::
 
