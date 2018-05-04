@@ -10,7 +10,7 @@ import sandboxapi
 class FireEyeAPI(sandboxapi.SandboxAPI):
     """FireEye Sandbox API wrapper"""
 
-    def __init__(self, username, password, url, profile):
+    def __init__(self, username, password, url, profile, verify_ssl=True):
         """Initialize the interface to FireEye Sandbox API"""
         sandboxapi.SandboxAPI.__init__(self)
 
@@ -20,6 +20,7 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         self.password = password
         self.profile = profile or 'winxp-sp3'
         self.api_token = None
+        self.verify_ssl = verify_ssl
 
     def _request(self, uri, method='GET', params=None, files=None, headers=None, auth=None):
         """Override the parent _request method.
