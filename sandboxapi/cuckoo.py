@@ -95,7 +95,7 @@ class CuckooAPI(sandboxapi.SandboxAPI):
             item_id = response.json()['sample']['id']
 
         except sandboxapi.SandboxError:
-            item_id = None 
+            item_id = None
 
         return item_id
 
