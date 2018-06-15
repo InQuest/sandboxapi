@@ -87,7 +87,7 @@ class VMRayAPI(sandboxapi.SandboxAPI):
         @return:    Submission ID of the sample or None if not present.
         """
         response = self._request("/sample/{htype}/{hvalue}".format(htype=hash_type, hvalue=sample_hash), headers=self.headers)
-        
+
         item_id = None
         for submission in response.json()['data']:
             item_id = item_id or submission['sample_id']
