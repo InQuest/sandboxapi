@@ -75,6 +75,26 @@ class VMRayAPI(sandboxapi.SandboxAPI):
 
         return False
 
+    def check_sample(self, hash_type, sample_hash):
+        """Check if a sample has been previously submitted.
+
+        @type   sample_hash:   str
+        @param  sample_hash:   MD5, SHA1 or SHA256 hash to check for.
+        @type   hash_type:     str
+        @param  hash_type:     Hash type as either MD5, SHA1 or SHA256.
+
+        @rtype:     int
+        @return:    Submission ID of the sample or None if not present.
+        """
+        response = self._request("/sample/{htype}/{hvalue}".format(htype=hash_type, hvalue=sample_hash), headers=self.headers)
+        
+        item_id = None
+        for submission in response.json()['data']:
+            item_id = item_id or submission['sample_id']
+        
+        return item_id
+
+
     def is_available(self):
         """Determine if the VMRay API server is alive.
 

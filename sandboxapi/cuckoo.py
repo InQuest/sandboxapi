@@ -79,6 +79,26 @@ class CuckooAPI(sandboxapi.SandboxAPI):
 
         return False
 
+    def check_sample(self, hash_type, sample_hash):
+        """Check if a sample has been previously submitted.
+
+        @type   sample_hash:   str
+        @param  sample_hash:   MD5 or SHA256 hash to check for.
+        @type   hash_type:     str
+        @param  hash_type:     Hash type as either MD5 or SHA256.
+
+        @rtype:     int
+        @return:    Submission ID of the sample or None if not present.
+        """
+        try:
+            response = self._request("files/view/{htype}/{hvalue}".format(htype=hash_type, hvalue=sample_hash))
+            item_id = response.json()['sample']['id']
+
+        except sandboxapi.SandboxError:
+            item_id = None 
+
+        return item_id
+
     def delete(self, item_id):
         """Delete the reports associated with the given item_id.
 
