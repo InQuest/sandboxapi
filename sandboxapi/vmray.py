@@ -6,10 +6,10 @@ import time
 import sandboxapi
 
 class VMRayAPI(sandboxapi.SandboxAPI):
-    """VMRay Sandbox API wrapper"""
+    """VMRay Sandbox API wrapper."""
 
     def __init__(self, api_key, url=None, verify_ssl=True):
-        """Initialize the interface to VMRay Sandbox API"""
+        """Initialize the interface to VMRay Sandbox API."""
         sandboxapi.SandboxAPI.__init__(self)
 
         self.base_url = url or 'https://cloud.vmray.com'

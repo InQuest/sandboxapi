@@ -6,10 +6,10 @@ import json
 import sandboxapi
 
 class CuckooAPI(sandboxapi.SandboxAPI):
-    """Cuckoo Sandbox API wrapper"""
+    """Cuckoo Sandbox API wrapper."""
 
     def __init__(self, host, port=8090, api_path='/', verify_ssl=False):
-        """Initialize the interface to Cuckoo Sandbox API with host and port"""
+        """Initialize the interface to Cuckoo Sandbox API with host and port."""
         sandboxapi.SandboxAPI.__init__(self)
 
         self.api_url = 'http://' + host + ':' + str(port) + api_path

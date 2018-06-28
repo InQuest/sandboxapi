@@ -8,10 +8,10 @@ from requests.auth import HTTPBasicAuth
 import sandboxapi
 
 class FireEyeAPI(sandboxapi.SandboxAPI):
-    """FireEye Sandbox API wrapper"""
+    """FireEye Sandbox API wrapper."""
 
     def __init__(self, username, password, url, profile, verify_ssl=True):
-        """Initialize the interface to FireEye Sandbox API"""
+        """Initialize the interface to FireEye Sandbox API."""
         sandboxapi.SandboxAPI.__init__(self)
 
         self.base_url = url

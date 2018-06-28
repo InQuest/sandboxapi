@@ -5,13 +5,13 @@ import jbxapi
 import sandboxapi
 
 class JoeAPI(sandboxapi.SandboxAPI):
-    """Joe Sandbox API wrapper
+    """Joe Sandbox API wrapper.
 
     This class is actually just a convenience wrapper around jbxapi.JoeSandbox.
     """
 
     def __init__(self, apikey, apiurl, accept_tac, timeout=None, verify_ssl=True, retries=3):
-        """Initialize the interface to Joe Sandbox API"""
+        """Initialize the interface to Joe Sandbox API."""
         sandboxapi.SandboxAPI.__init__(self)
         self.jbx = jbxapi.JoeSandbox(apikey, apiurl or jbxapi.API_URL, accept_tac, timeout, verify_ssl, retries)
 

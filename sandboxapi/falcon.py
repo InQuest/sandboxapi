@@ -6,10 +6,10 @@ import json
 import sandboxapi
 
 class FalconAPI(sandboxapi.SandboxAPI):
-    """Falcon Sandbox API wrapper"""
+    """Falcon Sandbox API wrapper."""
 
     def __init__(self, key, url=None, env=100):
-        """Initialize the interface to Falcon Sandbox API with key and secret"""
+        """Initialize the interface to Falcon Sandbox API with key and secret."""
         sandboxapi.SandboxAPI.__init__(self)
 
         self.api_url = url or 'https://www.reverse.it/api/v2'
