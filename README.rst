@@ -7,6 +7,9 @@ sandboxapi
 .. image:: https://travis-ci.org/InQuest/python-sandboxapi.svg?branch=master
     :target: https://travis-ci.org/InQuest/python-sandboxapi
     :alt: Build Status
+.. image:: https://readthedocs.org/projects/sandboxapi/badge/?version=latest
+    :target: https://inquest.readthedocs.io/projects/sandboxapi/en/latest/?badge=latest
+    :alt: Documentation Status
 .. image:: https://api.codacy.com/project/badge/Grade/7ddb5b4791404aa2a6a9670099fe53ad
     :target: https://www.codacy.com/app/rshipp/python-sandboxapi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=InQuest/python-sandboxapi&amp;utm_campaign=Badge_Grade
     :alt: Code Health
