@@ -8,9 +8,9 @@ import sandboxapi
 class FalconAPI(sandboxapi.SandboxAPI):
     """Falcon Sandbox API wrapper."""
 
-    def __init__(self, key, url=None, env=100):
+    def __init__(self, key, url=None, env=100,  **kwargs):
         """Initialize the interface to Falcon Sandbox API with key and secret."""
-        sandboxapi.SandboxAPI.__init__(self)
+        sandboxapi.SandboxAPI.__init__(self, **kwargs)
 
         self.api_url = url or 'https://www.reverse.it/api/v2'
         self.key = key

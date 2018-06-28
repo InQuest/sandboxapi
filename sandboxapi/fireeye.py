@@ -10,9 +10,9 @@ import sandboxapi
 class FireEyeAPI(sandboxapi.SandboxAPI):
     """FireEye Sandbox API wrapper."""
 
-    def __init__(self, username, password, url, profile, verify_ssl=True):
+    def __init__(self, username, password, url, profile, verify_ssl=True, **kwargs):
         """Initialize the interface to FireEye Sandbox API."""
-        sandboxapi.SandboxAPI.__init__(self)
+        sandboxapi.SandboxAPI.__init__(self, **kwargs)
 
         self.base_url = url
         self.api_url = url + '/wsapis/v1.1.0'

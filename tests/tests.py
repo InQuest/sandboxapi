@@ -2,6 +2,10 @@ import io
 import os
 import json
 import unittest
+try:
+    from unittest.mock import patch, ANY as MOCK_ANY
+except ImportError:
+    from mock import patch, ANY as MOCK_ANY
 
 import responses
 
@@ -64,6 +68,33 @@ class TestCuckoo(unittest.TestCase):
                       json=read_resource('cuckoo_tasks_report'))
         self.assertEquals(self.sandbox.score(self.sandbox.report(8)), 5)
 
+    @patch('requests.post')
+    @patch('requests.get')
+    def test_proxies_is_passed_to_requests(self, m_get, m_post):
+
+        m_get.return_value.status_code = 200
+        m_post.return_value.status_code = 200
+
+        proxies = {
+            'http': 'http://10.10.1.10:3128',
+            'https': 'http://10.10.1.10:1080',
+        }
+
+        api = sandboxapi.cuckoo.CuckooAPI('cuckoo.mock',
+                                          proxies=proxies)
+        api._request('/test')
+
+        m_get.assert_called_once_with(api.api_url + '/test', auth=MOCK_ANY,
+                                      headers=MOCK_ANY, params=MOCK_ANY,
+                                      proxies=proxies, verify=MOCK_ANY)
+
+        api._request('/test', method='POST')
+
+        m_post.assert_called_once_with(api.api_url + '/test', auth=MOCK_ANY,
+                                       headers=MOCK_ANY, data=MOCK_ANY,
+                                       files=None, proxies=proxies,
+                                       verify=MOCK_ANY)
+
 
 class TestJoe(unittest.TestCase):
 
@@ -106,6 +137,22 @@ class TestJoe(unittest.TestCase):
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/download',
                       json=read_resource('joe_analysis_download'))
         self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 1)
+
+    @patch('requests.post')
+    @patch('requests.get')
+    def test_proxies_is_passed_to_requests(self, m_get, m_post):
+
+        m_get.return_value.status_code = 200
+        m_post.return_value.status_code = 200
+
+        proxies = {
+            'http': 'http://10.10.1.10:3128',
+            'https': 'http://10.10.1.10:1080',
+        }
+
+        api = sandboxapi.joe.JoeAPI('key', self.sandbox.jbx.apiurl, True,
+                                    proxies=proxies)
+        self.assertEquals(api.jbx.session.proxies, proxies)
 
 
 class TestFireEye(unittest.TestCase):
@@ -162,6 +209,34 @@ class TestFireEye(unittest.TestCase):
                       json=read_resource('fireeye_submissions_results'))
         self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 8)
 
+    @patch('requests.post')
+    @patch('requests.get')
+    def test_proxies_is_passed_to_requests(self, m_get, m_post):
+
+        m_get.return_value.status_code = 200
+        m_post.return_value.status_code = 200
+
+        proxies = {
+            'http': 'http://10.10.1.10:3128',
+            'https': 'http://10.10.1.10:1080',
+        }
+
+        api = sandboxapi.fireeye.FireEyeAPI('username', 'password',
+                                            self.sandbox.api_url, 'profile',
+                                            proxies=proxies)
+        api._request('/test')
+
+        m_get.assert_called_once_with(api.api_url + '/test', auth=MOCK_ANY,
+                                      headers=MOCK_ANY, params=MOCK_ANY,
+                                      proxies=proxies, verify=MOCK_ANY)
+
+        api._request('/test', method='POST')
+
+        m_post.assert_called_with(api.api_url + '/test', auth=MOCK_ANY,
+                                  headers=MOCK_ANY, data=MOCK_ANY,
+                                  files=None, proxies=proxies,
+                                  verify=MOCK_ANY)
+
 
 class TestVMRay(unittest.TestCase):
 
@@ -209,6 +284,33 @@ class TestVMRay(unittest.TestCase):
                       json=read_resource('vmray_analysis_archive_logs_summary'))
         self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 20)
 
+    @patch('requests.post')
+    @patch('requests.get')
+    def test_proxies_is_passed_to_requests(self, m_get, m_post):
+
+        m_get.return_value.status_code = 200
+        m_post.return_value.status_code = 200
+
+        proxies = {
+            'http': 'http://10.10.1.10:3128',
+            'https': 'http://10.10.1.10:1080',
+        }
+
+        api = sandboxapi.vmray.VMRayAPI('key', self.sandbox.api_url,
+                                        proxies=proxies)
+        api._request('/test')
+
+        m_get.assert_called_once_with(api.api_url + '/test', auth=MOCK_ANY,
+                                      headers=MOCK_ANY, params=MOCK_ANY,
+                                      proxies=proxies, verify=MOCK_ANY)
+
+        api._request('/test', method='POST')
+
+        m_post.assert_called_once_with(api.api_url + '/test', auth=MOCK_ANY,
+                                       headers=MOCK_ANY, data=MOCK_ANY,
+                                       files=None, proxies=proxies,
+                                       verify=MOCK_ANY)
+
 
 class TestFalcon(unittest.TestCase):
 
@@ -251,3 +353,58 @@ class TestFalcon(unittest.TestCase):
         responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/summary',
                       json=read_resource('falcon_report_summary'))
         self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 5)
+
+    @patch('requests.post')
+    @patch('requests.get')
+    def test_proxies_is_passed_to_requests(self, m_get, m_post):
+
+        m_get.return_value.status_code = 200
+        m_post.return_value.status_code = 200
+
+        proxies = {
+            'http': 'http://10.10.1.10:3128',
+            'https': 'http://10.10.1.10:1080',
+        }
+
+        api = sandboxapi.falcon.FalconAPI('key', self.sandbox.api_url,
+                                          proxies=proxies)
+        api._request('/test')
+
+        m_get.assert_called_once_with(api.api_url + '/test', auth=MOCK_ANY,
+                                      headers=MOCK_ANY, params=MOCK_ANY,
+                                      proxies=proxies, verify=MOCK_ANY)
+
+        api._request('/test', method='POST')
+
+        m_post.assert_called_once_with(api.api_url + '/test', auth=MOCK_ANY,
+                                       headers=MOCK_ANY, data=MOCK_ANY,
+                                       files=None, proxies=proxies,
+                                       verify=MOCK_ANY)
+
+
+class TestSandboxAPI(unittest.TestCase):
+
+    @patch('requests.post')
+    @patch('requests.get')
+    def test_proxies_is_passed_to_requests(self, m_get, m_post):
+        m_get.return_value.status_code = 200
+        m_post.return_value.status_code = 200
+
+        proxies = {
+            'http': 'http://10.10.1.10:3128',
+            'https': 'http://10.10.1.10:1080',
+        }
+
+        api = sandboxapi.SandboxAPI(proxies=proxies)
+        api.api_url = 'http://sandbox.mock'
+        api._request('/test')
+
+        m_get.assert_called_once_with('http://sandbox.mock/test', auth=None,
+                                      headers=None, params=None, proxies=proxies,
+                                      verify=True)
+
+        api._request('/test', method='POST')
+
+        m_post.assert_called_once_with('http://sandbox.mock/test', auth=None,
+                                       headers=None, data=None, files=None,
+                                       proxies=proxies, verify=True)

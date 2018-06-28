@@ -8,9 +8,9 @@ import sandboxapi
 class CuckooAPI(sandboxapi.SandboxAPI):
     """Cuckoo Sandbox API wrapper."""
 
-    def __init__(self, host, port=8090, api_path='/', verify_ssl=False):
+    def __init__(self, host, port=8090, api_path='/', verify_ssl=False, **kwargs):
         """Initialize the interface to Cuckoo Sandbox API with host and port."""
-        sandboxapi.SandboxAPI.__init__(self)
+        sandboxapi.SandboxAPI.__init__(self, **kwargs)
 
         self.api_url = 'http://' + host + ':' + str(port) + api_path
         self.verify_ssl = verify_ssl

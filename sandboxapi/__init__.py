@@ -26,7 +26,11 @@ class SandboxAPI(object):
     """Sandbox API wrapper base class."""
 
     def __init__(self, *args, **kwargs):
-        """Initialize the interface to Sandbox API"""
+        """Initialize the interface to Sandbox API.
+
+        :type  proxies: dict
+        :param proxies: Optional proxies dict passed to requests calls.
+        """
 
         self.api_url = None
 
@@ -36,15 +40,23 @@ class SandboxAPI(object):
         # turn SSL verify on by default
         self.verify_ssl = True
 
+        # allow passing in requests options directly.
+        # be careful using this!
+        self.proxies = kwargs.get('proxies')
+
     def _request(self, uri, method='GET', params=None, files=None, headers=None, auth=None):
         """Robustness wrapper. Tries up to 3 times to dance with the Sandbox API.
 
-        :type  uri:    str
-        :param uri:    URI to append to base_url.
-        :type  params: dict
-        :param params: Optional parameters for API.
-        :type  files:  dict
-        :param files:  Optional dictionary of files for multipart post.
+        :type  uri:     str
+        :param uri:     URI to append to base_url.
+        :type  params:  dict
+        :param params:  Optional parameters for API.
+        :type  files:   dict
+        :param files:   Optional dictionary of files for multipart post.
+        :type  headers: dict
+        :param headers: Optional headers to send to the API.
+        :type  auth:    dict
+        :param auth:    Optional authentication object to send to the API.
 
         :rtype:  requests.response.
         :return: Response object.
@@ -61,10 +73,10 @@ class SandboxAPI(object):
                 response = None
                 if method == 'POST':
                     response = requests.post(full_url, data=params, files=files, headers=headers,
-                                             verify=self.verify_ssl, auth=auth)
+                                             verify=self.verify_ssl, auth=auth, proxies=self.proxies)
                 else:
                     response = requests.get(full_url, params=params, headers=headers,
-                                            verify=self.verify_ssl, auth=auth)
+                                            verify=self.verify_ssl, auth=auth, proxies=self.proxies)
 
                 # if the status code is 503, is no longer available.
                 if response:
