@@ -68,7 +68,7 @@ Basic usage is as follows:
     from sandboxapi import cuckoo
 
     # connect to the sandbox
-    sandbox = cuckoo.CuckooAPI('192.168.0.20')
+    sandbox = cuckoo.CuckooAPI('http://192.168.0.20:8090/')
 
     # verify connectivity
     if not sandbox.is_available():
