@@ -8,11 +8,27 @@ import sandboxapi
 class CuckooAPI(sandboxapi.SandboxAPI):
     """Cuckoo Sandbox API wrapper."""
 
-    def __init__(self, host, port=8090, api_path='/', verify_ssl=False, **kwargs):
-        """Initialize the interface to Cuckoo Sandbox API with host and port."""
+    def __init__(self, url, port=8090, api_path='/', verify_ssl=False, **kwargs):
+        """Initialize the interface to Cuckoo Sandbox API with host and port.
+
+        :type  url:      str
+        :param url:      Cuckoo API URL. (Currently treated as host if not a fully formed URL -
+                         this will be removed in a future version.)
+        :type  port:     int
+        :param port:     DEPRECATED! Use fully formed url instead. Will be removed in future version.
+        :type  api_path: str
+        :param api_path: DEPRECATED! Use fully formed url instead. Will be removed in future version.
+        """
         sandboxapi.SandboxAPI.__init__(self, **kwargs)
 
-        self.api_url = 'http://' + host + ':' + str(port) + api_path
+        # NOTE: host/port/api_path support is DEPRECATED!
+        if url.startswith('http://') or url.startswith('https://'):
+            # Assume new-style url param. Ignore port and api_path.
+            self.api_url = url
+        else:
+            # This is for backwards compatability and will be removed in a future version.
+            self.api_url = 'http://' + url + ':' + str(port) + api_path
+
         self.verify_ssl = verify_ssl
 
         # assume Cuckoo is *not* available.

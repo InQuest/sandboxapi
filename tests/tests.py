@@ -23,7 +23,7 @@ def read_resource(resource):
 class TestCuckoo(unittest.TestCase):
 
     def setUp(self):
-        self.sandbox = sandboxapi.cuckoo.CuckooAPI('cuckoo.mock')
+        self.sandbox = sandboxapi.cuckoo.CuckooAPI('http://cuckoo.mock:8090/')
 
     @responses.activate
     def test_analyses(self):
@@ -94,6 +94,19 @@ class TestCuckoo(unittest.TestCase):
                                        headers=MOCK_ANY, data=MOCK_ANY,
                                        files=None, proxies=proxies,
                                        verify=MOCK_ANY)
+
+    @responses.activate
+    def test_cuckoo_old_style_host_port_path(self):
+        sandbox = sandboxapi.cuckoo.CuckooAPI('cuckoo.mock')
+        responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/list',
+                      json=read_resource('cuckoo_tasks_list'))
+        self.assertEquals(len(self.sandbox.analyses()), 2)
+
+        sandbox = sandboxapi.cuckoo.CuckooAPI('cuckoo.mock', 9090, '/test')
+        responses.add(responses.GET, 'http://cuckoo.mock:9090/test/tasks/list',
+                      json=read_resource('cuckoo_tasks_list'))
+        self.assertEquals(len(self.sandbox.analyses()), 2)
+
 
 
 class TestJoe(unittest.TestCase):

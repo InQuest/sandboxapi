@@ -104,7 +104,7 @@ the same way:
 
     # connect to the sandbox
     sandboxes = [
-        cuckoo.CuckooAPI('192.168.0.20'),
+        cuckoo.CuckooAPI('http://192.168.0.20:8090/'),
         fireeye.FireEyeAPI('myusername', 'mypassword', 'https://192.168.0.21', 'winxp-sp3'),
         joe.JoeAPI('mykey', 'https://jbxcloud.joesecurity.org/api', True)
     ]
@@ -136,11 +136,11 @@ Cuckoo Sandbox
 
 Constructor signature::
 
-    CuckooAPI(host, port=8090, api_path='/', verify_ssl=False)
+    CuckooAPI(url, verify_ssl=False)
 
 Example::
 
-    CuckooAPI('192.168.0.20')
+    CuckooAPI('http://192.168.0.20:8090/')
 
 This library attempts to support any Cuckoo-like API, including older 1.x
 installations (though those without a score won't be able to use the ``.score``
