@@ -221,7 +221,7 @@ number of online analysis services.
 .. _Fireeye AX Series: https://www.fireeye.com/products/malware-analysis.html
 .. _Joe Sandbox: https://www.joesecurity.org/
 .. _VMRay Analyzer: https://www.vmray.com/
-.. _Falcon Sandbox: https://www.vxstream-sandbox.com/
+.. _Falcon Sandbox: https://www.falcon-sandbox.com/
 .. _unofficial Cuckoo library: https://github.com/keithjjones/cuckoo-api
 .. _Cuckoo API documentation: https://cuckoo.sh/docs/usage/api.html
 .. _FireEye API documentation: https://www.fireeye.com/blog/products-and-services/2015/12/restful_apis_thatdo.html
