@@ -3,13 +3,14 @@ import random
 
 import requests
 
-
 __all__ = [
     'cuckoo',
     'fireeye',
     'joe',
     'vmray',
     'falcon',
+    'SandboxAPI',
+    'SandboxError',
 ]
 
 
@@ -22,7 +23,7 @@ class SandboxError(Exception):
 
 
 class SandboxAPI(object):
-    """Sandbox API wrapper base class"""
+    """Sandbox API wrapper base class."""
 
     def __init__(self, *args, **kwargs):
         """Initialize the interface to Sandbox API"""

@@ -15,6 +15,12 @@ Module Documentation
 
 API documentation for sandbox classes.
 
+.. automodule:: sandboxapi
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :member-order: bysource
+
 Cuckoo Sandbox
 ~~~~~~~~~~~~~~
 
