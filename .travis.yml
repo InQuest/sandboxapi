@@ -11,6 +11,7 @@ install:
   - "pip install responses"
   - "pip install coveralls"
   - "pip install codacy-coverage"
+  - "pip install collective.checkdocs"
 script:
   - nosetests --with-coverage --cover-package=sandboxapi
   - python setup.py checkdocs
