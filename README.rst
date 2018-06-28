@@ -1,6 +1,9 @@
 sandboxapi
 ==========
 
+.. image:: https://inquest.net/images/inquest-badge.svg
+    :target: https://inquest.net/
+    :alt: Developed by InQuest
 .. image:: https://travis-ci.org/InQuest/python-sandboxapi.svg?branch=master
     :target: https://travis-ci.org/InQuest/python-sandboxapi
     :alt: Build Status
@@ -51,7 +54,9 @@ Supports Python 2.6+.
 Usage
 -----
 
-Basic usage is as follows::
+Basic usage is as follows:
+
+.. code-block:: python
 
     import sys
     import time
@@ -84,8 +89,9 @@ Basic usage is as follows::
     print("Score: {score}".format(score=sandbox.score(report)))
 
 Since the library provides a consistent API, you can treat all sandoxes
-the same way::
+the same way:
 
+.. code-block:: python
 
     import sys
     import time
