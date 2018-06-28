@@ -38,17 +38,17 @@ class SandboxAPI(object):
     def _request(self, uri, method='GET', params=None, files=None, headers=None, auth=None):
         """Robustness wrapper. Tries up to 3 times to dance with the Sandbox API.
 
-        @type  uri:    str
-        @param uri:    URI to append to base_url.
-        @type  params: dict
-        @param params: Optional parameters for API.
-        @type  files:  dict
-        @param files:  Optional dictionary of files for multipart post.
+        :type  uri:    str
+        :param uri:    URI to append to base_url.
+        :type  params: dict
+        :param params: Optional parameters for API.
+        :type  files:  dict
+        :param files:  Optional dictionary of files for multipart post.
 
-        @rtype:  requests.response.
-        @return: Response object.
+        :rtype:  requests.response.
+        :return: Response object.
 
-        @raise SandboxError: If all attempts failed.
+        :raises SandboxError: If all attempts failed.
         """
 
         # make up to three attempts to dance with the API, use a jittered
@@ -95,70 +95,70 @@ class SandboxAPI(object):
     def analyses(self):
         """Retrieve a list of analyzed samples.
 
-        @rtype:  list
-        @return: List of objects referencing each analyzed file.
+        :rtype:  list
+        :return: List of objects referencing each analyzed file.
         """
         raise NotImplementedError
 
     def analyze(self, handle, filename):
         """Submit a file for analysis.
 
-        @type  handle:   File handle
-        @param handle:   Handle to file to upload for analysis.
-        @type  filename: str
-        @param filename: File name.
+        :type  handle:   File handle
+        :param handle:   Handle to file to upload for analysis.
+        :type  filename: str
+        :param filename: File name.
 
-        @rtype:  str
-        @return: Item ID as a string
+        :rtype:  str
+        :return: Item ID as a string
         """
         raise NotImplementedError
 
     def check(self, item_id):
         """Check if an analysis is complete
 
-        @type  item_id: int | str
-        @param item_id: item_id to check.
+        :type  item_id: int | str
+        :param item_id: item_id to check.
 
-        @rtype:  bool
-        @return: Boolean indicating if a report is done or not.
+        :rtype:  bool
+        :return: Boolean indicating if a report is done or not.
         """
         raise NotImplementedError
 
     def delete(self, item_id):
         """Delete the reports associated with the given item_id.
 
-        @type  item_id: int | str
-        @param item_id: Report ID to delete.
+        :type  item_id: int | str
+        :param item_id: Report ID to delete.
 
-        @rtype:  bool
-        @return: True on success, False otherwise.
+        :rtype:  bool
+        :return: True on success, False otherwise.
         """
         raise NotImplementedError
 
     def is_available(self):
         """Determine if the Sandbox API servers are alive or in maintenance mode.
 
-        @rtype:  bool
-        @return: True if service is available, False otherwise.
+        :rtype:  bool
+        :return: True if service is available, False otherwise.
         """
         raise NotImplementedError
 
     def queue_size(self):
         """Determine sandbox queue length
 
-        @rtype:  int
-        @return: Number of submissions in sandbox queue.
+        :rtype:  int
+        :return: Number of submissions in sandbox queue.
         """
         raise NotImplementedError
 
     def report(self, item_id, report_format="json"):
         """Retrieves the specified report for the analyzed item, referenced by item_id.
 
-        @type  item_id: int | str
-        @param item_id: Item ID
+        :type  item_id: int | str
+        :param item_id: Item ID
 
-        @rtype:  dict
-        @return: Dictionary representing the JSON parsed data or raw, for other
+        :rtype:  dict
+        :return: Dictionary representing the JSON parsed data or raw, for other
                  formats / JSON parsing failure.
         """
         raise NotImplementedError

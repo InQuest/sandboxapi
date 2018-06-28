@@ -21,8 +21,8 @@ class CuckooAPI(sandboxapi.SandboxAPI):
     def analyses(self):
         """Retrieve a list of analyzed samples.
 
-        @rtype:  list
-        @return: List of objects referencing each analyzed file.
+        :rtype:  list
+        :return: List of objects referencing each analyzed file.
         """
         response = self._request("tasks/list")
 
@@ -31,13 +31,13 @@ class CuckooAPI(sandboxapi.SandboxAPI):
     def analyze(self, handle, filename):
         """Submit a file for analysis.
 
-        @type  handle:   File handle
-        @param handle:   Handle to file to upload for analysis.
-        @type  filename: str
-        @param filename: File name.
+        :type  handle:   File handle
+        :param handle:   Handle to file to upload for analysis.
+        :type  filename: str
+        :param filename: File name.
 
-        @rtype:  str
-        @return: Task ID as a string
+        :rtype:  str
+        :return: Task ID as a string
         """
         # multipart post files.
         files = {"file": (filename, handle)}
@@ -56,11 +56,11 @@ class CuckooAPI(sandboxapi.SandboxAPI):
     def check(self, item_id):
         """Check if an analysis is complete
 
-        @type  item_id: int
-        @param item_id: task_id to check.
+        :type  item_id: int
+        :param item_id: task_id to check.
 
-        @rtype:  bool
-        @return: Boolean indicating if a report is done or not.
+        :rtype:  bool
+        :return: Boolean indicating if a report is done or not.
         """
         response = self._request("tasks/view/{id}".format(id=item_id))
 
@@ -82,11 +82,11 @@ class CuckooAPI(sandboxapi.SandboxAPI):
     def delete(self, item_id):
         """Delete the reports associated with the given item_id.
 
-        @type  item_id: int
-        @param item_id: Report ID to delete.
+        :type  item_id: int
+        :param item_id: Report ID to delete.
 
-        @rtype:  bool
-        @return: True on success, False otherwise.
+        :rtype:  bool
+        :return: True on success, False otherwise.
         """
         try:
             response = self._request("tasks/delete/{id}".format(id=item_id))
@@ -102,8 +102,8 @@ class CuckooAPI(sandboxapi.SandboxAPI):
     def is_available(self):
         """Determine if the Cuckoo Sandbox API servers are alive or in maintenance mode.
 
-        @rtype:  bool
-        @return: True if service is available, False otherwise.
+        :rtype:  bool
+        :return: True if service is available, False otherwise.
         """
         # if the availability flag is raised, return True immediately.
         # NOTE: subsequent API failures will lower this flag. we do this here
@@ -133,8 +133,8 @@ class CuckooAPI(sandboxapi.SandboxAPI):
 
         There isn't a built in way to do this like with Joe
 
-        @rtype:  int
-        @return: Number of submissions in sandbox queue.
+        :rtype:  int
+        :return: Number of submissions in sandbox queue.
         """
         response = self._request("tasks/list")
         tasks = json.loads(response.content.decode('utf-8'))["tasks"]
@@ -146,13 +146,13 @@ class CuckooAPI(sandboxapi.SandboxAPI):
 
         Available formats include: json, html, all, dropped, package_files.
 
-        @type  item_id:       int
-        @param item_id:       Task ID number
-        @type  report_format: str
-        @param report_format: Return format
+        :type  item_id:       int
+        :param item_id:       Task ID number
+        :type  report_format: str
+        :param report_format: Return format
 
-        @rtype:  dict
-        @return: Dictionary representing the JSON parsed data or raw, for other
+        :rtype:  dict
+        :return: Dictionary representing the JSON parsed data or raw, for other
                  formats / JSON parsing failure.
         """
         report_format = report_format.lower()

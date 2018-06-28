@@ -45,13 +45,13 @@ class FalconAPI(sandboxapi.SandboxAPI):
     def analyze(self, handle, filename):
         """Submit a file for analysis.
 
-        @type  handle:   File handle
-        @param handle:   Handle to file to upload for analysis.
-        @type  filename: str
-        @param filename: File name.
+        :type  handle:   File handle
+        :param handle:   Handle to file to upload for analysis.
+        :type  filename: str
+        :param filename: File name.
 
-        @rtype:  str
-        @return: File hash as a string
+        :rtype:  str
+        :return: File hash as a string
         """
         # multipart post files.
         files = {"file" : (filename, handle)}
@@ -73,11 +73,11 @@ class FalconAPI(sandboxapi.SandboxAPI):
     def check(self, item_id):
         """Check if an analysis is complete.
 
-        @type  item_id: str
-        @param item_id: Job ID to check.
+        :type  item_id: str
+        :param item_id: Job ID to check.
 
-        @rtype:  bool
-        @return: Boolean indicating if a report is done or not.
+        :rtype:  bool
+        :return: Boolean indicating if a report is done or not.
         """
 
         response = self._request("/report/{job_id}/state".format(job_id=item_id))
@@ -100,8 +100,8 @@ class FalconAPI(sandboxapi.SandboxAPI):
     def is_available(self):
         """Determine if the Falcon API server is alive.
 
-        @rtype:  bool
-        @return: True if service is available, False otherwise.
+        :rtype:  bool
+        :return: True if service is available, False otherwise.
         """
         # if the availability flag is raised, return True immediately.
         # NOTE: subsequent API failures will lower this flag. we do this here
@@ -130,8 +130,8 @@ class FalconAPI(sandboxapi.SandboxAPI):
     def queue_size(self):
         """Determine Falcon sandbox queue length
 
-        @rtype:  str
-        @return: Details on the queue size.
+        :rtype:  str
+        :return: Details on the queue size.
         """
         response = self._request("/system/queue-size")
 
@@ -142,13 +142,13 @@ class FalconAPI(sandboxapi.SandboxAPI):
 
         Available formats include: json, html.
 
-        @type  item_id:     str
-        @param item_id:     File ID number
-        @type  report_format: str
-        @param report_format: Return format
+        :type  item_id:     str
+        :param item_id:     File ID number
+        :type  report_format: str
+        :param report_format: Return format
 
-        @rtype:  dict
-        @return: Dictionary representing the JSON parsed data or raw, for other
+        :rtype:  dict
+        :return: Dictionary representing the JSON parsed data or raw, for other
                  formats / JSON parsing failure.
         """
         report_format = report_format.lower()

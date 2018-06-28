@@ -49,7 +49,7 @@ Install through pip::
 
     pip install sandboxapi
 
-Supports Python 2.6+.
+Supports Python 2.7+.
 
 Usage
 -----

@@ -23,13 +23,13 @@ class VMRayAPI(sandboxapi.SandboxAPI):
     def analyze(self, handle, filename):
         """Submit a file for analysis.
 
-        @type  handle:   File handle
-        @param handle:   Handle to file to upload for analysis.
-        @type  filename: str
-        @param filename: File name.
+        :type  handle:   File handle
+        :param handle:   Handle to file to upload for analysis.
+        :type  filename: str
+        :param filename: File name.
 
-        @rtype:  str
-        @return: File ID as a string
+        :rtype:  str
+        :return: File ID as a string
         """
         # multipart post files.
         files = {"sample_file": (filename, handle)}
@@ -51,11 +51,11 @@ class VMRayAPI(sandboxapi.SandboxAPI):
     def check(self, item_id):
         """Check if an analysis is complete.
 
-        @type  item_id: str
-        @param item_id: File ID to check.
+        :type  item_id: str
+        :param item_id: File ID to check.
 
-        @rtype:  bool
-        @return: Boolean indicating if a report is done or not.
+        :rtype:  bool
+        :return: Boolean indicating if a report is done or not.
         """
         response = self._request("/submission/sample/{sample_id}".format(sample_id=item_id), headers=self.headers)
 
@@ -78,8 +78,8 @@ class VMRayAPI(sandboxapi.SandboxAPI):
     def is_available(self):
         """Determine if the VMRay API server is alive.
 
-        @rtype:  bool
-        @return: True if service is available, False otherwise.
+        :rtype:  bool
+        :return: True if service is available, False otherwise.
         """
         # if the availability flag is raised, return True immediately.
         # NOTE: subsequent API failures will lower this flag. we do this here
@@ -109,13 +109,13 @@ class VMRayAPI(sandboxapi.SandboxAPI):
 
         Available formats include: json.
 
-        @type  item_id:       str
-        @param item_id:       File ID number
-        @type  report_format: str
-        @param report_format: Return format
+        :type  item_id:       str
+        :param item_id:       File ID number
+        :type  report_format: str
+        :param report_format: Return format
 
-        @rtype:  dict
-        @return: Dictionary representing the JSON parsed data or raw, for other
+        :rtype:  dict
+        :return: Dictionary representing the JSON parsed data or raw, for other
                  formats / JSON parsing failure.
         """
         if report_format == "html":

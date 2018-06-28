@@ -18,13 +18,13 @@ class JoeAPI(sandboxapi.SandboxAPI):
     def analyze(self, handle, filename):
         """Submit a file for analysis.
 
-        @type  handle:   File handle
-        @param handle:   Handle to file to upload for analysis.
-        @type  filename: str
-        @param filename: File name.
+        :type  handle:   File handle
+        :param handle:   Handle to file to upload for analysis.
+        :type  filename: str
+        :param filename: File name.
 
-        @rtype:  str
-        @return: Task ID as a string
+        :rtype:  str
+        :return: Task ID as a string
         """
         # ensure the handle is at offset 0.
         handle.seek(0)
@@ -37,11 +37,11 @@ class JoeAPI(sandboxapi.SandboxAPI):
     def check(self, item_id):
         """Check if an analysis is complete.
 
-        @type  item_id: str
-        @param item_id: File ID to check.
+        :type  item_id: str
+        :param item_id: File ID to check.
 
-        @rtype:  bool
-        @return: Boolean indicating if a report is done or not.
+        :rtype:  bool
+        :return: Boolean indicating if a report is done or not.
         """
         try:
             return self.jbx.info(item_id).get('status').lower() == 'finished'
@@ -53,8 +53,8 @@ class JoeAPI(sandboxapi.SandboxAPI):
     def is_available(self):
         """Determine if the Joe Sandbox API server is alive.
 
-        @rtype:  bool
-        @return: True if service is available, False otherwise.
+        :rtype:  bool
+        :return: True if service is available, False otherwise.
         """
         # if the availability flag is raised, return True immediately.
         # NOTE: subsequent API failures will lower this flag. we do this here
@@ -80,13 +80,13 @@ class JoeAPI(sandboxapi.SandboxAPI):
 
         For available report formats, see online Joe Sandbox documentation.
 
-        @type  item_id:       str
-        @param item_id:       File ID number
-        @type  report_format: str
-        @param report_format: Return format
+        :type  item_id:       str
+        :param item_id:       File ID number
+        :type  report_format: str
+        :param report_format: Return format
 
-        @rtype:  dict
-        @return: Dictionary representing the JSON parsed data or raw, for other
+        :rtype:  dict
+        :return: Dictionary representing the JSON parsed data or raw, for other
                  formats / JSON parsing failure.
         """
         if report_format == "json":
