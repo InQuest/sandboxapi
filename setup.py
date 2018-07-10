@@ -19,7 +19,7 @@ setup(
     ],
     install_requires=requires,
     license='GPL',
-    description='A minimal, consistent API for building integrations with malware sandboxes',
+    description='Minimal, consistent API for building integrations with malware sandboxes.',
     long_description=README,
     url='https://github.com/InQuest/python-sandboxapi',
     author='InQuest Labs',
