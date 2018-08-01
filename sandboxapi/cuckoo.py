@@ -21,6 +21,9 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         """
         sandboxapi.SandboxAPI.__init__(self, **kwargs)
 
+        if not url:
+            url = ''
+
         # NOTE: host/port/api_path support is DEPRECATED!
         if url.startswith('http://') or url.startswith('https://'):
             # Assume new-style url param. Ignore port and api_path.
