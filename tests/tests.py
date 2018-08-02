@@ -263,6 +263,13 @@ class TestVMRay(unittest.TestCase):
         self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1169850)
 
     @responses.activate
+    def test_analyze_with_errors(self):
+        responses.add(responses.POST, 'http://vmray.mock/rest/sample/submit',
+                      json=read_resource('vmray_sample_submit_errors'))
+        with self.assertRaises(sandboxapi.SandboxError):
+            self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'))
+
+    @responses.activate
     def test_check(self):
         responses.add(responses.GET, 'http://vmray.mock/rest/submission/sample/1',
                       json=read_resource('vmray_submission_sample'))

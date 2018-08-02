@@ -40,7 +40,7 @@ class VMRayAPI(sandboxapi.SandboxAPI):
         response = self._request("/sample/submit", method='POST', files=files, headers=self.headers)
 
         try:
-            if response.status_code == 200:
+            if response.status_code == 200 and not response.json()['data']['errors']:
                 # only support single-file submissions; just grab the first one.
                 return response.json()['data']['samples'][0]['sample_id']
             else:
