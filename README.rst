@@ -1,6 +1,8 @@
-<p align="center">
-  <img height="128" src="./sandboxapi.png"  alt="sandboxapi" title="sandboxapi">
-</p>
+.. raw:: html
+
+    <p align="center">
+      <img height="128" src="./sandboxapi.png"  alt="sandboxapi" title="sandboxapi">
+    </p>
 
 sandboxapi
 ==========
