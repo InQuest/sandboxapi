@@ -4,8 +4,7 @@
       <img height="128" src="./sandboxapi.png"  alt="sandboxapi" title="sandboxapi">
     </p>
 
-sandboxapi
-==========
+    <h1>sandboxapi</h1>
 
 .. image:: https://inquest.net/images/inquest-badge.svg
     :target: https://inquest.net/
