@@ -161,14 +161,20 @@ FireEye AX
 
 Constructor signature::
 
-    FireEyeAPI(username, password, url, profile, verify_ssl=True)
+    FireEyeAPI(username, password, url, profile, legacy_api=False, verify_ssl=True)
 
 Example::
 
     FireEyeAPI('myusername', 'mypassword', 'https://192.168.0.20', 'winxp-sp3')
 
+By default, the ``FireEyeAPI`` class uses v1.2.0 of the FireEye API, which is
+available on v8.x FireEye AX series appliances. The v1.1.0 API, which is
+available on v7.x appliances, is also supported - just set ``legacy_api=True``
+to use the older version.
+
 There is some limited `FireEye API documentation`_ on their blog. For more
 information on FireEye's sandbox systems, see the `AX Series product page`_.
+FireEye customers have access to more API documentation.
 
 Joe Sandbox
 ~~~~~~~~~~~

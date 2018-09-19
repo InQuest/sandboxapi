@@ -172,14 +172,67 @@ class TestFireEye(unittest.TestCase):
 
     def setUp(self):
         self.sandbox = sandboxapi.fireeye.FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile')
+        self.legacy_sandbox = sandboxapi.fireeye.FireEyeAPI('username', 'password',
+                                                            'http://fireeye.mock', 'profile',
+                                                            legacy_api=True)
 
+    @responses.activate
+    def test_analyze(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/submissions',
+                      json=read_resource('fireeye_submissions'))
+        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
+
+    @responses.activate
+    def test_check(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
+                      json=read_resource('fireeye_submissions_status'))
+        self.assertEquals(self.sandbox.check('1'), True)
+
+    @responses.activate
+    def test_is_available(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/config',
+                      json=read_resource('fireeye_config'))
+        self.assertTrue(self.sandbox.is_available())
+
+    @responses.activate
+    def test_not_is_available(self):
+        self.assertFalse(self.sandbox.is_available())
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/config',
+                      status=500)
+        self.assertFalse(self.sandbox.is_available())
+
+    @responses.activate
+    def test_report(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/results/1',
+                      json=read_resource('fireeye_submissions_results'))
+        self.assertEquals(self.sandbox.report(1)['msg'], 'concise')
+
+    @responses.activate
+    def test_score(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/results/1',
+                      json=read_resource('fireeye_submissions_results'))
+        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 8)
+
+    # Legacy API support.
     @responses.activate
     def test_analyze(self):
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/submissions',
                       json=read_resource('fireeye_submissions'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
+        self.assertEquals(self.legacy_sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
 
     @responses.activate
     def test_check(self):
@@ -187,7 +240,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/status/1',
                       json=read_resource('fireeye_submissions_status'))
-        self.assertEquals(self.sandbox.check('1'), True)
+        self.assertEquals(self.legacy_sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
@@ -195,16 +248,16 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
                       json=read_resource('fireeye_config'))
-        self.assertTrue(self.sandbox.is_available())
+        self.assertTrue(self.legacy_sandbox.is_available())
 
     @responses.activate
     def test_not_is_available(self):
-        self.assertFalse(self.sandbox.is_available())
+        self.assertFalse(self.legacy_sandbox.is_available())
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
                       status=500)
-        self.assertFalse(self.sandbox.is_available())
+        self.assertFalse(self.legacy_sandbox.is_available())
 
     @responses.activate
     def test_report(self):
@@ -212,7 +265,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
                       json=read_resource('fireeye_submissions_results'))
-        self.assertEquals(self.sandbox.report(1)['msg'], 'concise')
+        self.assertEquals(self.legacy_sandbox.report(1)['msg'], 'concise')
 
     @responses.activate
     def test_score(self):
@@ -220,8 +273,9 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
                       json=read_resource('fireeye_submissions_results'))
-        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 8)
+        self.assertEquals(self.legacy_sandbox.score(self.legacy_sandbox.report(1)), 8)
 
+    # Core functionality.
     @patch('requests.post')
     @patch('requests.get')
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
