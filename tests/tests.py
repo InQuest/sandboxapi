@@ -281,9 +281,9 @@ class TestFireEye(unittest.TestCase):
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
 
         m_get.return_value.status_code = 200
-        m_get.return_value.content = ''
+        m_get.return_value.content = b''
         m_post.return_value.status_code = 200
-        m_post.return_value.content = ''
+        m_post.return_value.content = b''
 
         proxies = {
             'http': 'http://10.10.1.10:3128',

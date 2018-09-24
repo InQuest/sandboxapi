@@ -58,7 +58,7 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         # handle session timeout
         unauthorized = False
         try:
-            if json.loads(response.content)['fireeyeapis']['httpStatus'] == 401:
+            if json.loads(response.content.decode('utf-8'))['fireeyeapis']['httpStatus'] == 401:
                 unauthorized = True
         except (ValueError, KeyError):
             # non-JSON response, or no such keys.
