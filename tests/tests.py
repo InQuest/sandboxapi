@@ -281,7 +281,9 @@ class TestFireEye(unittest.TestCase):
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
 
         m_get.return_value.status_code = 200
+        m_get.return_value.content = ''
         m_post.return_value.status_code = 200
+        m_post.return_value.content = ''
 
         proxies = {
             'http': 'http://10.10.1.10:3128',
@@ -303,6 +305,26 @@ class TestFireEye(unittest.TestCase):
                                   headers=MOCK_ANY, data=MOCK_ANY,
                                   files=None, proxies=proxies,
                                   verify=MOCK_ANY)
+
+    @responses.activate
+    def test_reauthenticates_if_logged_out_http_401(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
+                      status=401)
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
+                      json=read_resource('fireeye_submissions_status'))
+        self.assertEquals(self.sandbox.check('1'), True)
+
+    @responses.activate
+    def test_reauthenticates_if_logged_out_json_401(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
+                      json=read_resource('fireeye_unauthorized'))
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
+                      json=read_resource('fireeye_submissions_status'))
+        self.assertEquals(self.sandbox.check('1'), True)
 
 
 class TestVMRay(unittest.TestCase):

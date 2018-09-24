@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import sys
 import time
+import json
 
 from requests.auth import HTTPBasicAuth
 
@@ -55,7 +56,15 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         response = sandboxapi.SandboxAPI._request(self, uri, method, params, files, headers)
 
         # handle session timeout
-        if response.status_code == 401:
+        unauthorized = False
+        try:
+            if json.loads(response.content)['fireeyeapis']['httpStatus'] == 401:
+                unauthorized = True
+        except (ValueError, KeyError):
+            # non-JSON response, or no such keys.
+            pass
+
+        if response.status_code == 401 or unauthorized:
             self.api_token = None
             try:
                 headers.pop('X-FeApi-Token')
