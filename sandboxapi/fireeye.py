@@ -60,7 +60,7 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         try:
             if json.loads(response.content.decode('utf-8'))['fireeyeapis']['httpStatus'] == 401:
                 unauthorized = True
-        except (ValueError, KeyError):
+        except (ValueError, KeyError, TypeError):
             # non-JSON response, or no such keys.
             pass
 
