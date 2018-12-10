@@ -12,7 +12,7 @@ requires = requirements.strip().split('\n')
 
 setup(
     name='sandboxapi',
-    version='1.4.2',
+    version='1.4.3',
     include_package_data=True,
     packages=[
         'sandboxapi',
