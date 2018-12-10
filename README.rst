@@ -1,10 +1,5 @@
-.. raw:: html
-
-    <p align="center">
-      <img height="128" src="https://inquest.readthedocs.io/projects/sandboxapi/en/latest/_static/sandboxapi.png"  alt="sandboxapi" title="sandboxapi">
-    </p>
-
-    <h1 align="center">sandboxapi</h1>
+sandboxapi
+==========
 
 .. image:: https://inquest.net/images/inquest-badge.svg
     :target: https://inquest.net/
