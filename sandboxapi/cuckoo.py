@@ -198,6 +198,8 @@ class CuckooAPI(sandboxapi.SandboxAPI):
         except KeyError:
             # cuckoo-2.0 format
             score = report.get('info', {}).get('score', 0)
+        except TypeError as e:
+            raise sandboxapi.SandboxError(e)
 
         return score
 
