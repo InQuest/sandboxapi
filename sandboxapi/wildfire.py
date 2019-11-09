@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import json
+import sys
 
 import xmltodict
 
@@ -134,3 +135,41 @@ class WildFireAPI(sandboxapi.SandboxAPI):
             return 5
         else:
             return self._score
+
+
+if __name__ == "__main__":
+
+    def usage():
+        msg = "{}: <url> <api_key> submit <fh> | report <hash> | check <hash>".format(sys.argv[0])
+        print(msg)
+        sys.exit(1)
+
+    api_key_ = ''
+    url_ = ''
+    arg = ''
+    cmd = ''
+    if len(sys.argv) == 5:
+        arg = sys.argv.pop()
+        cmd = sys.argv.pop().lower()
+        api_key_ = sys.argv.pop()
+        url_ = sys.argv.pop()
+    elif len(sys.argv) == 4:
+        arg = sys.argv.pop()
+        cmd = sys.argv.pop().lower()
+        api_key_ = sys.argv.pop()
+    else:
+        usage()
+
+    wildfire = WildFireAPI(api_key=api_key_, url=url_) if url_ else WildFireAPI(api_key_)
+
+    if not arg:
+        usage()
+    if cmd == 'submit':
+        with open(arg, "rb") as handle:
+                print(wildfire.analyze(handle, arg))
+    elif cmd == "report":
+        print(wildfire.report(arg))
+    elif cmd == "check":
+        print(wildfire.check(arg))
+    else:
+        usage()
