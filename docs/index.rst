@@ -66,6 +66,15 @@ VMRay Analyzer
     :show-inheritance:
     :member-order: bysource
 
+WildFire Sandbox
+~~~~~~~~~~~~~~~~
+
+.. automodule:: sandboxapi.wildfire
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :member-order: bysource
+
 
 Indices and tables
 ==================

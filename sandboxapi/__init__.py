@@ -9,6 +9,7 @@ __all__ = [
     'joe',
     'vmray',
     'falcon',
+    'wildfire',
     'SandboxAPI',
     'SandboxError',
 ]
