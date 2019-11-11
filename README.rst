@@ -29,6 +29,7 @@ This library currently supports the following sandbox systems:
 * `Joe Sandbox`_
 * `VMRay Analyzer`_
 * `Falcon Sandbox`_ (Formerly VxStream)
+* `WildFire Sandbox`_
 
 It provides at least the following methods for each sandbox:
 
@@ -219,6 +220,19 @@ supports the current and older versions of the Falcon API. Note that the
 official library only supports Python 3.4+.
 
 
+WildFire Sandbox
+~~~~~~~~~~~~~~~~
+
+Constructor signature::
+
+    WildFireAPI(api_key, url='https://wildfire.paloaltonetworks.com/publicapi')
+
+Example::
+
+    WildFireAPI('mykey')
+
+Currently, only the WildFire cloud sandbox is supported and not the WildFire appliance.
+
 Notes
 -----
 
@@ -231,6 +245,7 @@ number of online analysis services.
 .. _Joe Sandbox: https://www.joesecurity.org/
 .. _VMRay Analyzer: https://www.vmray.com/
 .. _Falcon Sandbox: https://www.falcon-sandbox.com/
+.. _WildFire Sandbox: https://www.paloaltonetworks.com/products/secure-the-network/wildfire
 .. _unofficial Cuckoo library: https://github.com/keithjjones/cuckoo-api
 .. _Cuckoo API documentation: https://cuckoo.sh/docs/usage/api.html
 .. _FireEye API documentation: https://www.fireeye.com/blog/products-and-services/2015/12/restful_apis_thatdo.html

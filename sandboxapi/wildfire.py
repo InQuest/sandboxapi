@@ -16,7 +16,7 @@ PHISHING = 4
 class WildFireAPI(sandboxapi.SandboxAPI):
     """WildFire Sandbox API wrapper."""
 
-    def __init__(self, api_key='', url=''):
+    def __init__(self, api_key='', url='', verify_ssl=True):
         """Initialize the interface to the WildFire Sandbox API.
 
         :param str api_key: The customer API key.
@@ -26,6 +26,7 @@ class WildFireAPI(sandboxapi.SandboxAPI):
         self.base_url = url or 'https://wildfire.paloaltonetworks.com/publicapi'
         self._api_key = api_key
         self._score = 0
+        self.verify_ssl = verify_ssl
 
     def analyze(self, handle, filename):
         """Submit a file for analysis.
