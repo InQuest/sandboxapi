@@ -104,9 +104,10 @@ class WildFireAPI(sandboxapi.SandboxAPI):
         except (ValueError, IndexError) as e:
             raise sandboxapi.SandboxError(e)
 
-    def is_available(self) -> bool:
+    def is_available(self):
         """Checks to see if the WildFire sandbox is up and running.
 
+        :rtype: bool
         :return: True if the WildFire sandbox is responding, otherwise False.
 
         WildFire doesn't have an explicit endpoint for checking the sandbox status, so this is kind of a hack.
