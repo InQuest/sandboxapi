@@ -23,7 +23,8 @@ class WildFireAPI(sandboxapi.SandboxAPI):
         :param str url: The WildFire API URL.
         """
         super(WildFireAPI, self).__init__(**kwargs)
-        self.base_url = url or 'https://wildfire.paloaltonetworks.com/publicapi'
+        self.base_url = url or 'https://wildfire.paloaltonetworks.com'
+        self.api_url = self.base_url + '/publicapi'
         self._api_key = api_key
         self._score = 0
         self.verify_ssl = verify_ssl
@@ -160,7 +161,7 @@ class WildFireAPI(sandboxapi.SandboxAPI):
 if __name__ == "__main__":
 
     def usage():
-        msg = "{}: <url> <api_key> submit <fh> | report <hash> | check <hash>".format(sys.argv[0])
+        msg = "{}: <url> <api_key> available | submit <fh> | report <hash> | check <hash>".format(sys.argv[0])
         print(msg)
         sys.exit(1)
 
@@ -177,14 +178,17 @@ if __name__ == "__main__":
         arg = sys.argv.pop()
         cmd = sys.argv.pop().lower()
         api_key_ = sys.argv.pop()
+    elif len(sys.argv) == 3:
+        cmd = sys.argv.pop().lower()
+        api_key_ = sys.argv.pop()
     else:
         usage()
 
     wildfire = WildFireAPI(api_key=api_key_, url=url_) if url_ else WildFireAPI(api_key_)
 
-    if not arg:
-        usage()
-    if cmd == 'submit':
+    if cmd == 'available':
+        print(wildfire.is_available())
+    elif cmd == 'submit':
         with open(arg, "rb") as handle:
                 print(wildfire.analyze(handle, arg))
     elif cmd == "report":
