@@ -8,6 +8,7 @@ import xmltodict
 import sandboxapi
 
 
+BENIGN = 0
 MALWARE = 1
 GRAYWARE = 2
 PHISHING = 4
@@ -26,7 +27,7 @@ class WildFireAPI(sandboxapi.SandboxAPI):
         self.base_url = url or 'https://wildfire.paloaltonetworks.com'
         self.api_url = self.base_url + '/publicapi'
         self._api_key = api_key
-        self._score = 0
+        self._score = BENIGN
         self.verify_ssl = verify_ssl
 
     def analyze(self, handle, filename):
@@ -89,7 +90,7 @@ class WildFireAPI(sandboxapi.SandboxAPI):
         output = self.decode(response)
         try:
             status = int(output['wildfire']['get-verdict-info']['verdict'])
-            if status > 0:
+            if status >= 0:
                 self._score = status
                 return True
             elif status == -100:
@@ -190,7 +191,7 @@ if __name__ == "__main__":
         print(wildfire.is_available())
     elif cmd == 'submit':
         with open(arg, "rb") as handle:
-                print(wildfire.analyze(handle, arg))
+            print(wildfire.analyze(handle, arg))
     elif cmd == "report":
         print(wildfire.report(arg))
     elif cmd == "check":
