@@ -8,6 +8,7 @@ import xmltodict
 import sandboxapi
 
 
+BENIGN = 0
 MALWARE = 1
 GRAYWARE = 2
 PHISHING = 4
@@ -16,16 +17,17 @@ PHISHING = 4
 class WildFireAPI(sandboxapi.SandboxAPI):
     """WildFire Sandbox API wrapper."""
 
-    def __init__(self, api_key='', url='', verify_ssl=True):
+    def __init__(self, api_key='', url='', verify_ssl=True, **kwargs):
         """Initialize the interface to the WildFire Sandbox API.
 
         :param str api_key: The customer API key.
         :param str url: The WildFire API URL.
         """
-        super(WildFireAPI).__init__()
-        self.base_url = url or 'https://wildfire.paloaltonetworks.com/publicapi'
+        super(WildFireAPI, self).__init__(**kwargs)
+        self.base_url = url or 'https://wildfire.paloaltonetworks.com'
+        self.api_url = self.base_url + '/publicapi'
         self._api_key = api_key
-        self._score = 0
+        self._score = BENIGN
         self.verify_ssl = verify_ssl
 
     def analyze(self, handle, filename):
@@ -88,7 +90,7 @@ class WildFireAPI(sandboxapi.SandboxAPI):
         output = self.decode(response)
         try:
             status = int(output['wildfire']['get-verdict-info']['verdict'])
-            if status > 0:
+            if status >= 0:
                 self._score = status
                 return True
             elif status == -100:
@@ -103,6 +105,25 @@ class WildFireAPI(sandboxapi.SandboxAPI):
                 raise sandboxapi.SandboxError('Unknown status.')
         except (ValueError, IndexError) as e:
             raise sandboxapi.SandboxError(e)
+
+    def is_available(self):
+        """Checks to see if the WildFire sandbox is up and running.
+
+        :rtype: bool
+        :return: True if the WildFire sandbox is responding, otherwise False.
+
+        WildFire doesn't have an explicit endpoint for checking the sandbox status, so this is kind of a hack.
+        """
+        try:
+            # Making a GET request to the API should always give a code 405 if the service is running.
+            # Relying on this fact to get a reliable 405 if the service is up.
+            response = self._request('/get/sample', params={'apikey': self._api_key})
+            if response.status_code == 405:
+                return True
+            else:
+                return False
+        except sandboxapi.SandboxError:
+            return False
 
     def report(self, item_id, report_format='json'):
         """Retrieves the specified report for the analyzed item, referenced by item_id.
@@ -141,7 +162,7 @@ class WildFireAPI(sandboxapi.SandboxAPI):
 if __name__ == "__main__":
 
     def usage():
-        msg = "{}: <url> <api_key> submit <fh> | report <hash> | check <hash>".format(sys.argv[0])
+        msg = "{}: <url> <api_key> available | submit <fh> | report <hash> | check <hash>".format(sys.argv[0])
         print(msg)
         sys.exit(1)
 
@@ -158,16 +179,19 @@ if __name__ == "__main__":
         arg = sys.argv.pop()
         cmd = sys.argv.pop().lower()
         api_key_ = sys.argv.pop()
+    elif len(sys.argv) == 3:
+        cmd = sys.argv.pop().lower()
+        api_key_ = sys.argv.pop()
     else:
         usage()
 
     wildfire = WildFireAPI(api_key=api_key_, url=url_) if url_ else WildFireAPI(api_key_)
 
-    if not arg:
-        usage()
-    if cmd == 'submit':
+    if cmd == 'available':
+        print(wildfire.is_available())
+    elif cmd == 'submit':
         with open(arg, "rb") as handle:
-                print(wildfire.analyze(handle, arg))
+            print(wildfire.analyze(handle, arg))
     elif cmd == "report":
         print(wildfire.report(arg))
     elif cmd == "check":
