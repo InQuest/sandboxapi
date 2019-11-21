@@ -114,12 +114,19 @@ class FalconAPI(sandboxapi.SandboxAPI):
         else:
 
             try:
+                # Try the on-prem endpoint.
                 response = self._request("/system/heartbeat")
 
                 # we've got falcon.
                 if response.status_code == 200:
                     self.server_available = True
                     return True
+                elif response.status_code == 403:
+                    # Try the public sandbox endpoint.
+                    response = self._request("/system/version")
+                    if response.status_code == 200:
+                        self.server_available = True
+                        return True
 
             except sandboxapi.SandboxError:
                 pass
