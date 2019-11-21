@@ -196,7 +196,6 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         # otherwise, return the raw content.
         return response.content
 
-
     def score(self, report):
         """Pass in the report from self.report(), get back an int."""
         score = 0
@@ -204,6 +203,11 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
             score = 8
 
         return score
+
+    def logout(self):
+        """The FireEye AX has a limit of 100 concurrent sessions, so be sure to logout"""
+        if self.api_token:
+            self._request("/auth/logout")
 
 
 def fireeye_loop(fireeye, filename):
@@ -272,3 +276,5 @@ if __name__ == "__main__":
 
     else:
         usage()
+
+    fireeye.logout()
