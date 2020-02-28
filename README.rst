@@ -30,6 +30,7 @@ This library currently supports the following sandbox systems:
 * `VMRay Analyzer`_
 * `Falcon Sandbox`_ (Formerly VxStream)
 * `WildFire Sandbox`_
+* `OPSWAT Sandbox`_
 
 It provides at least the following methods for each sandbox:
 
@@ -232,6 +233,17 @@ Example::
     WildFireAPI('mykey')
 
 Currently, only the WildFire cloud sandbox is supported and not the WildFire appliance.
+
+OPSWAT Sandbox
+~~~~~~~~~~
+
+Constructor signature::
+
+    OpswatAPI(profile, verify_ssl=True)
+
+Example::
+
+    OpswatAPI('windows7')
 
 Notes
 -----
