@@ -239,11 +239,15 @@ OPSWAT Sandbox
 
 Constructor signature::
 
-    OpswatAPI(profile, verify_ssl=True)
+    OpswatAPI(apikey, profile, verify_ssl=True)
 
 Example::
 
-    OpswatAPI('windows7')
+    OpswatAPI(apikey, 'windows7')
+
+OPSWAT sandbox on MetaDefender Cloud. Please create an account on `OPSWAT portal`_ to receive a free MetaDefender Cloud apikey.
+
+More details in the `OPSWAT API documentation`_.
 
 Notes
 -----
@@ -264,4 +268,6 @@ number of online analysis services.
 .. _AX Series product page: https://www.fireeye.com/products/malware-analysis.html
 .. _official Joe Sandbox library: https://github.com/joesecurity/joesandboxcloudapi
 .. _official Falcon library: https://github.com/PayloadSecurity/VxAPI
+.. _OPSWAT portal: https://go.opswat.com
+.. _OPSWAT API documentation: https://onlinehelp.opswat.com/mdcloud/10._Dynamic_analysis.html
 .. _malsub: https://github.com/diogo-fernan/malsub
