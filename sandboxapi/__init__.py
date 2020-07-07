@@ -7,6 +7,7 @@ __all__ = [
     'cuckoo',
     'fireeye',
     'joe',
+    'triage',
     'vmray',
     'falcon',
     'wildfire',

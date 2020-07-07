@@ -30,6 +30,7 @@ This library currently supports the following sandbox systems:
 * `VMRay Analyzer`_
 * `Falcon Sandbox`_ (Formerly VxStream)
 * `WildFire Sandbox`_
+* `Hatching Triage`_
 
 It provides at least the following methods for each sandbox:
 
@@ -233,6 +234,21 @@ Example::
 
 Currently, only the WildFire cloud sandbox is supported and not the WildFire appliance.
 
+
+Hatching Triage
+~~~~~~~~~~~~~~~~
+
+Constructor signature::
+
+    TriageAPI(api_key, url='https://api.tria.ge', api_path='/v0')
+
+Exapmle::
+
+    Triage("ApiKeyHere")
+
+Both the public Triage as private Triage instances are supported.
+
+
 Notes
 -----
 
@@ -246,6 +262,7 @@ number of online analysis services.
 .. _VMRay Analyzer: https://www.vmray.com/
 .. _Falcon Sandbox: https://www.falcon-sandbox.com/
 .. _WildFire Sandbox: https://www.paloaltonetworks.com/products/secure-the-network/wildfire
+.. _Hatching Triage: https://tria.ge/
 .. _unofficial Cuckoo library: https://github.com/keithjjones/cuckoo-api
 .. _Cuckoo API documentation: https://cuckoo.sh/docs/usage/api.html
 .. _FireEye API documentation: https://www.fireeye.com/blog/products-and-services/2015/12/restful_apis_thatdo.html

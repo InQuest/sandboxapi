@@ -1,0 +1,39 @@
+{
+	"sample": "200615-8jbndpgg9n",
+	"status": "reported",
+	"custom": "frontend:b77b1c44-2965-4580-b444-a63f02d3a9d3",
+	"owner": "shark2.ams5.hatching.io",
+	"target": "2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5",
+	"created": "2020-06-15T10:04:02Z",
+	"completed": "2020-06-15T10:06:44Z",
+	"score": 10,
+	"sha256": "2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5",
+	"tasks": {
+		"200615-8jbndpgg9n-behavioral1": {
+			"kind": "behavioral",
+			"status": "reported",
+			"tags": ["ransomware", "persistence", "family:nemty"],
+			"score": 10,
+			"target": "2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5.exe",
+			"backend": "horse2",
+			"resource": "win7v200430",
+			"platform": "windows7_x64",
+			"queue_id": 1355315
+		},
+		"200615-8jbndpgg9n-behavioral2": {
+			"kind": "behavioral",
+			"status": "reported",
+			"tags": ["ransomware", "family:nemty", "persistence"],
+			"score": 10,
+			"target": "2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5.exe",
+			"backend": "horse2",
+			"resource": "win10v200430",
+			"platform": "windows10_x64",
+			"queue_id": 1355316
+		},
+		"200615-8jbndpgg9n-static1": {
+			"kind": "static",
+			"status": "reported"
+		}
+	}
+}
