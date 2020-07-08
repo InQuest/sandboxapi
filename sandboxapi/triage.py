@@ -34,10 +34,10 @@ class TriageAPI(sandboxapi.SandboxAPI):
 
         self.verify_ssl = verify_ssl
 
-    def request(self, uri, method='GET', params=None, files=None, headers=None,
-                auth=None):
+    def request(self, uri, method='GET', params=None, files=None, auth=None):
 
-        response = self._request(uri, method, params, files, headers, auth)
+        response = self._request(
+            uri, method, params, files, self.headers, auth)
 
         # Try parsing the response as JSON to see if we got a valid object
         try:
@@ -78,7 +78,7 @@ class TriageAPI(sandboxapi.SandboxAPI):
 
         # Make the request to Triage
         data = self.request("/samples", method='POST', files=files,
-                            headers=self.headers, params=params)
+                            params=params)
 
         if "id" in data.keys():
             return data["id"]
@@ -95,8 +95,7 @@ class TriageAPI(sandboxapi.SandboxAPI):
         :return: Boolean indicating if a report is done or not.
         """
 
-        data = self.request("/samples/{:s}/status".format(item_id),
-                            headers=self.headers)
+        data = self.request("/samples/{:s}/status".format(item_id))
 
         if "status" in data.keys():
             return data["status"] == "reported"
@@ -134,16 +133,66 @@ class TriageAPI(sandboxapi.SandboxAPI):
             raise sandboxapi.SandboxError(
                 "Triage api only supports the json report format")
 
-        data = self.request("/samples/{:s}/summary".format(item_id),
-                            headers=self.headers)
+        data = self.request("/samples/{:s}/summary".format(item_id))
 
         return data
+
+    def score(self, item_id):
+        """Gives back the highest score choosing from all the analyses
+
+        :param str item_id: The id of the submitted file.
+
+        :rtype: int
+        :return: int on a scale from 1 til 10
+        """
+        report = self.report(item_id)
+        # 1 Is the Triage base score
+        score = 1
+
+        # Loop over the available reports to pick the highest score
+        for task_id, task in report["tasks"].items():
+            if "score" in task:
+                if task["score"] > score:
+                    score = task["score"]
+
+        return score
+
+    def full_report(self, item_id):
+        """Retrieves the summary report and the full report of each task for
+        the analyzed item, referenced by item_id.
+
+        :param str item_id: The id of the submitted file.
+
+        :rtype: dic
+        :return: Dictionary representing the JSON parsed data.
+        """
+        report = self.report(item_id)
+        full_report = {
+            'summary': report,
+            'tasks': {}
+        }
+
+        # Loop over all the tasks in the summary
+        for task_id in report["tasks"]:
+            # Remove the sample ID to get the task names
+            task_name = task_id.replace("{:s}-".format(item_id), "")
+
+            try:
+                # Try to retrieve each full report
+                triage_report = self.request(
+                    "/samples/{:s}/{:s}/report_triage.json".format(
+                        item_id, task_name))
+                full_report["tasks"][task_name] = triage_report
+            except sandboxapi.SandboxError:
+                continue
+
+        return full_report
 
 
 if __name__ == "__main__":
 
     def usage():
-        msg = "%s: <key> <submit <file> | <report <id>"
+        msg = "%s: <key> <submit <file> | <report <id> | <score <id> | <full_report <id>"
         print(msg % sys.argv[0])
         sys.exit(1)
 
@@ -169,9 +218,17 @@ if __name__ == "__main__":
             else:
                 print("Report is not done yet")
 
+        elif "full_report" in cmd:
+            sample = triage.full_report(arg)
+            print(sample)
+
         elif "report" in cmd:
             sample = triage.report(arg)
             print(sample)
+
+        elif "score" in cmd:
+            score = triage.score(arg)
+            print(score)
 
     except sandboxapi.SandboxError as e:
         print("Unable to complete the action: {:s}".format(str(e)))

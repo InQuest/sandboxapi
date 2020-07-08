@@ -445,6 +445,32 @@ class TestTriage(unittest.TestCase):
         self.assertEquals(
             10, data["tasks"]["200615-8jbndpgg9n-behavioral1"]["score"])
 
+    @responses.activate
+    def test_score(self):
+        responses.add(responses.GET,
+                      'http://api.triage.mock/v0/samples/test/summary',
+                      json=read_resource('triage_report'), status=200)
+        score = self.sandbox.score("test")
+        self.assertEquals(10, score)
+
+    @responses.activate
+    def test_full_report(self):
+        responses.add(responses.GET,
+                      'http://api.triage.mock/v0/samples/200615-8jbndpgg9n/summary',
+                      json=read_resource('triage_report'), status=200)
+        responses.add(responses.GET,
+                      'http://api.triage.mock/v0/samples/200615-8jbndpgg9n/behavioral1/report_triage.json',
+                      json=read_resource('triage_behavioral1'), status=200)
+        responses.add(responses.GET,
+                      'http://api.triage.mock/v0/samples/200615-8jbndpgg9n/behavioral2/report_triage.json',
+                      json=read_resource('triage_behavioral2'), status=200)
+
+        full_report = self.sandbox.full_report("200615-8jbndpgg9n")
+        self.assertTrue(full_report["tasks"]["behavioral1"]["sample"]["score"],
+                        10)
+        self.assertTrue(full_report["tasks"]["behavioral2"]["sample"]["score"],
+                        10)
+
 
 class TestFalcon(unittest.TestCase):
 
