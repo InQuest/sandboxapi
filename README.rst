@@ -242,11 +242,16 @@ Constructor signature::
 
     TriageAPI(api_key, url='https://api.tria.ge', api_path='/v0')
 
-Exapmle::
+Example::
 
-    Triage("ApiKeyHere")
+    TriageAPI("ApiKeyHere")
 
-Both the public Triage as private Triage instances are supported.
+You're able to use this class with both the `Triage public cloud`_ and the
+private Triage instances. Look up the documentation for the right host and
+api path for your specific instance.
+
+For more information on what is returned from the API you can look up the
+official `Triage API documentation`_.
 
 
 Notes
@@ -270,3 +275,5 @@ number of online analysis services.
 .. _official Joe Sandbox library: https://github.com/joesecurity/joesandboxcloudapi
 .. _official Falcon library: https://github.com/PayloadSecurity/VxAPI
 .. _malsub: https://github.com/diogo-fernan/malsub
+.. _Triage public cloud: https://tria.ge/
+.. _Triage API documentation: https://tria.ge/docs/
