@@ -1,0 +1,5550 @@
+{
+	"version": "0.2.1",
+	"sample": {
+		"id": "200615-8jbndpgg9n",
+		"score": 10,
+		"submitted": "2020-06-15T10:04:02Z",
+		"target": "2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5",
+		"size": 210944,
+		"md5": "880585ebbd4a96a065d689b0ee4d6f30",
+		"sha1": "e70c69be9cb6cb0497445b8bd7fe76c08844752e",
+		"sha256": "2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5",
+		"sha512": "4ce2bb8c6bd49465eb97a1b4e93e19c01906e63bcc526fa5072db9124faf62de86c87f02d7a17b27b59a3e77eb108302a72de6ccf43c59558e0d4adc8eab93c0",
+		"static_tags": ["windows", "x86"]
+	},
+	"task": {
+		"target": "2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5.exe",
+		"size": 210944,
+		"md5": "880585ebbd4a96a065d689b0ee4d6f30",
+		"sha1": "e70c69be9cb6cb0497445b8bd7fe76c08844752e",
+		"sha256": "2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5",
+		"sha512": "4ce2bb8c6bd49465eb97a1b4e93e19c01906e63bcc526fa5072db9124faf62de86c87f02d7a17b27b59a3e77eb108302a72de6ccf43c59558e0d4adc8eab93c0",
+		"static_tags": ["windows", "x86"]
+	},
+	"analysis": {
+		"score": 10,
+		"tags": ["ransomware", "persistence", "family:nemty"],
+		"ttp": ["T1107", "T1490", "T1112", "T1031", "T1053", "T1102"],
+		"features": ["analog"],
+		"submitted": "2020-06-15T10:04:02Z",
+		"reported": "2020-06-15T10:06:44Z",
+		"max_time_network": 92972,
+		"max_time_kernel": 150759,
+		"backend": "horse2",
+		"resource": "win7v200430",
+		"platform": "windows7_x64"
+	},
+	"processes": [{
+		"procid": 23,
+		"procid_parent": 20,
+		"pid": 1360,
+		"ppid": 1324,
+		"cmd": "\"C:\\Users\\Admin\\AppData\\Local\\Temp\\2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5.exe\"",
+		"image": "C:\\Users\\Admin\\AppData\\Local\\Temp\\2ebe4c68225206161c70cf3e0da39294e9353ee295db2dc5d4f86ce7901210c5.exe",
+		"orig": false,
+		"started": 1295,
+		"terminated": 20545
+	}, {
+		"procid": 24,
+		"procid_parent": 23,
+		"pid": 1444,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c vssadmin resize shadowstorage /for=C: /on=C: /maxsize=401MB",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 4227,
+		"terminated": 4929
+	}, {
+		"procid": 26,
+		"procid_parent": 23,
+		"pid": 1040,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c vssadmin resize shadowstorage /for=C: /on=C: /maxsize=unbounded",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 4383,
+		"terminated": 4945
+	}, {
+		"procid": 28,
+		"procid_parent": 24,
+		"pid": 1612,
+		"ppid": 1444,
+		"cmd": "vssadmin  resize shadowstorage /for=C: /on=C: /maxsize=401MB",
+		"image": "C:\\Windows\\SysWOW64\\vssadmin.exe",
+		"orig": true,
+		"started": 4430,
+		"terminated": 4929
+	}, {
+		"procid": 29,
+		"procid_parent": 26,
+		"pid": 1020,
+		"ppid": 1040,
+		"cmd": "vssadmin  resize shadowstorage /for=C: /on=C: /maxsize=unbounded",
+		"image": "C:\\Windows\\SysWOW64\\vssadmin.exe",
+		"orig": true,
+		"started": 4461,
+		"terminated": 4929
+	}, {
+		"procid": 30,
+		"procid_parent": 6,
+		"pid": 1028,
+		"ppid": 468,
+		"cmd": "C:\\Windows\\system32\\vssvc.exe",
+		"image": "C:\\Windows\\system32\\vssvc.exe",
+		"orig": true,
+		"started": 4602
+	}, {
+		"procid": 33,
+		"procid_parent": 23,
+		"pid": 752,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im sql.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7722,
+		"terminated": 11591
+	}, {
+		"procid": 34,
+		"procid_parent": 23,
+		"pid": 796,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im winword.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7722,
+		"terminated": 11466
+	}, {
+		"procid": 37,
+		"procid_parent": 23,
+		"pid": 552,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im wordpad.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7737,
+		"terminated": 11466
+	}, {
+		"procid": 38,
+		"procid_parent": 23,
+		"pid": 1088,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im outlook.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7769,
+		"terminated": 11341
+	}, {
+		"procid": 40,
+		"procid_parent": 23,
+		"pid": 532,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im thunderbird.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7784,
+		"terminated": 11372
+	}, {
+		"procid": 43,
+		"procid_parent": 34,
+		"pid": 1592,
+		"ppid": 796,
+		"cmd": "taskkill  /f /im winword.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 7815,
+		"terminated": 11466
+	}, {
+		"procid": 44,
+		"procid_parent": 33,
+		"pid": 1604,
+		"ppid": 752,
+		"cmd": "taskkill  /f /im sql.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 7815,
+		"terminated": 11466
+	}, {
+		"procid": 45,
+		"procid_parent": 23,
+		"pid": 1632,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im oracle.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7831,
+		"terminated": 11388
+	}, {
+		"procid": 46,
+		"procid_parent": 37,
+		"pid": 1744,
+		"ppid": 552,
+		"cmd": "taskkill  /f /im wordpad.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 7831,
+		"terminated": 11466
+	}, {
+		"procid": 47,
+		"procid_parent": 23,
+		"pid": 1564,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im excel.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7847,
+		"terminated": 11481
+	}, {
+		"procid": 48,
+		"procid_parent": 23,
+		"pid": 1560,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im onenote.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7862,
+		"terminated": 11325
+	}, {
+		"procid": 49,
+		"procid_parent": 23,
+		"pid": 1544,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im virtualboxvm.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7878,
+		"terminated": 11450
+	}, {
+		"procid": 51,
+		"procid_parent": 38,
+		"pid": 1916,
+		"ppid": 1088,
+		"cmd": "taskkill  /f /im outlook.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 7893,
+		"terminated": 11325
+	}, {
+		"procid": 55,
+		"procid_parent": 40,
+		"pid": 1960,
+		"ppid": 532,
+		"cmd": "taskkill  /f /im thunderbird.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 7925,
+		"terminated": 11357
+	}, {
+		"procid": 56,
+		"procid_parent": 23,
+		"pid": 1928,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im node.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7940,
+		"terminated": 11310
+	}, {
+		"procid": 58,
+		"procid_parent": 23,
+		"pid": 1676,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im QBW32.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 7987,
+		"terminated": 11481
+	}, {
+		"procid": 59,
+		"procid_parent": 48,
+		"pid": 1208,
+		"ppid": 1560,
+		"cmd": "taskkill  /f /im onenote.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 7987,
+		"terminated": 11310
+	}, {
+		"procid": 60,
+		"procid_parent": 47,
+		"pid": 112,
+		"ppid": 1564,
+		"cmd": "taskkill  /f /im excel.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 8003,
+		"terminated": 11481
+	}, {
+		"procid": 61,
+		"procid_parent": 56,
+		"pid": 1084,
+		"ppid": 1928,
+		"cmd": "taskkill  /f /im node.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 8018,
+		"terminated": 11310
+	}, {
+		"procid": 62,
+		"procid_parent": 23,
+		"pid": 1064,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im WBGX.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8018,
+		"terminated": 11435
+	}, {
+		"procid": 65,
+		"procid_parent": 23,
+		"pid": 300,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im Teams.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8081,
+		"terminated": 11450
+	}, {
+		"procid": 66,
+		"procid_parent": 45,
+		"pid": 1832,
+		"ppid": 1632,
+		"cmd": "taskkill  /f /im oracle.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 8081,
+		"terminated": 11388
+	}, {
+		"procid": 67,
+		"procid_parent": 49,
+		"pid": 1836,
+		"ppid": 1544,
+		"cmd": "taskkill  /f /im virtualboxvm.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 8096,
+		"terminated": 11419
+	}, {
+		"procid": 68,
+		"procid_parent": 62,
+		"pid": 1052,
+		"ppid": 1064,
+		"cmd": "taskkill  /f /im WBGX.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 8096,
+		"terminated": 11435
+	}, {
+		"procid": 69,
+		"procid_parent": 58,
+		"pid": 1628,
+		"ppid": 1676,
+		"cmd": "taskkill  /f /im QBW32.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 8143,
+		"terminated": 11466
+	}, {
+		"procid": 70,
+		"procid_parent": 23,
+		"pid": 1508,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c taskkill /f /im Flow.*",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8190,
+		"terminated": 11388
+	}, {
+		"procid": 72,
+		"procid_parent": 23,
+		"pid": 1548,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop DbxSvc",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8190,
+		"terminated": 9594
+	}, {
+		"procid": 74,
+		"procid_parent": 23,
+		"pid": 1004,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop OracleXETNSListener",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8221,
+		"terminated": 9313
+	}, {
+		"procid": 76,
+		"procid_parent": 23,
+		"pid": 368,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop OracleServiceXE",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8237,
+		"terminated": 9282
+	}, {
+		"procid": 78,
+		"procid_parent": 23,
+		"pid": 1912,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop AcrSch2Svc",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8252,
+		"terminated": 9313
+	}, {
+		"procid": 81,
+		"procid_parent": 23,
+		"pid": 896,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop AcronisAgent",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8268,
+		"terminated": 9297
+	}, {
+		"procid": 82,
+		"procid_parent": 23,
+		"pid": 2044,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop Apache2.4",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8283,
+		"terminated": 9297
+	}, {
+		"procid": 83,
+		"procid_parent": 23,
+		"pid": 2064,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop SQLWriter",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8299,
+		"terminated": 9297
+	}, {
+		"procid": 85,
+		"procid_parent": 23,
+		"pid": 2088,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop MSSQL$SQLEXPRESS",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8315,
+		"terminated": 9750
+	}, {
+		"procid": 86,
+		"procid_parent": 70,
+		"pid": 2096,
+		"ppid": 1508,
+		"cmd": "taskkill  /f /im Flow.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 8315,
+		"terminated": 11388
+	}, {
+		"procid": 90,
+		"procid_parent": 23,
+		"pid": 2140,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop MSSQLServerADHelper100",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8346,
+		"terminated": 9329
+	}, {
+		"procid": 91,
+		"procid_parent": 23,
+		"pid": 2156,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop MongoDB",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8361,
+		"terminated": 9313
+	}, {
+		"procid": 93,
+		"procid_parent": 72,
+		"pid": 2188,
+		"ppid": 1548,
+		"cmd": "net  stop DbxSvc",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8393,
+		"terminated": 9563
+	}, {
+		"procid": 94,
+		"procid_parent": 23,
+		"pid": 2196,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop SQLAgent$SQLEXPRESS",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8393,
+		"terminated": 9329
+	}, {
+		"procid": 95,
+		"procid_parent": 23,
+		"pid": 2208,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop SQLBrowser",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8393,
+		"terminated": 9999
+	}, {
+		"procid": 97,
+		"procid_parent": 23,
+		"pid": 2224,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop CobianBackup11",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8408,
+		"terminated": 10046
+	}, {
+		"procid": 98,
+		"procid_parent": 82,
+		"pid": 2244,
+		"ppid": 2044,
+		"cmd": "net  stop Apache2.4",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8439,
+		"terminated": 9282
+	}, {
+		"procid": 99,
+		"procid_parent": 65,
+		"pid": 2252,
+		"ppid": 300,
+		"cmd": "taskkill  /f /im Teams.*",
+		"image": "C:\\Windows\\SysWOW64\\taskkill.exe",
+		"orig": true,
+		"started": 8439,
+		"terminated": 11450
+	}, {
+		"procid": 100,
+		"procid_parent": 74,
+		"pid": 2264,
+		"ppid": 1004,
+		"cmd": "net  stop OracleXETNSListener",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8455,
+		"terminated": 9297
+	}, {
+		"procid": 101,
+		"procid_parent": 78,
+		"pid": 2288,
+		"ppid": 1912,
+		"cmd": "net  stop AcrSch2Svc",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8471,
+		"terminated": 9313
+	}, {
+		"procid": 104,
+		"procid_parent": 81,
+		"pid": 2332,
+		"ppid": 896,
+		"cmd": "net  stop AcronisAgent",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8517,
+		"terminated": 9282
+	}, {
+		"procid": 105,
+		"procid_parent": 76,
+		"pid": 2344,
+		"ppid": 368,
+		"cmd": "net  stop OracleServiceXE",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8533,
+		"terminated": 9282
+	}, {
+		"procid": 106,
+		"procid_parent": 83,
+		"pid": 2356,
+		"ppid": 2064,
+		"cmd": "net  stop SQLWriter",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8533,
+		"terminated": 9297
+	}, {
+		"procid": 108,
+		"procid_parent": 85,
+		"pid": 2400,
+		"ppid": 2088,
+		"cmd": "net  stop MSSQL$SQLEXPRESS",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8580,
+		"terminated": 9750
+	}, {
+		"procid": 109,
+		"procid_parent": 90,
+		"pid": 2416,
+		"ppid": 2140,
+		"cmd": "net  stop MSSQLServerADHelper100",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8595,
+		"terminated": 9297
+	}, {
+		"procid": 110,
+		"procid_parent": 91,
+		"pid": 2424,
+		"ppid": 2156,
+		"cmd": "net  stop MongoDB",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8595,
+		"terminated": 9297
+	}, {
+		"procid": 111,
+		"procid_parent": 94,
+		"pid": 2432,
+		"ppid": 2196,
+		"cmd": "net  stop SQLAgent$SQLEXPRESS",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8611,
+		"terminated": 9297
+	}, {
+		"procid": 112,
+		"procid_parent": 23,
+		"pid": 2272,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop cbVSCService11",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8611,
+		"terminated": 9687
+	}, {
+		"procid": 113,
+		"procid_parent": 23,
+		"pid": 2448,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop QBCFMontorService",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8642,
+		"terminated": 10233
+	}, {
+		"procid": 115,
+		"procid_parent": 23,
+		"pid": 2468,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop QBVSS",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8658,
+		"terminated": 9703
+	}, {
+		"procid": 116,
+		"procid_parent": 23,
+		"pid": 2492,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop ",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8673,
+		"terminated": 10109
+	}, {
+		"procid": 117,
+		"procid_parent": 23,
+		"pid": 2500,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop ",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8689,
+		"terminated": 9812
+	}, {
+		"procid": 120,
+		"procid_parent": 23,
+		"pid": 2536,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop ",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8705,
+		"terminated": 9797
+	}, {
+		"procid": 123,
+		"procid_parent": 23,
+		"pid": 2572,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop ",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8736,
+		"terminated": 10311
+	}, {
+		"procid": 125,
+		"procid_parent": 23,
+		"pid": 2596,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop ",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8751,
+		"terminated": 9812
+	}, {
+		"procid": 126,
+		"procid_parent": 23,
+		"pid": 2608,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c net stop ",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8767,
+		"terminated": 10296
+	}, {
+		"procid": 128,
+		"procid_parent": 23,
+		"pid": 2636,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c schtasks.exe /create /sc onstart /tn \"NEMTY_XHNNB1O\" /tr \"C:\\Users\\Admin\\AdobeUpdate.exe\"",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8783,
+		"terminated": 9812
+	}, {
+		"procid": 131,
+		"procid_parent": 23,
+		"pid": 2668,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c vssadmin.exe delete shadows /all /quiet \u0026 bcdedit /set {default} bootstatuspolicy ignoreallfailures \u0026 bcdedit /set {default} recoveryenabled no \u0026 wbadmin delete catalog -quiet \u0026 wmic shadowcopy delete",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 8798,
+		"terminated": 10795
+	}, {
+		"procid": 134,
+		"procid_parent": 100,
+		"pid": 2792,
+		"ppid": 2264,
+		"cmd": "C:\\Windows\\system32\\net1  stop OracleXETNSListener",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 8907,
+		"terminated": 9282
+	}, {
+		"procid": 135,
+		"procid_parent": 131,
+		"pid": 2820,
+		"ppid": 2668,
+		"cmd": "vssadmin.exe  delete shadows /all /quiet ",
+		"image": "C:\\Windows\\SysWOW64\\vssadmin.exe",
+		"orig": true,
+		"started": 8923,
+		"terminated": 9063
+	}, {
+		"procid": 136,
+		"procid_parent": 128,
+		"pid": 2828,
+		"ppid": 2636,
+		"cmd": "schtasks.exe  /create /sc onstart /tn \"NEMTY_XHNNB1O\" /tr \"C:\\Users\\Admin\\AdobeUpdate.exe\"",
+		"image": "C:\\Windows\\SysWOW64\\schtasks.exe",
+		"orig": true,
+		"started": 8923,
+		"terminated": 9812
+	}, {
+		"procid": 137,
+		"procid_parent": 97,
+		"pid": 2688,
+		"ppid": 2224,
+		"cmd": "net  stop CobianBackup11",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 8954,
+		"terminated": 10046
+	}, {
+		"procid": 138,
+		"procid_parent": 105,
+		"pid": 2928,
+		"ppid": 2344,
+		"cmd": "C:\\Windows\\system32\\net1  stop OracleServiceXE",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 8985,
+		"terminated": 9282
+	}, {
+		"procid": 139,
+		"procid_parent": 106,
+		"pid": 2976,
+		"ppid": 2356,
+		"cmd": "C:\\Windows\\system32\\net1  stop SQLWriter",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9017,
+		"terminated": 9282
+	}, {
+		"procid": 140,
+		"procid_parent": 98,
+		"pid": 2992,
+		"ppid": 2244,
+		"cmd": "C:\\Windows\\system32\\net1  stop Apache2.4",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9017,
+		"terminated": 9282
+	}, {
+		"procid": 141,
+		"procid_parent": 109,
+		"pid": 2984,
+		"ppid": 2416,
+		"cmd": "C:\\Windows\\system32\\net1  stop MSSQLServerADHelper100",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9017,
+		"terminated": 9297
+	}, {
+		"procid": 142,
+		"procid_parent": 101,
+		"pid": 3000,
+		"ppid": 2288,
+		"cmd": "C:\\Windows\\system32\\net1  stop AcrSch2Svc",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9032,
+		"terminated": 9297
+	}, {
+		"procid": 143,
+		"procid_parent": 115,
+		"pid": 2912,
+		"ppid": 2468,
+		"cmd": "net  stop QBVSS",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9063,
+		"terminated": 9703
+	}, {
+		"procid": 144,
+		"procid_parent": 116,
+		"pid": 2860,
+		"ppid": 2492,
+		"cmd": "net  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9063,
+		"terminated": 10109
+	}, {
+		"procid": 145,
+		"procid_parent": 113,
+		"pid": 2904,
+		"ppid": 2448,
+		"cmd": "net  stop QBCFMontorService",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9095,
+		"terminated": 10233
+	}, {
+		"procid": 146,
+		"procid_parent": 117,
+		"pid": 2896,
+		"ppid": 2500,
+		"cmd": "net  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9095,
+		"terminated": 9812
+	}, {
+		"procid": 147,
+		"procid_parent": 104,
+		"pid": 3032,
+		"ppid": 2332,
+		"cmd": "C:\\Windows\\system32\\net1  stop AcronisAgent",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9095,
+		"terminated": 9282
+	}, {
+		"procid": 148,
+		"procid_parent": 111,
+		"pid": 3024,
+		"ppid": 2432,
+		"cmd": "C:\\Windows\\system32\\net1  stop SQLAgent$SQLEXPRESS",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9095,
+		"terminated": 9297
+	}, {
+		"procid": 149,
+		"procid_parent": 93,
+		"pid": 3016,
+		"ppid": 2188,
+		"cmd": "C:\\Windows\\system32\\net1  stop DbxSvc",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9110,
+		"terminated": 9547
+	}, {
+		"procid": 150,
+		"procid_parent": 110,
+		"pid": 3040,
+		"ppid": 2424,
+		"cmd": "C:\\Windows\\system32\\net1  stop MongoDB",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9110,
+		"terminated": 9282
+	}, {
+		"procid": 151,
+		"procid_parent": 131,
+		"pid": 3048,
+		"ppid": 2668,
+		"cmd": "wmic  shadowcopy delete",
+		"image": "C:\\Windows\\SysWOW64\\Wbem\\WMIC.exe",
+		"orig": true,
+		"started": 9110,
+		"terminated": 10795
+	}, {
+		"procid": 152,
+		"procid_parent": 112,
+		"pid": 2888,
+		"ppid": 2272,
+		"cmd": "net  stop cbVSCService11",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9126,
+		"terminated": 9687
+	}, {
+		"procid": 153,
+		"procid_parent": 95,
+		"pid": 2880,
+		"ppid": 2208,
+		"cmd": "net  stop SQLBrowser",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9141,
+		"terminated": 9999
+	}, {
+		"procid": 154,
+		"procid_parent": 123,
+		"pid": 2936,
+		"ppid": 2572,
+		"cmd": "net  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9141,
+		"terminated": 10296
+	}, {
+		"procid": 155,
+		"procid_parent": 125,
+		"pid": 2952,
+		"ppid": 2596,
+		"cmd": "net  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9141,
+		"terminated": 9797
+	}, {
+		"procid": 156,
+		"procid_parent": 120,
+		"pid": 2920,
+		"ppid": 2536,
+		"cmd": "net  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9141,
+		"terminated": 9797
+	}, {
+		"procid": 157,
+		"procid_parent": 126,
+		"pid": 2968,
+		"ppid": 2608,
+		"cmd": "net  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net.exe",
+		"orig": true,
+		"started": 9141,
+		"terminated": 10296
+	}, {
+		"procid": 158,
+		"procid_parent": 108,
+		"pid": 3056,
+		"ppid": 2400,
+		"cmd": "C:\\Windows\\system32\\net1  stop MSSQL$SQLEXPRESS",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9235,
+		"terminated": 9750
+	}, {
+		"procid": 160,
+		"procid_parent": 153,
+		"pid": 2332,
+		"ppid": 2880,
+		"cmd": "C:\\Windows\\system32\\net1  stop SQLBrowser",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9563,
+		"terminated": 9984
+	}, {
+		"procid": 161,
+		"procid_parent": 137,
+		"pid": 2180,
+		"ppid": 2688,
+		"cmd": "C:\\Windows\\system32\\net1  stop CobianBackup11",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9609,
+		"terminated": 10046
+	}, {
+		"procid": 162,
+		"procid_parent": 143,
+		"pid": 2792,
+		"ppid": 2912,
+		"cmd": "C:\\Windows\\system32\\net1  stop QBVSS",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9625,
+		"terminated": 9703
+	}, {
+		"procid": 163,
+		"procid_parent": 156,
+		"pid": 2420,
+		"ppid": 2920,
+		"cmd": "C:\\Windows\\system32\\net1  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9625,
+		"terminated": 9797
+	}, {
+		"procid": 164,
+		"procid_parent": 155,
+		"pid": 2204,
+		"ppid": 2952,
+		"cmd": "C:\\Windows\\system32\\net1  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9625,
+		"terminated": 9797
+	}, {
+		"procid": 165,
+		"procid_parent": 152,
+		"pid": 2984,
+		"ppid": 2888,
+		"cmd": "C:\\Windows\\system32\\net1  stop cbVSCService11",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9641,
+		"terminated": 9687
+	}, {
+		"procid": 166,
+		"procid_parent": 146,
+		"pid": 2280,
+		"ppid": 2896,
+		"cmd": "C:\\Windows\\system32\\net1  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9656,
+		"terminated": 9812
+	}, {
+		"procid": 167,
+		"procid_parent": 144,
+		"pid": 2360,
+		"ppid": 2860,
+		"cmd": "C:\\Windows\\system32\\net1  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9719,
+		"terminated": 10109
+	}, {
+		"procid": 168,
+		"procid_parent": 145,
+		"pid": 780,
+		"ppid": 2904,
+		"cmd": "C:\\Windows\\system32\\net1  stop QBCFMontorService",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9765,
+		"terminated": 10218
+	}, {
+		"procid": 169,
+		"procid_parent": 154,
+		"pid": 3000,
+		"ppid": 2936,
+		"cmd": "C:\\Windows\\system32\\net1  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9781,
+		"terminated": 10296
+	}, {
+		"procid": 170,
+		"procid_parent": 157,
+		"pid": 2432,
+		"ppid": 2968,
+		"cmd": "C:\\Windows\\system32\\net1  stop ",
+		"image": "C:\\Windows\\SysWOW64\\net1.exe",
+		"orig": true,
+		"started": 9781,
+		"terminated": 10280
+	}, {
+		"procid": 173,
+		"procid_parent": 23,
+		"pid": 2920,
+		"ppid": 1360,
+		"cmd": "\"C:\\Windows\\System32\\cmd.exe\"  /c \"C:\\Users\\Admin\\NEMTY_XHNNB1O-DECRYPT.txt\"",
+		"image": "C:\\Windows\\SysWOW64\\cmd.exe",
+		"orig": true,
+		"started": 20514
+	}, {
+		"procid": 175,
+		"procid_parent": 173,
+		"pid": 2280,
+		"ppid": 2920,
+		"cmd": "\"C:\\Windows\\system32\\NOTEPAD.EXE\" C:\\Users\\Admin\\NEMTY_XHNNB1O-DECRYPT.txt",
+		"image": "C:\\Windows\\SysWOW64\\NOTEPAD.EXE",
+		"orig": true,
+		"started": 20779
+	}],
+	"signatures": [{
+		"name": "Suspicious use of WriteProcessMemory",
+		"indicators": [{
+			"description": "PID 1360 wrote to memory of 1444",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 24
+		}, {
+			"description": "PID 1360 wrote to memory of 1444",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 24
+		}, {
+			"description": "PID 1360 wrote to memory of 1444",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 24
+		}, {
+			"description": "PID 1360 wrote to memory of 1444",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 24
+		}, {
+			"description": "PID 1360 wrote to memory of 1040",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 26
+		}, {
+			"description": "PID 1360 wrote to memory of 1040",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 26
+		}, {
+			"description": "PID 1360 wrote to memory of 1040",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 26
+		}, {
+			"description": "PID 1360 wrote to memory of 1040",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 26
+		}, {
+			"description": "PID 1444 wrote to memory of 1612",
+			"pid": 1444,
+			"procid": 24,
+			"procid_target": 28
+		}, {
+			"description": "PID 1444 wrote to memory of 1612",
+			"pid": 1444,
+			"procid": 24,
+			"procid_target": 28
+		}, {
+			"description": "PID 1444 wrote to memory of 1612",
+			"pid": 1444,
+			"procid": 24,
+			"procid_target": 28
+		}, {
+			"description": "PID 1444 wrote to memory of 1612",
+			"pid": 1444,
+			"procid": 24,
+			"procid_target": 28
+		}, {
+			"description": "PID 1040 wrote to memory of 1020",
+			"pid": 1040,
+			"procid": 26,
+			"procid_target": 29
+		}, {
+			"description": "PID 1040 wrote to memory of 1020",
+			"pid": 1040,
+			"procid": 26,
+			"procid_target": 29
+		}, {
+			"description": "PID 1040 wrote to memory of 1020",
+			"pid": 1040,
+			"procid": 26,
+			"procid_target": 29
+		}, {
+			"description": "PID 1040 wrote to memory of 1020",
+			"pid": 1040,
+			"procid": 26,
+			"procid_target": 29
+		}, {
+			"description": "PID 1360 wrote to memory of 752",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 33
+		}, {
+			"description": "PID 1360 wrote to memory of 752",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 33
+		}, {
+			"description": "PID 1360 wrote to memory of 752",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 33
+		}, {
+			"description": "PID 1360 wrote to memory of 752",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 33
+		}, {
+			"description": "PID 1360 wrote to memory of 796",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 34
+		}, {
+			"description": "PID 1360 wrote to memory of 796",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 34
+		}, {
+			"description": "PID 1360 wrote to memory of 796",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 34
+		}, {
+			"description": "PID 1360 wrote to memory of 796",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 34
+		}, {
+			"description": "PID 1360 wrote to memory of 552",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 37
+		}, {
+			"description": "PID 1360 wrote to memory of 552",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 37
+		}, {
+			"description": "PID 1360 wrote to memory of 552",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 37
+		}, {
+			"description": "PID 1360 wrote to memory of 552",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 37
+		}, {
+			"description": "PID 1360 wrote to memory of 1088",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 38
+		}, {
+			"description": "PID 1360 wrote to memory of 1088",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 38
+		}, {
+			"description": "PID 1360 wrote to memory of 1088",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 38
+		}, {
+			"description": "PID 1360 wrote to memory of 1088",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 38
+		}, {
+			"description": "PID 1360 wrote to memory of 532",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 40
+		}, {
+			"description": "PID 1360 wrote to memory of 532",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 40
+		}, {
+			"description": "PID 1360 wrote to memory of 532",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 40
+		}, {
+			"description": "PID 1360 wrote to memory of 532",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 40
+		}, {
+			"description": "PID 796 wrote to memory of 1592",
+			"pid": 796,
+			"procid": 34,
+			"procid_target": 43
+		}, {
+			"description": "PID 796 wrote to memory of 1592",
+			"pid": 796,
+			"procid": 34,
+			"procid_target": 43
+		}, {
+			"description": "PID 796 wrote to memory of 1592",
+			"pid": 796,
+			"procid": 34,
+			"procid_target": 43
+		}, {
+			"description": "PID 796 wrote to memory of 1592",
+			"pid": 796,
+			"procid": 34,
+			"procid_target": 43
+		}, {
+			"description": "PID 752 wrote to memory of 1604",
+			"pid": 752,
+			"procid": 33,
+			"procid_target": 44
+		}, {
+			"description": "PID 752 wrote to memory of 1604",
+			"pid": 752,
+			"procid": 33,
+			"procid_target": 44
+		}, {
+			"description": "PID 752 wrote to memory of 1604",
+			"pid": 752,
+			"procid": 33,
+			"procid_target": 44
+		}, {
+			"description": "PID 752 wrote to memory of 1604",
+			"pid": 752,
+			"procid": 33,
+			"procid_target": 44
+		}, {
+			"description": "PID 1360 wrote to memory of 1632",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 45
+		}, {
+			"description": "PID 1360 wrote to memory of 1632",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 45
+		}, {
+			"description": "PID 1360 wrote to memory of 1632",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 45
+		}, {
+			"description": "PID 1360 wrote to memory of 1632",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 45
+		}, {
+			"description": "PID 552 wrote to memory of 1744",
+			"pid": 552,
+			"procid": 37,
+			"procid_target": 46
+		}, {
+			"description": "PID 552 wrote to memory of 1744",
+			"pid": 552,
+			"procid": 37,
+			"procid_target": 46
+		}, {
+			"description": "PID 552 wrote to memory of 1744",
+			"pid": 552,
+			"procid": 37,
+			"procid_target": 46
+		}, {
+			"description": "PID 552 wrote to memory of 1744",
+			"pid": 552,
+			"procid": 37,
+			"procid_target": 46
+		}, {
+			"description": "PID 1360 wrote to memory of 1564",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 47
+		}, {
+			"description": "PID 1360 wrote to memory of 1564",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 47
+		}, {
+			"description": "PID 1360 wrote to memory of 1564",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 47
+		}, {
+			"description": "PID 1360 wrote to memory of 1564",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 47
+		}, {
+			"description": "PID 1360 wrote to memory of 1560",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 48
+		}, {
+			"description": "PID 1360 wrote to memory of 1560",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 48
+		}, {
+			"description": "PID 1360 wrote to memory of 1560",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 48
+		}, {
+			"description": "PID 1360 wrote to memory of 1560",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 48
+		}, {
+			"description": "PID 1360 wrote to memory of 1544",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 49
+		}, {
+			"description": "PID 1360 wrote to memory of 1544",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 49
+		}, {
+			"description": "PID 1360 wrote to memory of 1544",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 49
+		}, {
+			"description": "PID 1360 wrote to memory of 1544",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 49
+		}, {
+			"description": "PID 1088 wrote to memory of 1916",
+			"pid": 1088,
+			"procid": 38,
+			"procid_target": 51
+		}, {
+			"description": "PID 1088 wrote to memory of 1916",
+			"pid": 1088,
+			"procid": 38,
+			"procid_target": 51
+		}, {
+			"description": "PID 1088 wrote to memory of 1916",
+			"pid": 1088,
+			"procid": 38,
+			"procid_target": 51
+		}, {
+			"description": "PID 1088 wrote to memory of 1916",
+			"pid": 1088,
+			"procid": 38,
+			"procid_target": 51
+		}, {
+			"description": "PID 532 wrote to memory of 1960",
+			"pid": 532,
+			"procid": 40,
+			"procid_target": 55
+		}, {
+			"description": "PID 532 wrote to memory of 1960",
+			"pid": 532,
+			"procid": 40,
+			"procid_target": 55
+		}, {
+			"description": "PID 532 wrote to memory of 1960",
+			"pid": 532,
+			"procid": 40,
+			"procid_target": 55
+		}, {
+			"description": "PID 532 wrote to memory of 1960",
+			"pid": 532,
+			"procid": 40,
+			"procid_target": 55
+		}, {
+			"description": "PID 1360 wrote to memory of 1928",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 56
+		}, {
+			"description": "PID 1360 wrote to memory of 1928",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 56
+		}, {
+			"description": "PID 1360 wrote to memory of 1928",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 56
+		}, {
+			"description": "PID 1360 wrote to memory of 1928",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 56
+		}, {
+			"description": "PID 1360 wrote to memory of 1676",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 58
+		}, {
+			"description": "PID 1360 wrote to memory of 1676",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 58
+		}, {
+			"description": "PID 1360 wrote to memory of 1676",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 58
+		}, {
+			"description": "PID 1360 wrote to memory of 1676",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 58
+		}, {
+			"description": "PID 1560 wrote to memory of 1208",
+			"pid": 1560,
+			"procid": 48,
+			"procid_target": 59
+		}, {
+			"description": "PID 1560 wrote to memory of 1208",
+			"pid": 1560,
+			"procid": 48,
+			"procid_target": 59
+		}, {
+			"description": "PID 1560 wrote to memory of 1208",
+			"pid": 1560,
+			"procid": 48,
+			"procid_target": 59
+		}, {
+			"description": "PID 1560 wrote to memory of 1208",
+			"pid": 1560,
+			"procid": 48,
+			"procid_target": 59
+		}, {
+			"description": "PID 1564 wrote to memory of 112",
+			"pid": 1564,
+			"procid": 47,
+			"procid_target": 60
+		}, {
+			"description": "PID 1564 wrote to memory of 112",
+			"pid": 1564,
+			"procid": 47,
+			"procid_target": 60
+		}, {
+			"description": "PID 1564 wrote to memory of 112",
+			"pid": 1564,
+			"procid": 47,
+			"procid_target": 60
+		}, {
+			"description": "PID 1564 wrote to memory of 112",
+			"pid": 1564,
+			"procid": 47,
+			"procid_target": 60
+		}, {
+			"description": "PID 1360 wrote to memory of 1064",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 62
+		}, {
+			"description": "PID 1360 wrote to memory of 1064",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 62
+		}, {
+			"description": "PID 1360 wrote to memory of 1064",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 62
+		}, {
+			"description": "PID 1360 wrote to memory of 1064",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 62
+		}, {
+			"description": "PID 1928 wrote to memory of 1084",
+			"pid": 1928,
+			"procid": 56,
+			"procid_target": 61
+		}, {
+			"description": "PID 1928 wrote to memory of 1084",
+			"pid": 1928,
+			"procid": 56,
+			"procid_target": 61
+		}, {
+			"description": "PID 1928 wrote to memory of 1084",
+			"pid": 1928,
+			"procid": 56,
+			"procid_target": 61
+		}, {
+			"description": "PID 1928 wrote to memory of 1084",
+			"pid": 1928,
+			"procid": 56,
+			"procid_target": 61
+		}, {
+			"description": "PID 1632 wrote to memory of 1832",
+			"pid": 1632,
+			"procid": 45,
+			"procid_target": 66
+		}, {
+			"description": "PID 1632 wrote to memory of 1832",
+			"pid": 1632,
+			"procid": 45,
+			"procid_target": 66
+		}, {
+			"description": "PID 1632 wrote to memory of 1832",
+			"pid": 1632,
+			"procid": 45,
+			"procid_target": 66
+		}, {
+			"description": "PID 1632 wrote to memory of 1832",
+			"pid": 1632,
+			"procid": 45,
+			"procid_target": 66
+		}, {
+			"description": "PID 1064 wrote to memory of 1052",
+			"pid": 1064,
+			"procid": 62,
+			"procid_target": 68
+		}, {
+			"description": "PID 1064 wrote to memory of 1052",
+			"pid": 1064,
+			"procid": 62,
+			"procid_target": 68
+		}, {
+			"description": "PID 1064 wrote to memory of 1052",
+			"pid": 1064,
+			"procid": 62,
+			"procid_target": 68
+		}, {
+			"description": "PID 1064 wrote to memory of 1052",
+			"pid": 1064,
+			"procid": 62,
+			"procid_target": 68
+		}, {
+			"description": "PID 1544 wrote to memory of 1836",
+			"pid": 1544,
+			"procid": 49,
+			"procid_target": 67
+		}, {
+			"description": "PID 1544 wrote to memory of 1836",
+			"pid": 1544,
+			"procid": 49,
+			"procid_target": 67
+		}, {
+			"description": "PID 1544 wrote to memory of 1836",
+			"pid": 1544,
+			"procid": 49,
+			"procid_target": 67
+		}, {
+			"description": "PID 1544 wrote to memory of 1836",
+			"pid": 1544,
+			"procid": 49,
+			"procid_target": 67
+		}, {
+			"description": "PID 1676 wrote to memory of 1628",
+			"pid": 1676,
+			"procid": 58,
+			"procid_target": 69
+		}, {
+			"description": "PID 1676 wrote to memory of 1628",
+			"pid": 1676,
+			"procid": 58,
+			"procid_target": 69
+		}, {
+			"description": "PID 1676 wrote to memory of 1628",
+			"pid": 1676,
+			"procid": 58,
+			"procid_target": 69
+		}, {
+			"description": "PID 1676 wrote to memory of 1628",
+			"pid": 1676,
+			"procid": 58,
+			"procid_target": 69
+		}, {
+			"description": "PID 1360 wrote to memory of 300",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 65
+		}, {
+			"description": "PID 1360 wrote to memory of 300",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 65
+		}, {
+			"description": "PID 1360 wrote to memory of 300",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 65
+		}, {
+			"description": "PID 1360 wrote to memory of 300",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 65
+		}, {
+			"description": "PID 1360 wrote to memory of 1508",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 70
+		}, {
+			"description": "PID 1360 wrote to memory of 1508",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 70
+		}, {
+			"description": "PID 1360 wrote to memory of 1508",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 70
+		}, {
+			"description": "PID 1360 wrote to memory of 1508",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 70
+		}, {
+			"description": "PID 1360 wrote to memory of 1548",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 72
+		}, {
+			"description": "PID 1360 wrote to memory of 1548",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 72
+		}, {
+			"description": "PID 1360 wrote to memory of 1548",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 72
+		}, {
+			"description": "PID 1360 wrote to memory of 1548",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 72
+		}, {
+			"description": "PID 1360 wrote to memory of 1004",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 74
+		}, {
+			"description": "PID 1360 wrote to memory of 1004",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 74
+		}, {
+			"description": "PID 1360 wrote to memory of 1004",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 74
+		}, {
+			"description": "PID 1360 wrote to memory of 1004",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 74
+		}, {
+			"description": "PID 1360 wrote to memory of 368",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 76
+		}, {
+			"description": "PID 1360 wrote to memory of 368",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 76
+		}, {
+			"description": "PID 1360 wrote to memory of 368",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 76
+		}, {
+			"description": "PID 1360 wrote to memory of 368",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 76
+		}, {
+			"description": "PID 1360 wrote to memory of 1912",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 78
+		}, {
+			"description": "PID 1360 wrote to memory of 1912",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 78
+		}, {
+			"description": "PID 1360 wrote to memory of 1912",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 78
+		}, {
+			"description": "PID 1360 wrote to memory of 1912",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 78
+		}, {
+			"description": "PID 1360 wrote to memory of 896",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 81
+		}, {
+			"description": "PID 1360 wrote to memory of 896",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 81
+		}, {
+			"description": "PID 1360 wrote to memory of 896",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 81
+		}, {
+			"description": "PID 1360 wrote to memory of 896",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 81
+		}, {
+			"description": "PID 1360 wrote to memory of 2044",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 82
+		}, {
+			"description": "PID 1360 wrote to memory of 2044",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 82
+		}, {
+			"description": "PID 1360 wrote to memory of 2044",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 82
+		}, {
+			"description": "PID 1360 wrote to memory of 2044",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 82
+		}, {
+			"description": "PID 1360 wrote to memory of 2064",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 83
+		}, {
+			"description": "PID 1360 wrote to memory of 2064",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 83
+		}, {
+			"description": "PID 1360 wrote to memory of 2064",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 83
+		}, {
+			"description": "PID 1360 wrote to memory of 2064",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 83
+		}, {
+			"description": "PID 1360 wrote to memory of 2088",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 85
+		}, {
+			"description": "PID 1360 wrote to memory of 2088",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 85
+		}, {
+			"description": "PID 1360 wrote to memory of 2088",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 85
+		}, {
+			"description": "PID 1360 wrote to memory of 2088",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 85
+		}, {
+			"description": "PID 1508 wrote to memory of 2096",
+			"pid": 1508,
+			"procid": 70,
+			"procid_target": 86
+		}, {
+			"description": "PID 1508 wrote to memory of 2096",
+			"pid": 1508,
+			"procid": 70,
+			"procid_target": 86
+		}, {
+			"description": "PID 1508 wrote to memory of 2096",
+			"pid": 1508,
+			"procid": 70,
+			"procid_target": 86
+		}, {
+			"description": "PID 1508 wrote to memory of 2096",
+			"pid": 1508,
+			"procid": 70,
+			"procid_target": 86
+		}, {
+			"description": "PID 1360 wrote to memory of 2140",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 90
+		}, {
+			"description": "PID 1360 wrote to memory of 2140",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 90
+		}, {
+			"description": "PID 1360 wrote to memory of 2140",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 90
+		}, {
+			"description": "PID 1360 wrote to memory of 2140",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 90
+		}, {
+			"description": "PID 1360 wrote to memory of 2156",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 91
+		}, {
+			"description": "PID 1360 wrote to memory of 2156",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 91
+		}, {
+			"description": "PID 1360 wrote to memory of 2156",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 91
+		}, {
+			"description": "PID 1360 wrote to memory of 2156",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 91
+		}, {
+			"description": "PID 1548 wrote to memory of 2188",
+			"pid": 1548,
+			"procid": 72,
+			"procid_target": 93
+		}, {
+			"description": "PID 1548 wrote to memory of 2188",
+			"pid": 1548,
+			"procid": 72,
+			"procid_target": 93
+		}, {
+			"description": "PID 1548 wrote to memory of 2188",
+			"pid": 1548,
+			"procid": 72,
+			"procid_target": 93
+		}, {
+			"description": "PID 1548 wrote to memory of 2188",
+			"pid": 1548,
+			"procid": 72,
+			"procid_target": 93
+		}, {
+			"description": "PID 1360 wrote to memory of 2196",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 94
+		}, {
+			"description": "PID 1360 wrote to memory of 2196",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 94
+		}, {
+			"description": "PID 1360 wrote to memory of 2196",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 94
+		}, {
+			"description": "PID 1360 wrote to memory of 2196",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 94
+		}, {
+			"description": "PID 1360 wrote to memory of 2208",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 95
+		}, {
+			"description": "PID 1360 wrote to memory of 2208",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 95
+		}, {
+			"description": "PID 1360 wrote to memory of 2208",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 95
+		}, {
+			"description": "PID 1360 wrote to memory of 2208",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 95
+		}, {
+			"description": "PID 1360 wrote to memory of 2224",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 97
+		}, {
+			"description": "PID 1360 wrote to memory of 2224",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 97
+		}, {
+			"description": "PID 1360 wrote to memory of 2224",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 97
+		}, {
+			"description": "PID 1360 wrote to memory of 2224",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 97
+		}, {
+			"description": "PID 2044 wrote to memory of 2244",
+			"pid": 2044,
+			"procid": 82,
+			"procid_target": 98
+		}, {
+			"description": "PID 2044 wrote to memory of 2244",
+			"pid": 2044,
+			"procid": 82,
+			"procid_target": 98
+		}, {
+			"description": "PID 2044 wrote to memory of 2244",
+			"pid": 2044,
+			"procid": 82,
+			"procid_target": 98
+		}, {
+			"description": "PID 2044 wrote to memory of 2244",
+			"pid": 2044,
+			"procid": 82,
+			"procid_target": 98
+		}, {
+			"description": "PID 300 wrote to memory of 2252",
+			"pid": 300,
+			"procid": 65,
+			"procid_target": 99
+		}, {
+			"description": "PID 300 wrote to memory of 2252",
+			"pid": 300,
+			"procid": 65,
+			"procid_target": 99
+		}, {
+			"description": "PID 300 wrote to memory of 2252",
+			"pid": 300,
+			"procid": 65,
+			"procid_target": 99
+		}, {
+			"description": "PID 300 wrote to memory of 2252",
+			"pid": 300,
+			"procid": 65,
+			"procid_target": 99
+		}, {
+			"description": "PID 1004 wrote to memory of 2264",
+			"pid": 1004,
+			"procid": 74,
+			"procid_target": 100
+		}, {
+			"description": "PID 1004 wrote to memory of 2264",
+			"pid": 1004,
+			"procid": 74,
+			"procid_target": 100
+		}, {
+			"description": "PID 1004 wrote to memory of 2264",
+			"pid": 1004,
+			"procid": 74,
+			"procid_target": 100
+		}, {
+			"description": "PID 1004 wrote to memory of 2264",
+			"pid": 1004,
+			"procid": 74,
+			"procid_target": 100
+		}, {
+			"description": "PID 1912 wrote to memory of 2288",
+			"pid": 1912,
+			"procid": 78,
+			"procid_target": 101
+		}, {
+			"description": "PID 1912 wrote to memory of 2288",
+			"pid": 1912,
+			"procid": 78,
+			"procid_target": 101
+		}, {
+			"description": "PID 1912 wrote to memory of 2288",
+			"pid": 1912,
+			"procid": 78,
+			"procid_target": 101
+		}, {
+			"description": "PID 1912 wrote to memory of 2288",
+			"pid": 1912,
+			"procid": 78,
+			"procid_target": 101
+		}, {
+			"description": "PID 896 wrote to memory of 2332",
+			"pid": 896,
+			"procid": 81,
+			"procid_target": 104
+		}, {
+			"description": "PID 896 wrote to memory of 2332",
+			"pid": 896,
+			"procid": 81,
+			"procid_target": 104
+		}, {
+			"description": "PID 896 wrote to memory of 2332",
+			"pid": 896,
+			"procid": 81,
+			"procid_target": 104
+		}, {
+			"description": "PID 896 wrote to memory of 2332",
+			"pid": 896,
+			"procid": 81,
+			"procid_target": 104
+		}, {
+			"description": "PID 368 wrote to memory of 2344",
+			"pid": 368,
+			"procid": 76,
+			"procid_target": 105
+		}, {
+			"description": "PID 368 wrote to memory of 2344",
+			"pid": 368,
+			"procid": 76,
+			"procid_target": 105
+		}, {
+			"description": "PID 368 wrote to memory of 2344",
+			"pid": 368,
+			"procid": 76,
+			"procid_target": 105
+		}, {
+			"description": "PID 368 wrote to memory of 2344",
+			"pid": 368,
+			"procid": 76,
+			"procid_target": 105
+		}, {
+			"description": "PID 2064 wrote to memory of 2356",
+			"pid": 2064,
+			"procid": 83,
+			"procid_target": 106
+		}, {
+			"description": "PID 2064 wrote to memory of 2356",
+			"pid": 2064,
+			"procid": 83,
+			"procid_target": 106
+		}, {
+			"description": "PID 2064 wrote to memory of 2356",
+			"pid": 2064,
+			"procid": 83,
+			"procid_target": 106
+		}, {
+			"description": "PID 2064 wrote to memory of 2356",
+			"pid": 2064,
+			"procid": 83,
+			"procid_target": 106
+		}, {
+			"description": "PID 2088 wrote to memory of 2400",
+			"pid": 2088,
+			"procid": 85,
+			"procid_target": 108
+		}, {
+			"description": "PID 2088 wrote to memory of 2400",
+			"pid": 2088,
+			"procid": 85,
+			"procid_target": 108
+		}, {
+			"description": "PID 2088 wrote to memory of 2400",
+			"pid": 2088,
+			"procid": 85,
+			"procid_target": 108
+		}, {
+			"description": "PID 2088 wrote to memory of 2400",
+			"pid": 2088,
+			"procid": 85,
+			"procid_target": 108
+		}, {
+			"description": "PID 2156 wrote to memory of 2424",
+			"pid": 2156,
+			"procid": 91,
+			"procid_target": 110
+		}, {
+			"description": "PID 2156 wrote to memory of 2424",
+			"pid": 2156,
+			"procid": 91,
+			"procid_target": 110
+		}, {
+			"description": "PID 2156 wrote to memory of 2424",
+			"pid": 2156,
+			"procid": 91,
+			"procid_target": 110
+		}, {
+			"description": "PID 2156 wrote to memory of 2424",
+			"pid": 2156,
+			"procid": 91,
+			"procid_target": 110
+		}, {
+			"description": "PID 2140 wrote to memory of 2416",
+			"pid": 2140,
+			"procid": 90,
+			"procid_target": 109
+		}, {
+			"description": "PID 2140 wrote to memory of 2416",
+			"pid": 2140,
+			"procid": 90,
+			"procid_target": 109
+		}, {
+			"description": "PID 2140 wrote to memory of 2416",
+			"pid": 2140,
+			"procid": 90,
+			"procid_target": 109
+		}, {
+			"description": "PID 2140 wrote to memory of 2416",
+			"pid": 2140,
+			"procid": 90,
+			"procid_target": 109
+		}, {
+			"description": "PID 2196 wrote to memory of 2432",
+			"pid": 2196,
+			"procid": 94,
+			"procid_target": 111
+		}, {
+			"description": "PID 2196 wrote to memory of 2432",
+			"pid": 2196,
+			"procid": 94,
+			"procid_target": 111
+		}, {
+			"description": "PID 2196 wrote to memory of 2432",
+			"pid": 2196,
+			"procid": 94,
+			"procid_target": 111
+		}, {
+			"description": "PID 2196 wrote to memory of 2432",
+			"pid": 2196,
+			"procid": 94,
+			"procid_target": 111
+		}, {
+			"description": "PID 1360 wrote to memory of 2272",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 112
+		}, {
+			"description": "PID 1360 wrote to memory of 2272",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 112
+		}, {
+			"description": "PID 1360 wrote to memory of 2272",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 112
+		}, {
+			"description": "PID 1360 wrote to memory of 2272",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 112
+		}, {
+			"description": "PID 1360 wrote to memory of 2448",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 113
+		}, {
+			"description": "PID 1360 wrote to memory of 2448",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 113
+		}, {
+			"description": "PID 1360 wrote to memory of 2448",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 113
+		}, {
+			"description": "PID 1360 wrote to memory of 2448",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 113
+		}, {
+			"description": "PID 1360 wrote to memory of 2468",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 115
+		}, {
+			"description": "PID 1360 wrote to memory of 2468",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 115
+		}, {
+			"description": "PID 1360 wrote to memory of 2468",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 115
+		}, {
+			"description": "PID 1360 wrote to memory of 2468",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 115
+		}, {
+			"description": "PID 1360 wrote to memory of 2492",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 116
+		}, {
+			"description": "PID 1360 wrote to memory of 2492",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 116
+		}, {
+			"description": "PID 1360 wrote to memory of 2492",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 116
+		}, {
+			"description": "PID 1360 wrote to memory of 2492",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 116
+		}, {
+			"description": "PID 1360 wrote to memory of 2500",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 117
+		}, {
+			"description": "PID 1360 wrote to memory of 2500",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 117
+		}, {
+			"description": "PID 1360 wrote to memory of 2500",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 117
+		}, {
+			"description": "PID 1360 wrote to memory of 2500",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 117
+		}, {
+			"description": "PID 1360 wrote to memory of 2536",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 120
+		}, {
+			"description": "PID 1360 wrote to memory of 2536",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 120
+		}, {
+			"description": "PID 1360 wrote to memory of 2536",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 120
+		}, {
+			"description": "PID 1360 wrote to memory of 2536",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 120
+		}, {
+			"description": "PID 1360 wrote to memory of 2572",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 123
+		}, {
+			"description": "PID 1360 wrote to memory of 2572",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 123
+		}, {
+			"description": "PID 1360 wrote to memory of 2572",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 123
+		}, {
+			"description": "PID 1360 wrote to memory of 2572",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 123
+		}, {
+			"description": "PID 1360 wrote to memory of 2596",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 125
+		}, {
+			"description": "PID 1360 wrote to memory of 2596",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 125
+		}, {
+			"description": "PID 1360 wrote to memory of 2596",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 125
+		}, {
+			"description": "PID 1360 wrote to memory of 2596",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 125
+		}, {
+			"description": "PID 1360 wrote to memory of 2608",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 126
+		}, {
+			"description": "PID 1360 wrote to memory of 2608",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 126
+		}, {
+			"description": "PID 1360 wrote to memory of 2608",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 126
+		}, {
+			"description": "PID 1360 wrote to memory of 2608",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 126
+		}, {
+			"description": "PID 1360 wrote to memory of 2636",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 128
+		}, {
+			"description": "PID 1360 wrote to memory of 2636",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 128
+		}, {
+			"description": "PID 1360 wrote to memory of 2636",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 128
+		}, {
+			"description": "PID 1360 wrote to memory of 2636",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 128
+		}, {
+			"description": "PID 1360 wrote to memory of 2668",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 131
+		}, {
+			"description": "PID 1360 wrote to memory of 2668",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 131
+		}, {
+			"description": "PID 1360 wrote to memory of 2668",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 131
+		}, {
+			"description": "PID 1360 wrote to memory of 2668",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 131
+		}, {
+			"description": "PID 2264 wrote to memory of 2792",
+			"pid": 2264,
+			"procid": 100,
+			"procid_target": 134
+		}, {
+			"description": "PID 2264 wrote to memory of 2792",
+			"pid": 2264,
+			"procid": 100,
+			"procid_target": 134
+		}, {
+			"description": "PID 2264 wrote to memory of 2792",
+			"pid": 2264,
+			"procid": 100,
+			"procid_target": 134
+		}, {
+			"description": "PID 2264 wrote to memory of 2792",
+			"pid": 2264,
+			"procid": 100,
+			"procid_target": 134
+		}, {
+			"description": "PID 2668 wrote to memory of 2820",
+			"pid": 2668,
+			"procid": 131,
+			"procid_target": 135
+		}, {
+			"description": "PID 2668 wrote to memory of 2820",
+			"pid": 2668,
+			"procid": 131,
+			"procid_target": 135
+		}, {
+			"description": "PID 2668 wrote to memory of 2820",
+			"pid": 2668,
+			"procid": 131,
+			"procid_target": 135
+		}, {
+			"description": "PID 2668 wrote to memory of 2820",
+			"pid": 2668,
+			"procid": 131,
+			"procid_target": 135
+		}, {
+			"description": "PID 2636 wrote to memory of 2828",
+			"pid": 2636,
+			"procid": 128,
+			"procid_target": 136
+		}, {
+			"description": "PID 2636 wrote to memory of 2828",
+			"pid": 2636,
+			"procid": 128,
+			"procid_target": 136
+		}, {
+			"description": "PID 2636 wrote to memory of 2828",
+			"pid": 2636,
+			"procid": 128,
+			"procid_target": 136
+		}, {
+			"description": "PID 2636 wrote to memory of 2828",
+			"pid": 2636,
+			"procid": 128,
+			"procid_target": 136
+		}, {
+			"description": "PID 2344 wrote to memory of 2928",
+			"pid": 2344,
+			"procid": 105,
+			"procid_target": 138
+		}, {
+			"description": "PID 2344 wrote to memory of 2928",
+			"pid": 2344,
+			"procid": 105,
+			"procid_target": 138
+		}, {
+			"description": "PID 2344 wrote to memory of 2928",
+			"pid": 2344,
+			"procid": 105,
+			"procid_target": 138
+		}, {
+			"description": "PID 2344 wrote to memory of 2928",
+			"pid": 2344,
+			"procid": 105,
+			"procid_target": 138
+		}, {
+			"description": "PID 2356 wrote to memory of 2976",
+			"pid": 2356,
+			"procid": 106,
+			"procid_target": 139
+		}, {
+			"description": "PID 2356 wrote to memory of 2976",
+			"pid": 2356,
+			"procid": 106,
+			"procid_target": 139
+		}, {
+			"description": "PID 2356 wrote to memory of 2976",
+			"pid": 2356,
+			"procid": 106,
+			"procid_target": 139
+		}, {
+			"description": "PID 2356 wrote to memory of 2976",
+			"pid": 2356,
+			"procid": 106,
+			"procid_target": 139
+		}, {
+			"description": "PID 2416 wrote to memory of 2984",
+			"pid": 2416,
+			"procid": 109,
+			"procid_target": 141
+		}, {
+			"description": "PID 2416 wrote to memory of 2984",
+			"pid": 2416,
+			"procid": 109,
+			"procid_target": 141
+		}, {
+			"description": "PID 2416 wrote to memory of 2984",
+			"pid": 2416,
+			"procid": 109,
+			"procid_target": 141
+		}, {
+			"description": "PID 2416 wrote to memory of 2984",
+			"pid": 2416,
+			"procid": 109,
+			"procid_target": 141
+		}, {
+			"description": "PID 2244 wrote to memory of 2992",
+			"pid": 2244,
+			"procid": 98,
+			"procid_target": 140
+		}, {
+			"description": "PID 2244 wrote to memory of 2992",
+			"pid": 2244,
+			"procid": 98,
+			"procid_target": 140
+		}, {
+			"description": "PID 2244 wrote to memory of 2992",
+			"pid": 2244,
+			"procid": 98,
+			"procid_target": 140
+		}, {
+			"description": "PID 2244 wrote to memory of 2992",
+			"pid": 2244,
+			"procid": 98,
+			"procid_target": 140
+		}, {
+			"description": "PID 2288 wrote to memory of 3000",
+			"pid": 2288,
+			"procid": 101,
+			"procid_target": 142
+		}, {
+			"description": "PID 2288 wrote to memory of 3000",
+			"pid": 2288,
+			"procid": 101,
+			"procid_target": 142
+		}, {
+			"description": "PID 2288 wrote to memory of 3000",
+			"pid": 2288,
+			"procid": 101,
+			"procid_target": 142
+		}, {
+			"description": "PID 2288 wrote to memory of 3000",
+			"pid": 2288,
+			"procid": 101,
+			"procid_target": 142
+		}, {
+			"description": "PID 2432 wrote to memory of 3024",
+			"pid": 2432,
+			"procid": 111,
+			"procid_target": 148
+		}, {
+			"description": "PID 2432 wrote to memory of 3024",
+			"pid": 2432,
+			"procid": 111,
+			"procid_target": 148
+		}, {
+			"description": "PID 2432 wrote to memory of 3024",
+			"pid": 2432,
+			"procid": 111,
+			"procid_target": 148
+		}, {
+			"description": "PID 2432 wrote to memory of 3024",
+			"pid": 2432,
+			"procid": 111,
+			"procid_target": 148
+		}, {
+			"description": "PID 2332 wrote to memory of 3032",
+			"pid": 2332,
+			"procid": 104,
+			"procid_target": 147
+		}, {
+			"description": "PID 2332 wrote to memory of 3032",
+			"pid": 2332,
+			"procid": 104,
+			"procid_target": 147
+		}, {
+			"description": "PID 2332 wrote to memory of 3032",
+			"pid": 2332,
+			"procid": 104,
+			"procid_target": 147
+		}, {
+			"description": "PID 2332 wrote to memory of 3032",
+			"pid": 2332,
+			"procid": 104,
+			"procid_target": 147
+		}, {
+			"description": "PID 2668 wrote to memory of 3048",
+			"pid": 2668,
+			"procid": 131,
+			"procid_target": 151
+		}, {
+			"description": "PID 2668 wrote to memory of 3048",
+			"pid": 2668,
+			"procid": 131,
+			"procid_target": 151
+		}, {
+			"description": "PID 2668 wrote to memory of 3048",
+			"pid": 2668,
+			"procid": 131,
+			"procid_target": 151
+		}, {
+			"description": "PID 2668 wrote to memory of 3048",
+			"pid": 2668,
+			"procid": 131,
+			"procid_target": 151
+		}, {
+			"description": "PID 2424 wrote to memory of 3040",
+			"pid": 2424,
+			"procid": 110,
+			"procid_target": 150
+		}, {
+			"description": "PID 2424 wrote to memory of 3040",
+			"pid": 2424,
+			"procid": 110,
+			"procid_target": 150
+		}, {
+			"description": "PID 2424 wrote to memory of 3040",
+			"pid": 2424,
+			"procid": 110,
+			"procid_target": 150
+		}, {
+			"description": "PID 2424 wrote to memory of 3040",
+			"pid": 2424,
+			"procid": 110,
+			"procid_target": 150
+		}, {
+			"description": "PID 2208 wrote to memory of 2880",
+			"pid": 2208,
+			"procid": 95,
+			"procid_target": 153
+		}, {
+			"description": "PID 2208 wrote to memory of 2880",
+			"pid": 2208,
+			"procid": 95,
+			"procid_target": 153
+		}, {
+			"description": "PID 2208 wrote to memory of 2880",
+			"pid": 2208,
+			"procid": 95,
+			"procid_target": 153
+		}, {
+			"description": "PID 2208 wrote to memory of 2880",
+			"pid": 2208,
+			"procid": 95,
+			"procid_target": 153
+		}, {
+			"description": "PID 2224 wrote to memory of 2688",
+			"pid": 2224,
+			"procid": 97,
+			"procid_target": 137
+		}, {
+			"description": "PID 2224 wrote to memory of 2688",
+			"pid": 2224,
+			"procid": 97,
+			"procid_target": 137
+		}, {
+			"description": "PID 2224 wrote to memory of 2688",
+			"pid": 2224,
+			"procid": 97,
+			"procid_target": 137
+		}, {
+			"description": "PID 2224 wrote to memory of 2688",
+			"pid": 2224,
+			"procid": 97,
+			"procid_target": 137
+		}, {
+			"description": "PID 2492 wrote to memory of 2860",
+			"pid": 2492,
+			"procid": 116,
+			"procid_target": 144
+		}, {
+			"description": "PID 2492 wrote to memory of 2860",
+			"pid": 2492,
+			"procid": 116,
+			"procid_target": 144
+		}, {
+			"description": "PID 2492 wrote to memory of 2860",
+			"pid": 2492,
+			"procid": 116,
+			"procid_target": 144
+		}, {
+			"description": "PID 2492 wrote to memory of 2860",
+			"pid": 2492,
+			"procid": 116,
+			"procid_target": 144
+		}, {
+			"description": "PID 2188 wrote to memory of 3016",
+			"pid": 2188,
+			"procid": 93,
+			"procid_target": 149
+		}, {
+			"description": "PID 2188 wrote to memory of 3016",
+			"pid": 2188,
+			"procid": 93,
+			"procid_target": 149
+		}, {
+			"description": "PID 2188 wrote to memory of 3016",
+			"pid": 2188,
+			"procid": 93,
+			"procid_target": 149
+		}, {
+			"description": "PID 2188 wrote to memory of 3016",
+			"pid": 2188,
+			"procid": 93,
+			"procid_target": 149
+		}, {
+			"description": "PID 2448 wrote to memory of 2904",
+			"pid": 2448,
+			"procid": 113,
+			"procid_target": 145
+		}, {
+			"description": "PID 2448 wrote to memory of 2904",
+			"pid": 2448,
+			"procid": 113,
+			"procid_target": 145
+		}, {
+			"description": "PID 2448 wrote to memory of 2904",
+			"pid": 2448,
+			"procid": 113,
+			"procid_target": 145
+		}, {
+			"description": "PID 2448 wrote to memory of 2904",
+			"pid": 2448,
+			"procid": 113,
+			"procid_target": 145
+		}, {
+			"description": "PID 2500 wrote to memory of 2896",
+			"pid": 2500,
+			"procid": 117,
+			"procid_target": 146
+		}, {
+			"description": "PID 2500 wrote to memory of 2896",
+			"pid": 2500,
+			"procid": 117,
+			"procid_target": 146
+		}, {
+			"description": "PID 2500 wrote to memory of 2896",
+			"pid": 2500,
+			"procid": 117,
+			"procid_target": 146
+		}, {
+			"description": "PID 2500 wrote to memory of 2896",
+			"pid": 2500,
+			"procid": 117,
+			"procid_target": 146
+		}, {
+			"description": "PID 2272 wrote to memory of 2888",
+			"pid": 2272,
+			"procid": 112,
+			"procid_target": 152
+		}, {
+			"description": "PID 2272 wrote to memory of 2888",
+			"pid": 2272,
+			"procid": 112,
+			"procid_target": 152
+		}, {
+			"description": "PID 2272 wrote to memory of 2888",
+			"pid": 2272,
+			"procid": 112,
+			"procid_target": 152
+		}, {
+			"description": "PID 2272 wrote to memory of 2888",
+			"pid": 2272,
+			"procid": 112,
+			"procid_target": 152
+		}, {
+			"description": "PID 2536 wrote to memory of 2920",
+			"pid": 2536,
+			"procid": 120,
+			"procid_target": 156
+		}, {
+			"description": "PID 2536 wrote to memory of 2920",
+			"pid": 2536,
+			"procid": 120,
+			"procid_target": 156
+		}, {
+			"description": "PID 2536 wrote to memory of 2920",
+			"pid": 2536,
+			"procid": 120,
+			"procid_target": 156
+		}, {
+			"description": "PID 2536 wrote to memory of 2920",
+			"pid": 2536,
+			"procid": 120,
+			"procid_target": 156
+		}, {
+			"description": "PID 2596 wrote to memory of 2952",
+			"pid": 2596,
+			"procid": 125,
+			"procid_target": 155
+		}, {
+			"description": "PID 2596 wrote to memory of 2952",
+			"pid": 2596,
+			"procid": 125,
+			"procid_target": 155
+		}, {
+			"description": "PID 2596 wrote to memory of 2952",
+			"pid": 2596,
+			"procid": 125,
+			"procid_target": 155
+		}, {
+			"description": "PID 2596 wrote to memory of 2952",
+			"pid": 2596,
+			"procid": 125,
+			"procid_target": 155
+		}, {
+			"description": "PID 2468 wrote to memory of 2912",
+			"pid": 2468,
+			"procid": 115,
+			"procid_target": 143
+		}, {
+			"description": "PID 2468 wrote to memory of 2912",
+			"pid": 2468,
+			"procid": 115,
+			"procid_target": 143
+		}, {
+			"description": "PID 2468 wrote to memory of 2912",
+			"pid": 2468,
+			"procid": 115,
+			"procid_target": 143
+		}, {
+			"description": "PID 2468 wrote to memory of 2912",
+			"pid": 2468,
+			"procid": 115,
+			"procid_target": 143
+		}, {
+			"description": "PID 2952 wrote to memory of 2204",
+			"pid": 2952,
+			"procid": 155,
+			"procid_target": 164
+		}, {
+			"description": "PID 2952 wrote to memory of 2204",
+			"pid": 2952,
+			"procid": 155,
+			"procid_target": 164
+		}, {
+			"description": "PID 2952 wrote to memory of 2204",
+			"pid": 2952,
+			"procid": 155,
+			"procid_target": 164
+		}, {
+			"description": "PID 2952 wrote to memory of 2204",
+			"pid": 2952,
+			"procid": 155,
+			"procid_target": 164
+		}, {
+			"description": "PID 2920 wrote to memory of 2420",
+			"pid": 2920,
+			"procid": 156,
+			"procid_target": 163
+		}, {
+			"description": "PID 2920 wrote to memory of 2420",
+			"pid": 2920,
+			"procid": 156,
+			"procid_target": 163
+		}, {
+			"description": "PID 2920 wrote to memory of 2420",
+			"pid": 2920,
+			"procid": 156,
+			"procid_target": 163
+		}, {
+			"description": "PID 2920 wrote to memory of 2420",
+			"pid": 2920,
+			"procid": 156,
+			"procid_target": 163
+		}, {
+			"description": "PID 2912 wrote to memory of 2792",
+			"pid": 2912,
+			"procid": 143,
+			"procid_target": 162
+		}, {
+			"description": "PID 2912 wrote to memory of 2792",
+			"pid": 2912,
+			"procid": 143,
+			"procid_target": 162
+		}, {
+			"description": "PID 2912 wrote to memory of 2792",
+			"pid": 2912,
+			"procid": 143,
+			"procid_target": 162
+		}, {
+			"description": "PID 2912 wrote to memory of 2792",
+			"pid": 2912,
+			"procid": 143,
+			"procid_target": 162
+		}, {
+			"description": "PID 2572 wrote to memory of 2936",
+			"pid": 2572,
+			"procid": 123,
+			"procid_target": 154
+		}, {
+			"description": "PID 2572 wrote to memory of 2936",
+			"pid": 2572,
+			"procid": 123,
+			"procid_target": 154
+		}, {
+			"description": "PID 2572 wrote to memory of 2936",
+			"pid": 2572,
+			"procid": 123,
+			"procid_target": 154
+		}, {
+			"description": "PID 2572 wrote to memory of 2936",
+			"pid": 2572,
+			"procid": 123,
+			"procid_target": 154
+		}, {
+			"description": "PID 2608 wrote to memory of 2968",
+			"pid": 2608,
+			"procid": 126,
+			"procid_target": 157
+		}, {
+			"description": "PID 2608 wrote to memory of 2968",
+			"pid": 2608,
+			"procid": 126,
+			"procid_target": 157
+		}, {
+			"description": "PID 2608 wrote to memory of 2968",
+			"pid": 2608,
+			"procid": 126,
+			"procid_target": 157
+		}, {
+			"description": "PID 2608 wrote to memory of 2968",
+			"pid": 2608,
+			"procid": 126,
+			"procid_target": 157
+		}, {
+			"description": "PID 2888 wrote to memory of 2984",
+			"pid": 2888,
+			"procid": 152,
+			"procid_target": 165
+		}, {
+			"description": "PID 2888 wrote to memory of 2984",
+			"pid": 2888,
+			"procid": 152,
+			"procid_target": 165
+		}, {
+			"description": "PID 2888 wrote to memory of 2984",
+			"pid": 2888,
+			"procid": 152,
+			"procid_target": 165
+		}, {
+			"description": "PID 2888 wrote to memory of 2984",
+			"pid": 2888,
+			"procid": 152,
+			"procid_target": 165
+		}, {
+			"description": "PID 2400 wrote to memory of 3056",
+			"pid": 2400,
+			"procid": 108,
+			"procid_target": 158
+		}, {
+			"description": "PID 2400 wrote to memory of 3056",
+			"pid": 2400,
+			"procid": 108,
+			"procid_target": 158
+		}, {
+			"description": "PID 2400 wrote to memory of 3056",
+			"pid": 2400,
+			"procid": 108,
+			"procid_target": 158
+		}, {
+			"description": "PID 2400 wrote to memory of 3056",
+			"pid": 2400,
+			"procid": 108,
+			"procid_target": 158
+		}, {
+			"description": "PID 2896 wrote to memory of 2280",
+			"pid": 2896,
+			"procid": 146,
+			"procid_target": 166
+		}, {
+			"description": "PID 2896 wrote to memory of 2280",
+			"pid": 2896,
+			"procid": 146,
+			"procid_target": 166
+		}, {
+			"description": "PID 2896 wrote to memory of 2280",
+			"pid": 2896,
+			"procid": 146,
+			"procid_target": 166
+		}, {
+			"description": "PID 2896 wrote to memory of 2280",
+			"pid": 2896,
+			"procid": 146,
+			"procid_target": 166
+		}, {
+			"description": "PID 2880 wrote to memory of 2332",
+			"pid": 2880,
+			"procid": 153,
+			"procid_target": 160
+		}, {
+			"description": "PID 2880 wrote to memory of 2332",
+			"pid": 2880,
+			"procid": 153,
+			"procid_target": 160
+		}, {
+			"description": "PID 2880 wrote to memory of 2332",
+			"pid": 2880,
+			"procid": 153,
+			"procid_target": 160
+		}, {
+			"description": "PID 2880 wrote to memory of 2332",
+			"pid": 2880,
+			"procid": 153,
+			"procid_target": 160
+		}, {
+			"description": "PID 2688 wrote to memory of 2180",
+			"pid": 2688,
+			"procid": 137,
+			"procid_target": 161
+		}, {
+			"description": "PID 2688 wrote to memory of 2180",
+			"pid": 2688,
+			"procid": 137,
+			"procid_target": 161
+		}, {
+			"description": "PID 2688 wrote to memory of 2180",
+			"pid": 2688,
+			"procid": 137,
+			"procid_target": 161
+		}, {
+			"description": "PID 2688 wrote to memory of 2180",
+			"pid": 2688,
+			"procid": 137,
+			"procid_target": 161
+		}, {
+			"description": "PID 2860 wrote to memory of 2360",
+			"pid": 2860,
+			"procid": 144,
+			"procid_target": 167
+		}, {
+			"description": "PID 2860 wrote to memory of 2360",
+			"pid": 2860,
+			"procid": 144,
+			"procid_target": 167
+		}, {
+			"description": "PID 2860 wrote to memory of 2360",
+			"pid": 2860,
+			"procid": 144,
+			"procid_target": 167
+		}, {
+			"description": "PID 2860 wrote to memory of 2360",
+			"pid": 2860,
+			"procid": 144,
+			"procid_target": 167
+		}, {
+			"description": "PID 2904 wrote to memory of 780",
+			"pid": 2904,
+			"procid": 145,
+			"procid_target": 168
+		}, {
+			"description": "PID 2904 wrote to memory of 780",
+			"pid": 2904,
+			"procid": 145,
+			"procid_target": 168
+		}, {
+			"description": "PID 2904 wrote to memory of 780",
+			"pid": 2904,
+			"procid": 145,
+			"procid_target": 168
+		}, {
+			"description": "PID 2904 wrote to memory of 780",
+			"pid": 2904,
+			"procid": 145,
+			"procid_target": 168
+		}, {
+			"description": "PID 2968 wrote to memory of 2432",
+			"pid": 2968,
+			"procid": 157,
+			"procid_target": 170
+		}, {
+			"description": "PID 2968 wrote to memory of 2432",
+			"pid": 2968,
+			"procid": 157,
+			"procid_target": 170
+		}, {
+			"description": "PID 2968 wrote to memory of 2432",
+			"pid": 2968,
+			"procid": 157,
+			"procid_target": 170
+		}, {
+			"description": "PID 2968 wrote to memory of 2432",
+			"pid": 2968,
+			"procid": 157,
+			"procid_target": 170
+		}, {
+			"description": "PID 2936 wrote to memory of 3000",
+			"pid": 2936,
+			"procid": 154,
+			"procid_target": 169
+		}, {
+			"description": "PID 2936 wrote to memory of 3000",
+			"pid": 2936,
+			"procid": 154,
+			"procid_target": 169
+		}, {
+			"description": "PID 2936 wrote to memory of 3000",
+			"pid": 2936,
+			"procid": 154,
+			"procid_target": 169
+		}, {
+			"description": "PID 2936 wrote to memory of 3000",
+			"pid": 2936,
+			"procid": 154,
+			"procid_target": 169
+		}, {
+			"description": "PID 1360 wrote to memory of 2920",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 173
+		}, {
+			"description": "PID 1360 wrote to memory of 2920",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 173
+		}, {
+			"description": "PID 1360 wrote to memory of 2920",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 173
+		}, {
+			"description": "PID 1360 wrote to memory of 2920",
+			"pid": 1360,
+			"procid": 23,
+			"procid_target": 173
+		}, {
+			"description": "PID 2920 wrote to memory of 2280",
+			"pid": 2920,
+			"procid": 173,
+			"procid_target": 175
+		}, {
+			"description": "PID 2920 wrote to memory of 2280",
+			"pid": 2920,
+			"procid": 173,
+			"procid_target": 175
+		}, {
+			"description": "PID 2920 wrote to memory of 2280",
+			"pid": 2920,
+			"procid": 173,
+			"procid_target": 175
+		}, {
+			"description": "PID 2920 wrote to memory of 2280",
+			"pid": 2920,
+			"procid": 173,
+			"procid_target": 175
+		}]
+	}, {
+		"name": "Suspicious behavior: EnumeratesProcesses",
+		"indicators": [{
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}, {
+			"pid": 1360,
+			"procid": 23
+		}]
+	}, {
+		"label": "vssadmin_shadows_general",
+		"name": "Interacts with shadow copies",
+		"ttp": ["T1107", "T1490"],
+		"tags": ["ransomware"],
+		"indicators": [{
+			"pid": 1612,
+			"procid": 28
+		}, {
+			"pid": 1020,
+			"procid": 29
+		}, {
+			"pid": 2820,
+			"procid": 135
+		}],
+		"desc": "Shadow copies are often targeted by ransomware to inhibit system recovery."
+	}, {
+		"label": "external_ip_lookup",
+		"name": "Looks up external IP address via web service",
+		"score": 6,
+		"indicators": [{
+			"ioc": "api.db-ip.com",
+			"flow": 7
+		}],
+		"desc": "Uses a legitimate IP lookup service to find the infected system's external IP."
+	}, {
+		"name": "Modifies service",
+		"score": 5,
+		"ttp": ["T1112", "T1031"],
+		"tags": ["persistence"],
+		"indicators": [{
+			"ioc": "\\REGISTRY\\MACHINE\\SYSTEM\\ControlSet001\\Services\\VSS\\Diag\\Registry Writer",
+			"description": "Key created",
+			"procid": 30
+		}, {
+			"ioc": "\\REGISTRY\\MACHINE\\SYSTEM\\ControlSet001\\Services\\VSS\\Diag\\COM+ REGDB Writer",
+			"description": "Key created",
+			"procid": 30
+		}, {
+			"ioc": "\\REGISTRY\\MACHINE\\SYSTEM\\ControlSet001\\Services\\VSS\\Diag\\ASR Writer",
+			"description": "Key created",
+			"procid": 30
+		}, {
+			"ioc": "\\REGISTRY\\MACHINE\\SYSTEM\\ControlSet001\\Services\\VSS\\Diag\\Shadow Copy Optimization Writer",
+			"description": "Key created",
+			"procid": 30
+		}]
+	}, {
+		"label": "net_generic",
+		"name": "Runs net.exe"
+	}, {
+		"label": "deletes_shadows",
+		"name": "Deletes shadow copies",
+		"score": 9,
+		"ttp": ["T1107", "T1490"],
+		"tags": ["ransomware"],
+		"desc": "Ransomware often targets backup files to inhibit system recovery."
+	}, {
+		"label": "nemty",
+		"name": "Nemty",
+		"score": 10,
+		"tags": ["ransomware", "family:nemty"],
+		"desc": "Ransomware discovered in late 2019 which has been actively developed/updated over time."
+	}, {
+		"name": "Suspicious use of AdjustPrivilegeToken",
+		"indicators": [{
+			"description": "Token: SeBackupPrivilege",
+			"pid": 1028,
+			"procid": 30
+		}, {
+			"description": "Token: SeRestorePrivilege",
+			"pid": 1028,
+			"procid": 30
+		}, {
+			"description": "Token: SeAuditPrivilege",
+			"pid": 1028,
+			"procid": 30
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1744,
+			"procid": 46
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1832,
+			"procid": 66
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 112,
+			"procid": 60
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1592,
+			"procid": 43
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1084,
+			"procid": 61
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1604,
+			"procid": 44
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1916,
+			"procid": 51
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1052,
+			"procid": 68
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1960,
+			"procid": 55
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1208,
+			"procid": 59
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 2252,
+			"procid": 99
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1628,
+			"procid": 69
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 1836,
+			"procid": 67
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 2096,
+			"procid": 86
+		}, {
+			"description": "Token: SeIncreaseQuotaPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeSecurityPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeTakeOwnershipPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeLoadDriverPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeSystemProfilePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeSystemtimePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeProfSingleProcessPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeIncBasePriorityPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeCreatePagefilePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeBackupPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeRestorePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeShutdownPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeSystemEnvironmentPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeRemoteShutdownPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeUndockPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeManageVolumePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: 33",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: 34",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: 35",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeIncreaseQuotaPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeSecurityPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeTakeOwnershipPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeLoadDriverPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeSystemProfilePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeSystemtimePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeProfSingleProcessPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeIncBasePriorityPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeCreatePagefilePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeBackupPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeRestorePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeShutdownPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeDebugPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeSystemEnvironmentPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeRemoteShutdownPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeUndockPrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: SeManageVolumePrivilege",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: 33",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: 34",
+			"pid": 3048,
+			"procid": 151
+		}, {
+			"description": "Token: 35",
+			"pid": 3048,
+			"procid": 151
+		}]
+	}, {
+		"label": "taskkill_kill_process",
+		"name": "Kills process with taskkill",
+		"tags": ["evasion"],
+		"indicators": [{
+			"pid": 1628,
+			"procid": 69
+		}, {
+			"pid": 1604,
+			"procid": 44
+		}, {
+			"pid": 112,
+			"procid": 60
+		}, {
+			"pid": 1832,
+			"procid": 66
+		}, {
+			"pid": 1052,
+			"procid": 68
+		}, {
+			"pid": 2252,
+			"procid": 99
+		}, {
+			"pid": 1592,
+			"procid": 43
+		}, {
+			"pid": 1744,
+			"procid": 46
+		}, {
+			"pid": 1916,
+			"procid": 51
+		}, {
+			"pid": 1960,
+			"procid": 55
+		}, {
+			"pid": 1084,
+			"procid": 61
+		}, {
+			"pid": 1836,
+			"procid": 67
+		}, {
+			"pid": 1208,
+			"procid": 59
+		}, {
+			"pid": 2096,
+			"procid": 86
+		}]
+	}, {
+		"label": "schtasks_persist",
+		"name": "Creates scheduled task(s)",
+		"ttp": ["T1053"],
+		"tags": ["persistence"],
+		"indicators": [{
+			"pid": 2828,
+			"procid": 136
+		}],
+		"desc": "Schtasks is often used by malware for persistence or to perform post-infection execution."
+	}, {
+		"label": "susp_dom_as_c2",
+		"name": "Legitimate hosting services abused for malware hosting/C2",
+		"score": 6,
+		"ttp": ["T1102"]
+	}],
+	"network": {
+		"flows": [{
+			"id": 1,
+			"src": "10.7.0.10:50053",
+			"dst": "224.0.0.252:5355",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"last_seen": 95,
+			"tx_bytes": 100,
+			"tx_packets": 2
+		}, {
+			"id": 2,
+			"src": "10.7.0.10:137",
+			"dst": "10.7.0.255:137",
+			"proto": "udp",
+			"first_seen": 298,
+			"last_seen": 1826,
+			"tx_bytes": 234,
+			"tx_packets": 3,
+			"protocols": ["netbios-ns"]
+		}, {
+			"id": 3,
+			"src": "10.7.0.10:60030",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 461,
+			"last_seen": 472,
+			"rx_bytes": 113,
+			"rx_packets": 1,
+			"tx_bytes": 66,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "www.myexternalip.com"
+		}, {
+			"id": 4,
+			"src": "10.7.0.10:57887",
+			"dst": "216.58.208.115:443",
+			"proto": "tcp",
+			"pid": 1360,
+			"procid": 23,
+			"first_seen": 568,
+			"last_seen": 15747,
+			"rx_bytes": 3663,
+			"rx_packets": 9,
+			"tx_bytes": 878,
+			"tx_packets": 9,
+			"protocols": ["tls", "http"],
+			"domain": "www.myexternalip.com",
+			"tls_ja3": "2a458dd9c65afbcf591cd8c2a194b804",
+			"tls_sni": "www.myexternalip.com"
+		}, {
+			"id": 5,
+			"src": "10.7.0.10:61224",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 1022,
+			"last_seen": 1028,
+			"rx_bytes": 110,
+			"rx_packets": 1,
+			"tx_bytes": 59,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "ocsp.pki.goog"
+		}, {
+			"id": 6,
+			"src": "10.7.0.10:57888",
+			"dst": "172.217.17.131:80",
+			"proto": "tcp",
+			"pid": 1360,
+			"procid": 23,
+			"first_seen": 1030,
+			"last_seen": 15747,
+			"rx_bytes": 1583,
+			"rx_packets": 4,
+			"tx_bytes": 742,
+			"tx_packets": 6,
+			"protocols": ["http"],
+			"domain": "ocsp.pki.goog"
+		}, {
+			"id": 7,
+			"src": "10.7.0.10:54178",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 1342,
+			"last_seen": 1348,
+			"rx_bytes": 107,
+			"rx_packets": 1,
+			"tx_bytes": 59,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "api.db-ip.com"
+		}, {
+			"id": 8,
+			"src": "10.7.0.10:57889",
+			"dst": "104.26.5.15:80",
+			"proto": "tcp",
+			"pid": 1360,
+			"procid": 23,
+			"first_seen": 1349,
+			"last_seen": 15747,
+			"rx_bytes": 758,
+			"rx_packets": 4,
+			"tx_bytes": 346,
+			"tx_packets": 5,
+			"protocols": ["http"],
+			"domain": "api.db-ip.com"
+		}, {
+			"id": 9,
+			"src": "10.7.0.10:64129",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 4025,
+			"last_seen": 4026,
+			"rx_bytes": 74,
+			"rx_packets": 1,
+			"tx_bytes": 58,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "iplogger.org"
+		}, {
+			"id": 10,
+			"src": "10.7.0.10:57890",
+			"dst": "88.99.66.31:443",
+			"proto": "tcp",
+			"pid": 1360,
+			"procid": 23,
+			"first_seen": 4027,
+			"last_seen": 15747,
+			"rx_bytes": 5342,
+			"rx_packets": 9,
+			"tx_bytes": 860,
+			"tx_packets": 9,
+			"protocols": ["tls", "http"],
+			"domain": "iplogger.org",
+			"tls_ja3": "2a458dd9c65afbcf591cd8c2a194b804",
+			"tls_sni": "iplogger.org"
+		}, {
+			"id": 11,
+			"src": "10.7.0.10:57662",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 4199,
+			"last_seen": 4201,
+			"rx_bytes": 111,
+			"rx_packets": 1,
+			"tx_bytes": 64,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "apps.identrust.com"
+		}, {
+			"id": 12,
+			"src": "10.7.0.10:57891",
+			"dst": "192.35.177.64:80",
+			"proto": "tcp",
+			"pid": 1360,
+			"procid": 23,
+			"first_seen": 4203,
+			"last_seen": 15747,
+			"rx_bytes": 1540,
+			"rx_packets": 3,
+			"tx_bytes": 369,
+			"tx_packets": 5,
+			"protocols": ["http"],
+			"domain": "apps.identrust.com"
+		}, {
+			"id": 13,
+			"src": "10.7.0.10:65088",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 4607,
+			"last_seen": 4629,
+			"rx_bytes": 285,
+			"rx_packets": 1,
+			"tx_bytes": 76,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "www.download.windowsupdate.com"
+		}, {
+			"id": 14,
+			"src": "10.7.0.10:57892",
+			"dst": "72.21.81.240:80",
+			"proto": "tcp",
+			"pid": 1360,
+			"procid": 23,
+			"first_seen": 4632,
+			"last_seen": 15747,
+			"rx_bytes": 60469,
+			"rx_packets": 43,
+			"tx_bytes": 1543,
+			"tx_packets": 27,
+			"protocols": ["http"],
+			"domain": "www.download.windowsupdate.com"
+		}, {
+			"id": 15,
+			"src": "10.7.0.10:62123",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 5294,
+			"last_seen": 5307,
+			"rx_bytes": 199,
+			"rx_packets": 1,
+			"tx_bytes": 77,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "isrg.trustid.ocsp.identrust.com"
+		}, {
+			"id": 16,
+			"src": "10.7.0.10:57893",
+			"dst": "95.100.96.193:80",
+			"proto": "tcp",
+			"pid": 1360,
+			"procid": 23,
+			"first_seen": 5309,
+			"last_seen": 15747,
+			"rx_bytes": 1969,
+			"rx_packets": 4,
+			"tx_bytes": 477,
+			"tx_packets": 5,
+			"protocols": ["http"],
+			"domain": "isrg.trustid.ocsp.identrust.com"
+		}, {
+			"id": 17,
+			"src": "10.7.0.10:55311",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 5338,
+			"last_seen": 5355,
+			"rx_bytes": 191,
+			"rx_packets": 1,
+			"tx_bytes": 73,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "ocsp.int-x3.letsencrypt.org"
+		}, {
+			"id": 18,
+			"src": "10.7.0.10:57894",
+			"dst": "95.100.96.226:80",
+			"proto": "tcp",
+			"pid": 1360,
+			"procid": 23,
+			"first_seen": 5357,
+			"last_seen": 15748,
+			"rx_bytes": 1998,
+			"rx_packets": 4,
+			"tx_bytes": 489,
+			"tx_packets": 5,
+			"protocols": ["http"],
+			"domain": "ocsp.int-x3.letsencrypt.org"
+		}, {
+			"id": 19,
+			"src": "10.7.0.10:55314",
+			"dst": "239.255.255.250:1900",
+			"proto": "udp",
+			"pid": 2500,
+			"procid": 176,
+			"first_seen": 26782,
+			"last_seen": 33125,
+			"tx_bytes": 966,
+			"tx_packets": 6
+		}, {
+			"id": 20,
+			"src": "127.0.0.1:55315",
+			"dst": "239.255.255.250:1900",
+			"proto": "udp",
+			"pid": 2500,
+			"procid": 176
+		}, {
+			"id": 21,
+			"src": "10.7.0.10:64123",
+			"dst": "8.8.8.8:53",
+			"proto": "udp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 31296,
+			"last_seen": 31315,
+			"rx_bytes": 146,
+			"rx_packets": 1,
+			"tx_bytes": 62,
+			"tx_packets": 1,
+			"protocols": ["dns"],
+			"domain": "crl.verisign.com"
+		}, {
+			"id": 22,
+			"src": "10.7.0.10:57897",
+			"dst": "72.21.91.29:80",
+			"proto": "tcp",
+			"pid": 276,
+			"procid": 16,
+			"first_seen": 31318,
+			"last_seen": 92972,
+			"rx_bytes": 445,
+			"rx_packets": 4,
+			"tx_bytes": 465,
+			"tx_packets": 5,
+			"protocols": ["http"],
+			"domain": "crl.verisign.com"
+		}],
+		"requests": [{
+			"flow": 3,
+			"index": 1,
+			"dns_request": {
+				"domains": ["www.myexternalip.com"],
+				"questions": [{
+					"name": "www.myexternalip.com",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 3,
+			"index": 1,
+			"dns_response": {
+				"domains": ["www.myexternalip.com", "ghs.googlehosted.com"],
+				"ip": ["216.58.208.115"],
+				"answers": [{
+					"name": "www.myexternalip.com",
+					"type": "IN CNAME",
+					"value": "ghs.googlehosted.com"
+				}, {
+					"name": "ghs.googlehosted.com",
+					"type": "IN A",
+					"value": "216.58.208.115"
+				}]
+			}
+		}, {
+			"flow": 4,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "https://www.myexternalip.com/raw",
+				"request": "GET /raw HTTP/1.1",
+				"headers": ["User-Agent: Chrome", "Host: www.myexternalip.com", "Cache-Control: no-cache"]
+			}
+		}, {
+			"flow": 4,
+			"index": 1,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Date: Mon, 15 Jun 2020 10:04:19 GMT", "Content-Type: text/html; charset=utf-8", "Content-Length: 12", "Access-Control-Allow-Origin: *", "Via: 1.1 google"]
+			}
+		}, {
+			"flow": 5,
+			"index": 1,
+			"dns_request": {
+				"domains": ["ocsp.pki.goog"],
+				"questions": [{
+					"name": "ocsp.pki.goog",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 5,
+			"index": 1,
+			"dns_response": {
+				"domains": ["ocsp.pki.goog", "pki-goog.l.google.com"],
+				"ip": ["172.217.17.131"],
+				"answers": [{
+					"name": "ocsp.pki.goog",
+					"type": "IN CNAME",
+					"value": "pki-goog.l.google.com"
+				}, {
+					"name": "pki-goog.l.google.com",
+					"type": "IN A",
+					"value": "172.217.17.131"
+				}]
+			}
+		}, {
+			"flow": 6,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "http://ocsp.pki.goog/gsr2/ME4wTDBKMEgwRjAJBgUrDgMCGgUABBTgXIsxbvr2lBkPpoIEVRE6gHlCnAQUm%2BIHV2ccHsBqBt5ZtJot39wZhi4CDQHjtJ13zfQMBhkWtuM%3D",
+				"request": "GET /gsr2/ME4wTDBKMEgwRjAJBgUrDgMCGgUABBTgXIsxbvr2lBkPpoIEVRE6gHlCnAQUm%2BIHV2ccHsBqBt5ZtJot39wZhi4CDQHjtJ13zfQMBhkWtuM%3D HTTP/1.1",
+				"headers": ["Connection: Keep-Alive", "Accept: */*", "User-Agent: Microsoft-CryptoAPI/6.1", "Host: ocsp.pki.goog"]
+			}
+		}, {
+			"flow": 6,
+			"index": 1,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Content-Type: application/ocsp-response", "Date: Sun, 14 Jun 2020 11:55:27 GMT", "Server: ocsp_responder", "Content-Length: 468", "X-XSS-Protection: 0", "X-Frame-Options: SAMEORIGIN", "Cache-Control: public, max-age=86400", "Age: 79731"]
+			}
+		}, {
+			"flow": 6,
+			"index": 2,
+			"http_request": {
+				"method": "GET",
+				"url": "http://ocsp.pki.goog/gts1d2/MFEwTzBNMEswSTAJBgUrDgMCGgUABBT4YwNSyUnwC88de5a5l4eUO%2BLQewQUsd0yXei3N3LSzlzOJv5HeeIBCOkCEF0AC6SVi%2FG%2BCgAAAAAwZ%2B8%3D",
+				"request": "GET /gts1d2/MFEwTzBNMEswSTAJBgUrDgMCGgUABBT4YwNSyUnwC88de5a5l4eUO%2BLQewQUsd0yXei3N3LSzlzOJv5HeeIBCOkCEF0AC6SVi%2FG%2BCgAAAAAwZ%2B8%3D HTTP/1.1",
+				"headers": ["Connection: Keep-Alive", "Accept: */*", "User-Agent: Microsoft-CryptoAPI/6.1", "Host: ocsp.pki.goog"]
+			}
+		}, {
+			"flow": 6,
+			"index": 2,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Content-Type: application/ocsp-response", "Date: Mon, 15 Jun 2020 10:04:18 GMT", "Cache-Control: public, max-age=86400", "Server: ocsp_responder", "Content-Length: 471", "X-XSS-Protection: 0", "X-Frame-Options: SAMEORIGIN"]
+			}
+		}, {
+			"flow": 7,
+			"index": 1,
+			"dns_request": {
+				"domains": ["api.db-ip.com"],
+				"questions": [{
+					"name": "api.db-ip.com",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 7,
+			"index": 1,
+			"dns_response": {
+				"domains": ["api.db-ip.com", "api.db-ip.com", "api.db-ip.com"],
+				"ip": ["104.26.5.15", "104.26.4.15", "172.67.75.166"],
+				"answers": [{
+					"name": "api.db-ip.com",
+					"type": "IN A",
+					"value": "104.26.5.15"
+				}, {
+					"name": "api.db-ip.com",
+					"type": "IN A",
+					"value": "104.26.4.15"
+				}, {
+					"name": "api.db-ip.com",
+					"type": "IN A",
+					"value": "172.67.75.166"
+				}]
+			}
+		}, {
+			"flow": 8,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "http://api.db-ip.com/v2/free/154.61.71.13/countryName",
+				"request": "GET /v2/free/154.61.71.13/countryName HTTP/1.1",
+				"headers": ["User-Agent: Chrome", "Host: api.db-ip.com", "Cache-Control: no-cache"]
+			}
+		}, {
+			"flow": 8,
+			"index": 1,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Date: Mon, 15 Jun 2020 10:04:19 GMT", "Content-Type: text/plain;charset=UTF-8", "Transfer-Encoding: chunked", "Connection: keep-alive", "Set-Cookie: __cfduid=d936f56c1ed5c74f99c0464c64e4d25651592215459; expires=Wed, 15-Jul-20 10:04:19 GMT; path=/; domain=.db-ip.com; HttpOnly; SameSite=Lax", "Vary: Accept-Encoding", "Access-Control-Allow-Origin: *", "Cache-control: max-age=1800", "X-IPLB-Instance: 37097", "CF-Cache-Status: MISS", "cf-request-id: 035908ed9100009beb52ab5200000001", "Server: cloudflare", "CF-RAY: 5a3b775c181e9beb-AMS", "alt-svc: h3-27=\":443\"; ma=86400"]
+			}
+		}, {
+			"flow": 9,
+			"index": 1,
+			"dns_request": {
+				"domains": ["iplogger.org"],
+				"questions": [{
+					"name": "iplogger.org",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 9,
+			"index": 1,
+			"dns_response": {
+				"domains": ["iplogger.org"],
+				"ip": ["88.99.66.31"],
+				"answers": [{
+					"name": "iplogger.org",
+					"type": "IN A",
+					"value": "88.99.66.31"
+				}]
+			}
+		}, {
+			"flow": 10,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "https://iplogger.org/1fRVq7",
+				"request": "GET /1fRVq7 HTTP/1.1",
+				"headers": ["User-Agent: Chrome", "Host: iplogger.org", "Cache-Control: no-cache"]
+			}
+		}, {
+			"flow": 10,
+			"index": 1,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Server: nginx", "Date: Mon, 15 Jun 2020 10:04:23 GMT", "Content-Type: image/png", "Transfer-Encoding: chunked", "Connection: keep-alive", "Set-Cookie: PHPSESSID=172h0tkbrafclde5s3dkv897m7; path=/; HttpOnly", "Pragma: no-cache", "Set-Cookie: timezone=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/", "Cache-Control: no-cache", "Expires: Thu, 01 Jan 1970 00:00:01 GMT", "Answers: ", "whoami: 1abf194eae8e9b03cd43be9ab4dedfad5cf6ae513e3c5e5c1333aabd48454073", "Strict-Transport-Security: max-age=31536000; preload", "X-Frame-Options: DENY"]
+			}
+		}, {
+			"flow": 11,
+			"index": 1,
+			"dns_request": {
+				"domains": ["apps.identrust.com"],
+				"questions": [{
+					"name": "apps.identrust.com",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 11,
+			"index": 1,
+			"dns_response": {
+				"domains": ["apps.identrust.com", "apps.digsigtrust.com"],
+				"ip": ["192.35.177.64"],
+				"answers": [{
+					"name": "apps.identrust.com",
+					"type": "IN CNAME",
+					"value": "apps.digsigtrust.com"
+				}, {
+					"name": "apps.digsigtrust.com",
+					"type": "IN A",
+					"value": "192.35.177.64"
+				}]
+			}
+		}, {
+			"flow": 12,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "http://apps.identrust.com/roots/dstrootcax3.p7c",
+				"request": "GET /roots/dstrootcax3.p7c HTTP/1.1",
+				"headers": ["Connection: Keep-Alive", "Accept: */*", "User-Agent: Microsoft-CryptoAPI/6.1", "Host: apps.identrust.com"]
+			}
+		}, {
+			"flow": 12,
+			"index": 1,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Date: Sun, 14 Jun 2020 16:24:31 GMT", "Server: Apache", "X-XSS-Protection: 1; mode=block", "Strict-Transport-Security: max-age=15768000", "X-Frame-Options: SAMEORIGIN", "X-Content-Type-Options: nosniff", "Content-Security-Policy: default-src 'self' *.identrust.com", "Cache-control: max-age=86400", "Last-Modified: Thu, 13 Feb 2020 15:25:43 GMT", "ETag: \"37d-59e76b3c64bc0\"", "Accept-Ranges: bytes", "Content-Length: 893", "X-Content-Type-Options: nosniff", "X-Frame-Options: sameorigin", "Content-Type: application/pkcs7-mime"]
+			}
+		}, {
+			"flow": 13,
+			"index": 1,
+			"dns_request": {
+				"domains": ["www.download.windowsupdate.com"],
+				"questions": [{
+					"name": "www.download.windowsupdate.com",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 13,
+			"index": 1,
+			"dns_response": {
+				"domains": ["www.download.windowsupdate.com", "2-01-3cf7-0009.cdx.cedexis.net", "wu.azureedge.net", "wu.ec.azureedge.net", "wu.wpc.apr-52dd2.edgecastdns.net", "hlb.apr-52dd2-0.edgecastdns.net", "cs11.wpc.v0cdn.net"],
+				"ip": ["72.21.81.240"],
+				"answers": [{
+					"name": "www.download.windowsupdate.com",
+					"type": "IN CNAME",
+					"value": "2-01-3cf7-0009.cdx.cedexis.net"
+				}, {
+					"name": "2-01-3cf7-0009.cdx.cedexis.net",
+					"type": "IN CNAME",
+					"value": "wu.azureedge.net"
+				}, {
+					"name": "wu.azureedge.net",
+					"type": "IN CNAME",
+					"value": "wu.ec.azureedge.net"
+				}, {
+					"name": "wu.ec.azureedge.net",
+					"type": "IN CNAME",
+					"value": "wu.wpc.apr-52dd2.edgecastdns.net"
+				}, {
+					"name": "wu.wpc.apr-52dd2.edgecastdns.net",
+					"type": "IN CNAME",
+					"value": "hlb.apr-52dd2-0.edgecastdns.net"
+				}, {
+					"name": "hlb.apr-52dd2-0.edgecastdns.net",
+					"type": "IN CNAME",
+					"value": "cs11.wpc.v0cdn.net"
+				}, {
+					"name": "cs11.wpc.v0cdn.net",
+					"type": "IN A",
+					"value": "72.21.81.240"
+				}]
+			}
+		}, {
+			"flow": 14,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "http://www.download.windowsupdate.com/msdownload/update/v3/static/trustedr/en/authrootstl.cab",
+				"request": "GET /msdownload/update/v3/static/trustedr/en/authrootstl.cab HTTP/1.1",
+				"headers": ["Cache-Control: max-age = 3600", "Connection: Keep-Alive", "Accept: */*", "If-Modified-Since: Tue, 21 Apr 2020 00:50:26 GMT", "If-None-Match: \"03582d87617d61:0\"", "User-Agent: Microsoft-CryptoAPI/6.1", "Host: www.download.windowsupdate.com"]
+			}
+		}, {
+			"flow": 14,
+			"index": 1,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Accept-Ranges: bytes", "Age: 1814", "Cache-Control: public,max-age=3600", "Content-Type: application/vnd.ms-cab-compressed", "Date: Mon, 15 Jun 2020 10:04:22 GMT", "Etag: \"0597791bc2cd61:0\"", "Last-Modified: Mon, 18 May 2020 02:32:26 GMT", "Server: ECAcc (bsa/EB75)", "X-Cache: HIT", "X-CCC: US", "X-CID: 11", "X-Powered-By: ASP.NET", "Content-Length: 58383"]
+			}
+		}, {
+			"flow": 15,
+			"index": 1,
+			"dns_request": {
+				"domains": ["isrg.trustid.ocsp.identrust.com"],
+				"questions": [{
+					"name": "isrg.trustid.ocsp.identrust.com",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 15,
+			"index": 1,
+			"dns_response": {
+				"domains": ["isrg.trustid.ocsp.identrust.com", "isrg.trustid.ocsp.identrust.com.edgesuite.net", "a279.dscq.akamai.net", "a279.dscq.akamai.net"],
+				"ip": ["95.100.96.193", "95.100.96.201"],
+				"answers": [{
+					"name": "isrg.trustid.ocsp.identrust.com",
+					"type": "IN CNAME",
+					"value": "isrg.trustid.ocsp.identrust.com.edgesuite.net"
+				}, {
+					"name": "isrg.trustid.ocsp.identrust.com.edgesuite.net",
+					"type": "IN CNAME",
+					"value": "a279.dscq.akamai.net"
+				}, {
+					"name": "a279.dscq.akamai.net",
+					"type": "IN A",
+					"value": "95.100.96.193"
+				}, {
+					"name": "a279.dscq.akamai.net",
+					"type": "IN A",
+					"value": "95.100.96.201"
+				}]
+			}
+		}, {
+			"flow": 16,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "http://isrg.trustid.ocsp.identrust.com/MFEwTzBNMEswSTAJBgUrDgMCGgUABBRv9GhNQxLSSGKBnMArPUcsHYovpgQUxKexpHsscfrb4UuQdf%2FEFWCFiRACEAoBQUIAAAFThXNqC4Xspwg%3D",
+				"request": "GET /MFEwTzBNMEswSTAJBgUrDgMCGgUABBRv9GhNQxLSSGKBnMArPUcsHYovpgQUxKexpHsscfrb4UuQdf%2FEFWCFiRACEAoBQUIAAAFThXNqC4Xspwg%3D HTTP/1.1",
+				"headers": ["Connection: Keep-Alive", "Accept: */*", "User-Agent: Microsoft-CryptoAPI/6.1", "Host: isrg.trustid.ocsp.identrust.com"]
+			}
+		}, {
+			"flow": 16,
+			"index": 1,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Server: Apache", "Content-transfer-encoding: Binary", "Last-Modified: Sat, 13 Jun 2020 23:51:10 GMT", "ETag: \"f71e2c741c6399bbdfdd29e3294bfca186fed14c\"", "Content-Type: application/ocsp-response", "Content-Length: 1398", "Cache-Control: public, no-transform, must-revalidate, max-age=34597", "Expires: Mon, 15 Jun 2020 19:41:00 GMT", "Date: Mon, 15 Jun 2020 10:04:23 GMT", "Connection: keep-alive"]
+			}
+		}, {
+			"flow": 17,
+			"index": 1,
+			"dns_request": {
+				"domains": ["ocsp.int-x3.letsencrypt.org"],
+				"questions": [{
+					"name": "ocsp.int-x3.letsencrypt.org",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 17,
+			"index": 1,
+			"dns_response": {
+				"domains": ["ocsp.int-x3.letsencrypt.org", "ocsp.int-x3.letsencrypt.org.edgesuite.net", "a771.dscq.akamai.net", "a771.dscq.akamai.net"],
+				"ip": ["95.100.96.226", "95.100.96.232"],
+				"answers": [{
+					"name": "ocsp.int-x3.letsencrypt.org",
+					"type": "IN CNAME",
+					"value": "ocsp.int-x3.letsencrypt.org.edgesuite.net"
+				}, {
+					"name": "ocsp.int-x3.letsencrypt.org.edgesuite.net",
+					"type": "IN CNAME",
+					"value": "a771.dscq.akamai.net"
+				}, {
+					"name": "a771.dscq.akamai.net",
+					"type": "IN A",
+					"value": "95.100.96.226"
+				}, {
+					"name": "a771.dscq.akamai.net",
+					"type": "IN A",
+					"value": "95.100.96.232"
+				}]
+			}
+		}, {
+			"flow": 18,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "http://ocsp.int-x3.letsencrypt.org/MFMwUTBPME0wSzAJBgUrDgMCGgUABBR%2B5mrncpqz%2FPiiIGRsFqEtYHEIXQQUqEpqYwR93brm0Tm3pkVl7%2FOo7KECEgQZw6LS9Be0oZi5BYcrjz8A4w%3D%3D",
+				"request": "GET /MFMwUTBPME0wSzAJBgUrDgMCGgUABBR%2B5mrncpqz%2FPiiIGRsFqEtYHEIXQQUqEpqYwR93brm0Tm3pkVl7%2FOo7KECEgQZw6LS9Be0oZi5BYcrjz8A4w%3D%3D HTTP/1.1",
+				"headers": ["Connection: Keep-Alive", "Accept: */*", "User-Agent: Microsoft-CryptoAPI/6.1", "Host: ocsp.int-x3.letsencrypt.org"]
+			}
+		}, {
+			"flow": 18,
+			"index": 1,
+			"http_response": {
+				"status": "200",
+				"response": "HTTP/1.1 200 OK",
+				"headers": ["Server: nginx", "Content-Type: application/ocsp-response", "Content-Length: 527", "ETag: \"ADACA9354566434F0931FB5330579C8748ED3D9B7396315A84E3C22FEBA11311\"", "Last-Modified: Sat, 13 Jun 2020 22:00:00 UTC", "Cache-Control: public, no-transform, must-revalidate, max-age=24389", "Expires: Mon, 15 Jun 2020 16:50:52 GMT", "Date: Mon, 15 Jun 2020 10:04:23 GMT", "Connection: keep-alive"]
+			}
+		}, {
+			"flow": 21,
+			"index": 1,
+			"dns_request": {
+				"domains": ["crl.verisign.com"],
+				"questions": [{
+					"name": "crl.verisign.com",
+					"type": "IN A"
+				}]
+			}
+		}, {
+			"flow": 21,
+			"index": 1,
+			"dns_response": {
+				"domains": ["crl.verisign.com", "crl-symcprod.digicert.com", "cs9.wac.phicdn.net"],
+				"ip": ["72.21.91.29"],
+				"answers": [{
+					"name": "crl.verisign.com",
+					"type": "IN CNAME",
+					"value": "crl-symcprod.digicert.com"
+				}, {
+					"name": "crl-symcprod.digicert.com",
+					"type": "IN CNAME",
+					"value": "cs9.wac.phicdn.net"
+				}, {
+					"name": "cs9.wac.phicdn.net",
+					"type": "IN A",
+					"value": "72.21.91.29"
+				}]
+			}
+		}, {
+			"flow": 22,
+			"index": 1,
+			"http_request": {
+				"method": "GET",
+				"url": "http://crl.verisign.com/pca3.crl",
+				"request": "GET /pca3.crl HTTP/1.1",
+				"headers": ["Cache-Control: max-age = 172800", "Connection: Keep-Alive", "Accept: */*", "If-Modified-Since: Thu, 19 Mar 2020 12:57:21 GMT", "If-None-Match: \"867220127\"", "User-Agent: Microsoft-CryptoAPI/6.1", "Host: crl.verisign.com"]
+			}
+		}, {
+			"flow": 22,
+			"index": 1,
+			"http_response": {
+				"status": "304",
+				"response": "HTTP/1.1 304 Not Modified",
+				"headers": ["Accept-Ranges: bytes", "Age: 9184", "Cache-Control: max-age=172800", "Date: Mon, 15 Jun 2020 10:04:49 GMT", "Etag: \"867220127\"", "Expires: Wed, 17 Jun 2020 10:04:49 GMT", "Last-Modified: Thu, 19 Mar 2020 12:57:21 GMT", "Server: ECS (bsa/EB23)", "X-Cache: HIT"]
+			}
+		}]
+	},
+	"dumped": [{
+		"at": 2870,
+		"pid": 1360,
+		"procid": 23,
+		"name": "memory/1360-0-0x00000000006BD000-0x00000000006BE000-memory.dmp",
+		"kind": "region",
+		"addr": 7065600,
+		"length": 4096
+	}, {
+		"at": 2870,
+		"pid": 1360,
+		"procid": 23,
+		"name": "memory/1360-1-0x0000000001EC0000-0x0000000001ED1000-memory.dmp",
+		"kind": "region",
+		"addr": 32243712,
+		"length": 69632
+	}, {
+		"at": 21278,
+		"pid": 2280,
+		"procid": 175,
+		"path": "C:\\Users\\Admin\\NEMTY_XHNNB1O-DECRYPT.txt",
+		"name": "files/0x00030000000131b8-5.dat",
+		"kind": "martian"
+	}],
+	"extracted": [{
+		"path": "C:\\NEMTY_XHNNB1O-DECRYPT.txt",
+		"ransom_note": {
+			"emails": ["elzmflqxj@tutanota.de", "helpdesk_nemty@aol.com"],
+			"note": "---\u003e NEMTY REVENGE 2.0 \u003c---\r\n\r\nDon't worry, some of your files have extension .NEMTY_XHNNB1O and they are encrypted.\r\nBut you can return them!\r\n\r\nIn confirmatiom, that we have private decryption key,\r\nWe can provide test decryption for 1 file (png,jpg,bmp,gif).\r\nIt's a business, if we can't provide full decryption, other people won't trust us.\r\n\r\nThere is no way to decrypt your files without our help.\r\nDon't trust anyone. Even your dog.\r\n\r\nmain mail: elzmflqxj@tutanota.de\r\nif no answer: helpdesk_nemty@aol.com\r\n\r\nDon't change decryption key below!!!\r\n\r\nNEMTY DECRYPTION KEY:\r\n\r\nYX8eGH0jauC7vNbMYSzhGLvHNZrO2PLxRmyhwZW4XlaeR/9sgerqpm2Xuu3d8VRvplcBO2QI3uUlPFiicoJgiA6LjdqrgKDJ8rBYdY+aPc1JMdTUagQNYrNWXJNsjMjvEIwCx44wZS5wil+VubnY9IDFqLM1Uk4aPfydCfpeAXvK3+hcCddhkKpZ47sujMNShuX+PmUf482a/s1uQTmvoESvLzdSQlnksgfW0jhpor+FnoJvrApjvU21Bw+kul38s2gf03ih60ihqToVTswXVf2/oL7S8wmEogdYbhm1Kta/QaZ+qJsMZtYOz6jFUm8mwWtZm4AEIjv+gM/aRu/t4WiVdLPrVFnsUQ8fd4omSjv4I+jfxBr1uxrpsJe419Fx3PIxwvIIBP889Fu0sPdwZ5dMxl39knbgZzUv4LQffhwakDD8/U03vkc7rcLKusgjlDhGlRvA9cyN+2SuJYhmp968LwLdN1wjUfPkXRsIkJAZy7NOiE5uwjDOQRrTcsp3BdBA5pPkI4FkBSzRjCPN2MS1MoU7TfPSVvDOIvYg5C0nj3mpVXE5zqTcRaUsgPdwGKJ7Cb1kRFut9vreJ9GWF79+njXUphcGJzlGoIfwFFzsH0aHwG9n9EF9vg6xSNCUib1ZwRd2IyljdWOWTgTsqYhOVz75Nulfv8aiWvZMsmLav4TxVXCmCj+Jz+llZZiztagWEwpETvRFqFClz5NLc2VagStuHhT39FFwm8uczyHel51IpQClLOS038d/tCdUswQoVVyh7BygHEu/zJ7bV1m0/aTLHodWrqGSLajny9WrHiJZhdfjkmQ8FMlca1WzbuaMoG70SQSp8mRyuB2lmQB2nG0V5SfKYtdbJOiWXbSbvZwks2HTp7djmAWfw0EYpLRDhI95OV1HZA1TO/vglnHNalwNbuzwn6069hiMOz5C+dxrl/6LEbktXx3UG53zjpM1nmvIll8G/xQCa9+yuU7SlFjm/Nack0iacJd2KL2T33PEJq15q6PQdkVCRrX4+KacmuyK3t+tTGYffpKvNjVtD3ANRwzfJwciXNEQQXipzLxylSlOpHabTsKedL1N1Z26gWUvvTCHBWTaNkivk+P78WJ1lNvT30/WC3VTZgarmvsfgeT6SfB8oID5AtVhbNYyR/kTK5WBypuOQvjLUdMPXf84NIhiMy9Bwfoq4KvFkjMdvaFiwGaLURo6ECsBt6RBpfk12CEtoEQKT05no7RP5P8Azcph0dzcTRgnsRdqUPVeWJoGEw3w25RFvw+3TxZ3iZU/0KKXrEsWVn7x6pEemoCFVZnUR95MFD4g/92KNglNywcaAY7kAEcqlpWThqwCKI2Nr5cFJgla1clDtg==JKP3CWDjLuyMf3dvw2VizsSCEdMhnxjjnYXlETT79e7TpJ5cQckFo1hwNgiRdCuoQb0FkgyDvnjy8QSdfel0gsXFoXKKncDAF9TZX3UTNhw79DwwRE35L7a4JpRvEbgDDzohJE55gjvSNZ+b3utb8z+PdUdr1GPhSaIKcMcQaNgPcxz8+YlLRs72uqKJCreCtoRW2QgTbKlKSzg+RDBkbRtoM53VI1u7q/nIQ7nrdPLAAeYDZAqSg0xxUXZZJqhoD2ch39RGUAZHpDMb53vFQGqObUt62Uwt4ykRrYXsOJZGnaSWz9XY/fHGiOIXb85ad+eNNWjdBs40x14VACwBXqUoFJ6AtvQGdkEiVLjQNXwqLAYcnTpOzc/5KHM/t/j0j9j6pwu1CWeRdUNVOK+9FZwXDr19bH/cucJiGJcppkdnpyPJZYBYTgP4507Sgk3K3dE3shCcL4t9wDvXunp0Q76QNw2KFRt0b6A7dvbwjka6dgeL1NVaH8jBWBQUqZaKZGxJQ6Fy/SrhLmyLR2fYPaqKvfHADNNtq5M69B3zkkliM0eq1VHX9t9Kf5KD/tBRD6AqkizQYEQMobyCOMFZrxC5rrIJDMknlQixXGTrGj8TPZoOsrrsRS5WjgpKFyXd7NqB+ol/2bDqs+WOqCdO2hq425glisxDhan5gXdjIXl6wy4IEIBCswelN0C90rx/MgVPpR/EXvHupg5xoaBMKWqJBZWegiVD1mnwomT207BCLyLi12dPp6b2tAdWMkjNIiAKySmPJgFx5AIsgF/RKcIaSH4Vj/sQgqS6Qi0xJ9oeJhKCLUGe8EshQ90dPO9uf3RliJ/M3+Y4sn1LBmnYZp54Wo0ZM9LnQOu4H22Av4otMpkLGKKUwy3Z/PkwqVa81+ONv4lRW3sSrFHZi05tCFWFvxgivImYjSl9Vjwt7nNIdEUyF0WOwsP6sdH0BseCrEHhyYsOWQSjE2LHn8L8gpIVlCXYI02j5Y5Kdj+NtvU00mT6S0ysov9eqzNVAwq3uodp13OxaiNvvX0bWP9oOXeCVSKkZcHTA+V/3Z4hbiaZBAXOPgdEWsufBkHvMYrdt044C8nph11/hUP9cdJlSRIdl0ouxxfo2u845WWUf0VQgBFT2wgnit+2UzX9QQMytnwrnmYB6lx7oap7soUPhfrRNxsBxeymPXjXafjB+ATTpcdO30ExUeJjTecG6qUiK/yPVSzSMkKcijpd121dKqfQvjJXsMPHLAM/+qodxpu7KkwyNXDv0vUfA814ioVBbmpHGBnNPlCcghw9ZXoUq9zSspXPYERfXc6QGjh0tAHW17Rm6Irt4edyMRywRhOi9UVDspClBfDEPCQZN7hPQw=="
+		}
+	}]
+}

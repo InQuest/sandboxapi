@@ -30,6 +30,7 @@ This library currently supports the following sandbox systems:
 * `VMRay Analyzer`_
 * `Falcon Sandbox`_ (Formerly VxStream)
 * `WildFire Sandbox`_
+* `Hatching Triage`_
 
 It provides at least the following methods for each sandbox:
 
@@ -233,6 +234,26 @@ Example::
 
 Currently, only the WildFire cloud sandbox is supported and not the WildFire appliance.
 
+
+Hatching Triage
+~~~~~~~~~~~~~~~~
+
+Constructor signature::
+
+    TriageAPI(api_key, url='https://api.tria.ge', api_path='/v0')
+
+Example::
+
+    TriageAPI("ApiKeyHere")
+
+You're able to use this class with both the `Triage public cloud`_ and the
+private Triage instances. Look up the documentation for the right host and
+api path for your specific instance.
+
+For more information on what is returned from the API you can look up the
+official `Triage API documentation`_.
+
+
 Notes
 -----
 
@@ -246,6 +267,7 @@ number of online analysis services.
 .. _VMRay Analyzer: https://www.vmray.com/
 .. _Falcon Sandbox: https://www.falcon-sandbox.com/
 .. _WildFire Sandbox: https://www.paloaltonetworks.com/products/secure-the-network/wildfire
+.. _Hatching Triage: https://tria.ge/
 .. _unofficial Cuckoo library: https://github.com/keithjjones/cuckoo-api
 .. _Cuckoo API documentation: https://cuckoo.sh/docs/usage/api.html
 .. _FireEye API documentation: https://www.fireeye.com/blog/products-and-services/2015/12/restful_apis_thatdo.html
@@ -253,3 +275,5 @@ number of online analysis services.
 .. _official Joe Sandbox library: https://github.com/joesecurity/joesandboxcloudapi
 .. _official Falcon library: https://github.com/PayloadSecurity/VxAPI
 .. _malsub: https://github.com/diogo-fernan/malsub
+.. _Triage public cloud: https://tria.ge/
+.. _Triage API documentation: https://tria.ge/docs/
