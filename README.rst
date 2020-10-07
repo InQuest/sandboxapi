@@ -30,6 +30,7 @@ This library currently supports the following sandbox systems:
 * `VMRay Analyzer`_
 * `Falcon Sandbox`_ (Formerly VxStream)
 * `WildFire Sandbox`_
+* `OPSWAT Sandbox`_
 * `Hatching Triage`_
 
 It provides at least the following methods for each sandbox:
@@ -235,6 +236,22 @@ Example::
 Currently, only the WildFire cloud sandbox is supported and not the WildFire appliance.
 
 
+OPSWAT Sandbox
+~~~~~~~~~~
+
+Constructor signature::
+
+    OpswatAPI(apikey, profile, verify_ssl=True)
+
+Example::
+
+    OpswatAPI(apikey, 'windows7')
+
+OPSWAT sandbox on MetaDefender Cloud. Please create an account on `OPSWAT portal`_ to receive a free MetaDefender Cloud apikey.
+
+More details in the `OPSWAT API documentation`_.
+
+
 Hatching Triage
 ~~~~~~~~~~~~~~~~
 
@@ -274,6 +291,8 @@ number of online analysis services.
 .. _AX Series product page: https://www.fireeye.com/products/malware-analysis.html
 .. _official Joe Sandbox library: https://github.com/joesecurity/joesandboxcloudapi
 .. _official Falcon library: https://github.com/PayloadSecurity/VxAPI
+.. _OPSWAT portal: https://go.opswat.com
+.. _OPSWAT API documentation: https://onlinehelp.opswat.com/mdcloud/10._Dynamic_analysis.html
 .. _malsub: https://github.com/diogo-fernan/malsub
 .. _Triage public cloud: https://tria.ge/
 .. _Triage API documentation: https://tria.ge/docs/
