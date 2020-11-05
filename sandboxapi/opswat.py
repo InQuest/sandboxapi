@@ -163,6 +163,13 @@ class OpswatAPI(sandboxapi.SandboxAPI):
 
 
 def opswat_loop(opswat, filename):
+    """
+    Opswat loop.
+
+    Args:
+        opswat: (todo): write your description
+        filename: (str): write your description
+    """
     # test run
     with open(arg, "rb") as handle:
         sandbox_id = opswat.analyze(handle, filename)
@@ -180,6 +187,11 @@ def opswat_loop(opswat, filename):
 if __name__ == "__main__":
 
     def usage():
+        """
+        Prints a message.
+
+        Args:
+        """
         msg = "%s: apikey <submit <fh> | available | report <id> | analyze <fh>"
         print(msg % sys.argv[0])
         sys.exit(1)

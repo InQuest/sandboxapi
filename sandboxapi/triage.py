@@ -35,6 +35,17 @@ class TriageAPI(sandboxapi.SandboxAPI):
         self.verify_ssl = verify_ssl
 
     def request(self, uri, method='GET', params=None, files=None, auth=None):
+        """
+        Make an http request.
+
+        Args:
+            self: (todo): write your description
+            uri: (str): write your description
+            method: (str): write your description
+            params: (dict): write your description
+            files: (list): write your description
+            auth: (todo): write your description
+        """
 
         response = self._request(
             uri, method, params, files, self.headers, auth)
@@ -192,6 +203,11 @@ class TriageAPI(sandboxapi.SandboxAPI):
 if __name__ == "__main__":
 
     def usage():
+        """
+        Prints a message.
+
+        Args:
+        """
         msg = "%s: <key> <submit <file> | <report <id> | <score <id> | <full_report <id>"
         print(msg % sys.argv[0])
         sys.exit(1)

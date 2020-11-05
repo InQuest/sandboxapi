@@ -231,6 +231,11 @@ class FalconAPI(sandboxapi.SandboxAPI):
 if __name__ == "__main__":
 
     def usage():
+        """
+        Prints a message.
+
+        Args:
+        """
         msg = "%s: <key> <secret> <analyze <fh> | available | queue | report <id>>"
         print(msg % sys.argv[0])
         sys.exit(1)

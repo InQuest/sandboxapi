@@ -162,6 +162,11 @@ class WildFireAPI(sandboxapi.SandboxAPI):
 if __name__ == "__main__":
 
     def usage():
+        """
+        Print usage.
+
+        Args:
+        """
         msg = "{}: <url> <api_key> available | submit <fh> | report <hash> | check <hash>".format(sys.argv[0])
         print(msg)
         sys.exit(1)

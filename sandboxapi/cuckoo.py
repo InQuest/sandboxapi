@@ -207,6 +207,11 @@ class CuckooAPI(sandboxapi.SandboxAPI):
 if __name__ == "__main__":
 
     def usage():
+        """
+        Prints a message.
+
+        Args:
+        """
         msg = "%s: <host> <analyses | analyze <fh> | available | delete <id> | queue | report <id>"
         print(msg % sys.argv[0])
         sys.exit(1)

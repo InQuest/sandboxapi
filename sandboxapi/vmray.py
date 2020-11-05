@@ -160,6 +160,13 @@ class VMRayAPI(sandboxapi.SandboxAPI):
 
 
 def vmray_loop(vmray, filename):
+    """
+    Main loop.
+
+    Args:
+        vmray: (todo): write your description
+        filename: (str): write your description
+    """
     # test run
     with open(arg, "rb") as handle:
         fileid = vmray.analyze(handle, filename)
@@ -176,6 +183,11 @@ def vmray_loop(vmray, filename):
 if __name__ == "__main__":
 
     def usage():
+        """
+        Prints a message.
+
+        Args:
+        """
         msg = "%s: <url> <api_key> <submit <fh> | available | report <id> | analyze <fh>"
         print(msg % sys.argv[0])
         sys.exit(1)

@@ -17,6 +17,12 @@ import sandboxapi.falcon
 import sandboxapi.triage
 
 def read_resource(resource):
+    """
+    Read a resource.
+
+    Args:
+        resource: (todo): write your description
+    """
     with open(os.path.join('tests', 'resources', '{r}.json'.format(r=resource)), 'r') as f:
         return json.loads(f.read())
 
@@ -24,34 +30,70 @@ def read_resource(resource):
 class TestCuckoo(unittest.TestCase):
 
     def setUp(self):
+        """
+        Sets the currently active.
+
+        Args:
+            self: (todo): write your description
+        """
         self.sandbox = sandboxapi.cuckoo.CuckooAPI('http://cuckoo.mock:8090/')
 
     @responses.activate
     def test_analyses(self):
+        """
+        Add analyses to analyses
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/list',
                       json=read_resource('cuckoo_tasks_list'))
         self.assertEquals(len(self.sandbox.analyses()), 2)
 
     @responses.activate
     def test_analyze(self):
+        """
+        Analyze the test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://cuckoo.mock:8090/tasks/create/file',
                       json=read_resource('cuckoo_tasks_create_file'))
         self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '1')
 
     @responses.activate
     def test_check(self):
+        """
+        Check if the response is valid.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/view/1',
                       json=read_resource('cuckoo_tasks_view'))
         self.assertEquals(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
+        """
+        Check if the test is available.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://cuckoo.mock:8090/cuckoo/status',
                       json=read_resource('cuckoo_status'))
         self.assertTrue(self.sandbox.is_available())
 
     @responses.activate
     def test_not_is_available(self):
+        """
+        Check if the test is available.
+
+        Args:
+            self: (todo): write your description
+        """
         self.assertFalse(self.sandbox.is_available())
         responses.add(responses.GET, 'http://cuckoo.mock:8090/cuckoo/status',
                       status=500)
@@ -59,12 +101,24 @@ class TestCuckoo(unittest.TestCase):
 
     @responses.activate
     def test_report(self):
+        """
+        Report test report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/report/8/json',
                       json=read_resource('cuckoo_tasks_report'))
         self.assertEquals(self.sandbox.report(8)['info']['id'], 8)
 
     @responses.activate
     def test_score(self):
+        """
+        Add a report todo.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/report/8/json',
                       json=read_resource('cuckoo_tasks_report'))
         self.assertEquals(self.sandbox.score(self.sandbox.report(8)), 5)
@@ -72,6 +126,14 @@ class TestCuckoo(unittest.TestCase):
     @patch('requests.post')
     @patch('requests.get')
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
+        """
+        : calls : get / repos / : owner / : repo / policies.
+
+        Args:
+            self: (todo): write your description
+            m_get: (todo): write your description
+            m_post: (todo): write your description
+        """
 
         m_get.return_value.status_code = 200
         m_post.return_value.status_code = 200
@@ -98,6 +160,12 @@ class TestCuckoo(unittest.TestCase):
 
     @responses.activate
     def test_cuckoo_old_style_host_port_path(self):
+        """
+        Set the style style style style style.
+
+        Args:
+            self: (todo): write your description
+        """
         sandbox = sandboxapi.cuckoo.CuckooAPI('cuckoo.mock')
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/list',
                       json=read_resource('cuckoo_tasks_list'))
@@ -113,28 +181,58 @@ class TestCuckoo(unittest.TestCase):
 class TestJoe(unittest.TestCase):
 
     def setUp(self):
+        """
+        Sets the switch.
+
+        Args:
+            self: (todo): write your description
+        """
         self.sandbox = sandboxapi.joe.JoeAPI('key', 'http://joe.mock/api', True)
 
     @responses.activate
     def test_analyze(self):
+        """
+        Analyze the test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/submit',
                       json=read_resource('joe_analysis_submit'))
         self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '100001')
 
     @responses.activate
     def test_check(self):
+        """
+        Check that the http request.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/info',
                       json=read_resource('joe_analysis_info'))
         self.assertEquals(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
+        """
+        Check if the request is available.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://joe.mock/api/v2/server/online',
                       json=read_resource('joe_server_online'))
         self.assertTrue(self.sandbox.is_available())
 
     @responses.activate
     def test_not_is_available(self):
+        """
+        Check if the response is available.
+
+        Args:
+            self: (todo): write your description
+        """
         self.assertFalse(self.sandbox.is_available())
         responses.add(responses.POST, 'http://joe.mock/api/v2/server/online',
                       status=500)
@@ -142,12 +240,24 @@ class TestJoe(unittest.TestCase):
 
     @responses.activate
     def test_report(self):
+        """
+        Report the report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/download',
                       json=read_resource('joe_analysis_download'))
         self.assertEquals(self.sandbox.report(8)['analysis']['signaturedetections']['strategy'][1]['score'], 1)
 
     @responses.activate
     def test_score(self):
+        """
+        Test if the report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/download',
                       json=read_resource('joe_analysis_download'))
         self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 1)
@@ -155,6 +265,14 @@ class TestJoe(unittest.TestCase):
     @patch('requests.post')
     @patch('requests.get')
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
+        """
+        Return true if the requests.
+
+        Args:
+            self: (todo): write your description
+            m_get: (todo): write your description
+            m_post: (str): write your description
+        """
 
         m_get.return_value.status_code = 200
         m_post.return_value.status_code = 200
@@ -172,6 +290,12 @@ class TestJoe(unittest.TestCase):
 class TestFireEye(unittest.TestCase):
 
     def setUp(self):
+        """
+        Sets the details.
+
+        Args:
+            self: (todo): write your description
+        """
         self.sandbox = sandboxapi.fireeye.FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile')
         self.legacy_sandbox = sandboxapi.fireeye.FireEyeAPI('username', 'password',
                                                             'http://fireeye.mock', 'profile',
@@ -179,6 +303,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_analyze(self):
+        """
+        Analyze the request.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/submissions',
@@ -187,6 +317,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_check(self):
+        """
+        Check the status check.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
@@ -195,6 +331,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_is_available(self):
+        """
+        Check if the request is available.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/config',
@@ -203,6 +345,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_not_is_available(self):
+        """
+        Check if the response to be run.
+
+        Args:
+            self: (todo): write your description
+        """
         self.assertFalse(self.sandbox.is_available())
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
@@ -212,6 +360,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_report(self):
+        """
+        Create a test report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/results/1',
@@ -220,6 +374,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_score(self):
+        """
+        Create a test report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/results/1',
@@ -229,6 +389,12 @@ class TestFireEye(unittest.TestCase):
     # Legacy API support.
     @responses.activate
     def test_analyze(self):
+        """
+        Analyze the request.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/submissions',
@@ -237,6 +403,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_check(self):
+        """
+        Check the status check of the response.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/status/1',
@@ -245,6 +417,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_is_available(self):
+        """
+        Set the test is_available.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
@@ -253,6 +431,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_not_is_available(self):
+        """
+        Test if the status of the test.
+
+        Args:
+            self: (todo): write your description
+        """
         self.assertFalse(self.legacy_sandbox.is_available())
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
@@ -262,6 +446,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_report(self):
+        """
+        Create a report of the report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
@@ -270,6 +460,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_score(self):
+        """
+        Create a report of test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
@@ -280,6 +476,14 @@ class TestFireEye(unittest.TestCase):
     @patch('requests.post')
     @patch('requests.get')
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
+        """
+        : calls to github. github.
+
+        Args:
+            self: (todo): write your description
+            m_get: (todo): write your description
+            m_post: (todo): write your description
+        """
 
         m_get.return_value.status_code = 200
         m_get.return_value.content = b''
@@ -309,6 +513,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_reauthenticates_if_logged_out_http_401(self):
+        """
+        Check if an http authentication.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
@@ -319,6 +529,12 @@ class TestFireEye(unittest.TestCase):
 
     @responses.activate
     def test_reauthenticates_if_logged_out_json_401(self):
+        """
+        Authenticates if an access token.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
@@ -331,16 +547,34 @@ class TestFireEye(unittest.TestCase):
 class TestVMRay(unittest.TestCase):
 
     def setUp(self):
+        """
+        Sets the vlanapi. set vMR
+
+        Args:
+            self: (todo): write your description
+        """
         self.sandbox = sandboxapi.vmray.VMRayAPI('key', 'http://vmray.mock')
 
     @responses.activate
     def test_analyze(self):
+        """
+        Analyze the test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://vmray.mock/rest/sample/submit',
                       json=read_resource('vmray_sample_submit'))
         self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1169850)
 
     @responses.activate
     def test_analyze_with_errors(self):
+        """
+        Perform the http responses.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://vmray.mock/rest/sample/submit',
                       json=read_resource('vmray_sample_submit_errors'))
         with self.assertRaises(sandboxapi.SandboxError):
@@ -348,18 +582,36 @@ class TestVMRay(unittest.TestCase):
 
     @responses.activate
     def test_check(self):
+        """
+        Check if the response is valid.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://vmray.mock/rest/submission/sample/1',
                       json=read_resource('vmray_submission_sample'))
         self.assertEquals(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
+        """
+        Check if the test is available.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://vmray.mock/rest/system_info',
                       json=read_resource('vmray_system_info'))
         self.assertTrue(self.sandbox.is_available())
 
     @responses.activate
     def test_not_is_available(self):
+        """
+        Check if the test is available.
+
+        Args:
+            self: (todo): write your description
+        """
         self.assertFalse(self.sandbox.is_available())
         responses.add(responses.GET, 'http://vmray.mock/rest/system_info',
                       status=500)
@@ -367,6 +619,12 @@ class TestVMRay(unittest.TestCase):
 
     @responses.activate
     def test_report(self):
+        """
+        Test the test report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://vmray.mock/rest/analysis/sample/1',
                       json=read_resource('vmray_analysis_sample'))
         responses.add(responses.GET, 'http://vmray.mock/rest/analysis/1097123/archive/logs/summary.json',
@@ -375,6 +633,12 @@ class TestVMRay(unittest.TestCase):
 
     @responses.activate
     def test_score(self):
+        """
+        Test if the test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://vmray.mock/rest/analysis/sample/1',
                       json=read_resource('vmray_analysis_sample'))
         responses.add(responses.GET, 'http://vmray.mock/rest/analysis/1097123/archive/logs/summary.json',
@@ -384,6 +648,14 @@ class TestVMRay(unittest.TestCase):
     @patch('requests.post')
     @patch('requests.get')
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
+        """
+        : calls : get / repos / : owner / : repo / issues / : number / requests. github.
+
+        Args:
+            self: (todo): write your description
+            m_get: (todo): write your description
+            m_post: (todo): write your description
+        """
 
         m_get.return_value.status_code = 200
         m_post.return_value.status_code = 200
@@ -411,11 +683,23 @@ class TestVMRay(unittest.TestCase):
 
 class TestTriage(unittest.TestCase):
     def setUp(self):
+        """
+        Sets the session.
+
+        Args:
+            self: (todo): write your description
+        """
         self.sandbox = sandboxapi.triage.TriageAPI("key",
                                                    "http://api.triage.mock")
 
     @responses.activate
     def test_analyze(self):
+        """
+        Analyze the test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST,
                       'http://api.triage.mock/v0/samples',
                       json=read_resource('triage_analyze'), status=200)
@@ -425,6 +709,12 @@ class TestTriage(unittest.TestCase):
 
     @responses.activate
     def test_check(self):
+        """
+        Check the status of a test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET,
                       'http://api.triage.mock/v0/samples/test/status',
                       json=read_resource('triage_check'), status=200)
@@ -432,12 +722,24 @@ class TestTriage(unittest.TestCase):
 
     @responses.activate
     def test_is_available(self):
+        """
+        Check if the test is available.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://api.triage.mock/v0/samples',
                       json=read_resource('triage_available'), status=200)
         self.assertTrue(self.sandbox.is_available())
 
     @responses.activate
     def test_report(self):
+        """
+        Report the test report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET,
                       'http://api.triage.mock/v0/samples/test/summary',
                       json=read_resource('triage_report'), status=200)
@@ -447,6 +749,12 @@ class TestTriage(unittest.TestCase):
 
     @responses.activate
     def test_score(self):
+        """
+        Test if a test score.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET,
                       'http://api.triage.mock/v0/samples/test/summary',
                       json=read_resource('triage_report'), status=200)
@@ -455,6 +763,12 @@ class TestTriage(unittest.TestCase):
 
     @responses.activate
     def test_full_report(self):
+        """
+        Create a full report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET,
                       'http://api.triage.mock/v0/samples/200615-8jbndpgg9n/summary',
                       json=read_resource('triage_report'), status=200)
@@ -475,28 +789,58 @@ class TestTriage(unittest.TestCase):
 class TestFalcon(unittest.TestCase):
 
     def setUp(self):
+        """
+        Sets the current user.
+
+        Args:
+            self: (todo): write your description
+        """
         self.sandbox = sandboxapi.falcon.FalconAPI('key', 'http://falcon.mock/api/v2')
 
     @responses.activate
     def test_analyze(self):
+        """
+        Analyze the test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.POST, 'http://falcon.mock/api/v2/submit/file',
                       json=read_resource('falcon_submit_file'), status=201)
         self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '1')
 
     @responses.activate
     def test_check(self):
+        """
+        Check if the response is valid.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/state',
                       json=read_resource('falcon_report_state'))
         self.assertEquals(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
+        """
+        Check if the test is available.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://falcon.mock/api/v2/system/heartbeat',
                       json=read_resource('falcon_system_heartbeat'))
         self.assertTrue(self.sandbox.is_available())
 
     @responses.activate
     def test_not_is_available(self):
+        """
+        Check if the test is available.
+
+        Args:
+            self: (todo): write your description
+        """
         self.assertFalse(self.sandbox.is_available())
         responses.add(responses.GET, 'http://falcon.mock/api/v2/system/heartbeat',
                       status=500)
@@ -504,12 +848,24 @@ class TestFalcon(unittest.TestCase):
 
     @responses.activate
     def test_report(self):
+        """
+        Report the test report.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/summary',
                       json=read_resource('falcon_report_summary'))
         self.assertEquals(self.sandbox.report(1)['job_id'], '1')
 
     @responses.activate
     def test_score(self):
+        """
+        Test if the test.
+
+        Args:
+            self: (todo): write your description
+        """
         responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/summary',
                       json=read_resource('falcon_report_summary'))
         self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 5)
@@ -517,6 +873,14 @@ class TestFalcon(unittest.TestCase):
     @patch('requests.post')
     @patch('requests.get')
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
+        """
+        Test if the requests request.
+
+        Args:
+            self: (todo): write your description
+            m_get: (todo): write your description
+            m_post: (todo): write your description
+        """
 
         m_get.return_value.status_code = 200
         m_post.return_value.status_code = 200
@@ -547,6 +911,14 @@ class TestSandboxAPI(unittest.TestCase):
     @patch('requests.post')
     @patch('requests.get')
     def test_proxies_is_passed_to_requests(self, m_get, m_post):
+        """
+        : calls : get / repos / : owner / : repo / policies.
+
+        Args:
+            self: (todo): write your description
+            m_get: (todo): write your description
+            m_post: (todo): write your description
+        """
         m_get.return_value.status_code = 200
         m_post.return_value.status_code = 200
 
