@@ -25,13 +25,13 @@ A minimal, consistent API for building integrations with malware sandboxes.
 This library currently supports the following sandbox systems:
 
 * `Cuckoo Sandbox`_
-* `FireEye AX Series`_
-* `Joe Sandbox`_
-* `VMRay Analyzer`_
 * `Falcon Sandbox`_ (Formerly VxStream)
-* `WildFire Sandbox`_
-* `OPSWAT Sandbox`_
+* `FireEye AX Series`_
 * `Hatching Triage`_
+* `Joe Sandbox`_
+* `OPSWAT Sandbox`_
+* `VMRay Analyzer`_
+* `WildFire Sandbox`_
 
 It provides at least the following methods for each sandbox:
 
