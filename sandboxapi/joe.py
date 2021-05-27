@@ -13,7 +13,7 @@ class JoeAPI(sandboxapi.SandboxAPI):
     def __init__(self, apikey, apiurl, accept_tac, timeout=None, verify_ssl=True, retries=3, **kwargs):
         """Initialize the interface to Joe Sandbox API."""
         sandboxapi.SandboxAPI.__init__(self)
-        self.jbx = jbxapi.JoeSandbox(apikey, apiurl or jbxapi.API_URL, accept_tac, timeout, verify_ssl, retries, **kwargs)
+        self.jbx = jbxapi.JoeSandbox(apikey, apiurl or jbxapi.API_URL, accept_tac, timeout, bool(int(verify_ssl)), retries, **kwargs)
 
     def analyze(self, handle, filename):
         """Submit a file for analysis.
