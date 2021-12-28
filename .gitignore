@@ -6,3 +6,4 @@ build/
 dist/
 _build/
 /build_dist.sh
+.vscode/
