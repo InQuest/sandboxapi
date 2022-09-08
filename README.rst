@@ -237,7 +237,7 @@ Currently, only the WildFire cloud sandbox is supported and not the WildFire app
 
 
 OPSWAT Sandbox
-~~~~~~~~~~
+~~~~~~~~~~~~~~
 
 Constructor signature::
 
