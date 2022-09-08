@@ -4,8 +4,8 @@ sandboxapi
 .. image:: https://inquest.net/images/inquest-badge.svg
     :target: https://inquest.net/
     :alt: Developed by InQuest
-.. image:: https://travis-ci.org/InQuest/python-sandboxapi.svg?branch=master
-    :target: https://travis-ci.org/InQuest/python-sandboxapi
+.. image:: https://app.travis-ci.com/InQuest/python-sandboxapi.svg?branch=master
+    :target: https://app.travis-ci.com/InQuest/python-sandboxapi
     :alt: Build Status
 .. image:: https://readthedocs.org/projects/sandboxapi/badge/?version=latest
     :target: https://inquest.readthedocs.io/projects/sandboxapi/en/latest/?badge=latest
