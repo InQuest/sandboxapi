@@ -1,7 +1,5 @@
 import json
-
 import jbxapi
-
 import sandboxapi
 
 class JoeAPI(sandboxapi.SandboxAPI):
@@ -10,9 +8,10 @@ class JoeAPI(sandboxapi.SandboxAPI):
     This class is actually just a convenience wrapper around jbxapi.JoeSandbox.
     """
 
-    def __init__(self, apikey, apiurl, accept_tac, timeout=None, verify_ssl=True, retries=3, **kwargs):
+    def __init__(self, apikey, apiurl, accept_tac, timeout=None, verify_ssl=True, retries=3, chunked=False, **kwargs):
         """Initialize the interface to Joe Sandbox API."""
         sandboxapi.SandboxAPI.__init__(self)
+        self._chunked = chunked
         self.jbx = jbxapi.JoeSandbox(apikey, apiurl or jbxapi.API_URL, accept_tac, timeout, bool(int(verify_ssl)), retries, **kwargs)
 
     def analyze(self, handle, filename):
@@ -30,7 +29,7 @@ class JoeAPI(sandboxapi.SandboxAPI):
         handle.seek(0)
 
         try:
-            return self.jbx.submit_sample(handle)['webids'][0]
+            return self.jbx.submit_sample(handle, _chunked_upload=self._chunked)['submission_id']
         except (jbxapi.JoeException, KeyError, IndexError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
@@ -44,11 +43,9 @@ class JoeAPI(sandboxapi.SandboxAPI):
         :return: Boolean indicating if a report is done or not.
         """
         try:
-            return self.jbx.info(item_id).get('status').lower() == 'finished'
+            return self.jbx.analysis_info(item_id).get('status').lower() == 'finished'
         except jbxapi.JoeException:
             return False
-
-        return False
 
     def is_available(self):
         """Determine if the Joe Sandbox API server is alive.
@@ -93,7 +90,7 @@ class JoeAPI(sandboxapi.SandboxAPI):
             report_format = "jsonfixed"
 
         try:
-            return json.loads(self.jbx.download(item_id, report_format)[1].decode('utf-8'))
+            return json.loads(self.jbx.analysis_download(item_id, report_format)[1].decode('utf-8'))
         except (jbxapi.JoeException, ValueError, IndexError) as e:
             raise sandboxapi.SandboxError("error in report fetch: {e}".format(e=e))
 

@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+jbxapi = "*"
+xmltodict = "*"
+
+[dev-packages]
+pytest = "*"
+coverage = "*"
+responses = "*"
+"collective.checkdocs" = "*"
+pygments = "*"
+
+[requires]
+python_version = "3.10"

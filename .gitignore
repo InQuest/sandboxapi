@@ -7,3 +7,6 @@ dist/
 _build/
 /build_dist.sh
 .vscode/
+/.virtualenv/
+/.pytest_cache/
+Pipfile.lock
