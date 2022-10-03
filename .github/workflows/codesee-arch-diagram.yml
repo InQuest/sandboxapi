@@ -8,6 +8,8 @@ on:
 
 name: CodeSee Map
 
+permissions: read-all
+
 jobs:
   test_map_action:
     runs-on: ubuntu-latest
