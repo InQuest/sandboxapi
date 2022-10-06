@@ -20,13 +20,13 @@ class TestFalcon(unittest.TestCase):
     def test_analyze(self):
         responses.add(responses.POST, 'http://falcon.mock/api/v2/submit/file',
                       json=read_resource('falcon_submit_file'), status=201)
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '1')
+        self.assertEqual(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '1')
 
     @responses.activate
     def test_check(self):
         responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/state',
                       json=read_resource('falcon_report_state'))
-        self.assertEquals(self.sandbox.check('1'), True)
+        self.assertEqual(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
@@ -45,13 +45,13 @@ class TestFalcon(unittest.TestCase):
     def test_report(self):
         responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/summary',
                       json=read_resource('falcon_report_summary'))
-        self.assertEquals(self.sandbox.report(1)['job_id'], '1')
+        self.assertEqual(self.sandbox.report(1)['job_id'], '1')
 
     @responses.activate
     def test_score(self):
         responses.add(responses.GET, 'http://falcon.mock/api/v2/report/1/summary',
                       json=read_resource('falcon_report_summary'))
-        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 5)
+        self.assertEqual(self.sandbox.score(self.sandbox.report(1)), 5)
 
     @patch('requests.post')
     @patch('requests.get')

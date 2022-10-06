@@ -1,22 +1,22 @@
 language: python
-python:
-#  - "2.6"   # -- responses module requires 2.7+
-  - "2.7"
-# TODO: resolve issues with older 3.x versions
-  # - "3.3"
-  # - "3.4"
-  - "3.5"
-install:
-  - "pip install -r requirements.txt"
-  - "pip install nose"
-  - "pip install responses"
-  - "pip install coveralls"
-  - "pip install codacy-coverage"
-  - "pip install collective.checkdocs Pygments"
-script:
-  - nosetests --with-coverage --cover-package=sandboxapi
-  - python setup.py checkdocs
-after_success:
-  - coveralls
-  - coverage xml
-  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage.xml
+jobs:
+    include:
+    - name: "Python 3.9"
+      python: 3.9
+      install:
+        - "pip install -r requirements.txt"
+        - "pip install pytest pytest-mock coverage requests-mock responses collective.checkdocs Pygments"
+      script:
+        - coverage run -m pytest
+        - python setup.py checkdocs
+      after_success:
+        - coveralls
+        - coverage xml
+        - if [ "$TRAVIS_BRANCH" = "master" ]; then bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage.xml; fi
+    - name: "Python 2.7"
+      python: 2.7
+      install:
+        - "pip install -r requirements.txt"
+        - "pip install nose mock requests-mock responses collective.checkdocs Pygments"
+      script:
+        - nosetests

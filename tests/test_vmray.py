@@ -20,20 +20,20 @@ class TestVMRay(unittest.TestCase):
     def test_analyze(self):
         responses.add(responses.POST, 'http://vmray.mock/rest/sample/submit',
                       json=read_resource('vmray_sample_submit'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1169850)
+        self.assertEqual(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1169850)
 
     @responses.activate
     def test_analyze_with_errors(self):
         responses.add(responses.POST, 'http://vmray.mock/rest/sample/submit',
                       json=read_resource('vmray_sample_submit_errors'))
         with self.assertRaises(sandboxapi.SandboxError):
-            self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'))
+            self.assertEqual(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'))
 
     @responses.activate
     def test_check(self):
         responses.add(responses.GET, 'http://vmray.mock/rest/submission/sample/1',
                       json=read_resource('vmray_submission_sample'))
-        self.assertEquals(self.sandbox.check('1'), True)
+        self.assertEqual(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
@@ -54,7 +54,7 @@ class TestVMRay(unittest.TestCase):
                       json=read_resource('vmray_analysis_sample'))
         responses.add(responses.GET, 'http://vmray.mock/rest/analysis/1097123/archive/logs/summary.json',
                       json=read_resource('vmray_analysis_archive_logs_summary'))
-        self.assertEquals(self.sandbox.report(1)['version'], 1)
+        self.assertEqual(self.sandbox.report(1)['version'], 1)
 
     @responses.activate
     def test_score(self):
@@ -62,7 +62,7 @@ class TestVMRay(unittest.TestCase):
                       json=read_resource('vmray_analysis_sample'))
         responses.add(responses.GET, 'http://vmray.mock/rest/analysis/1097123/archive/logs/summary.json',
                       json=read_resource('vmray_analysis_archive_logs_summary'))
-        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 20)
+        self.assertEqual(self.sandbox.score(self.sandbox.report(1)), 20)
 
     @patch('requests.post')
     @patch('requests.get')

@@ -23,7 +23,7 @@ class TestTriage(unittest.TestCase):
                       json=read_resource('triage_analyze'), status=200)
         triage_id = self.sandbox.analyze(io.BytesIO('test'.encode('ascii')),
                                          "testfile")
-        self.assertEquals(triage_id, "200707-pht1cwk3ls")
+        self.assertEqual(triage_id, "200707-pht1cwk3ls")
 
     @responses.activate
     def test_check(self):
@@ -44,7 +44,7 @@ class TestTriage(unittest.TestCase):
                       'http://api.triage.mock/v0/samples/test/summary',
                       json=read_resource('triage_report'), status=200)
         data = self.sandbox.report("test")
-        self.assertEquals(
+        self.assertEqual(
             10, data["tasks"]["200615-8jbndpgg9n-behavioral1"]["score"])
 
     @responses.activate
@@ -53,7 +53,7 @@ class TestTriage(unittest.TestCase):
                       'http://api.triage.mock/v0/samples/test/summary',
                       json=read_resource('triage_report'), status=200)
         score = self.sandbox.score("test")
-        self.assertEquals(10, score)
+        self.assertEqual(10, score)
 
     @responses.activate
     def test_full_report(self):

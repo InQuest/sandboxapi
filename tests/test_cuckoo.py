@@ -18,19 +18,19 @@ class TestCuckoo(unittest.TestCase):
     def test_analyses(self):
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/list',
                       json=read_resource('cuckoo_tasks_list'))
-        self.assertEquals(len(self.sandbox.analyses()), 2)
+        self.assertEqual(len(self.sandbox.analyses()), 2)
 
     @responses.activate
     def test_analyze(self):
         responses.add(responses.POST, 'http://cuckoo.mock:8090/tasks/create/file',
                       json=read_resource('cuckoo_tasks_create_file'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '1')
+        self.assertEqual(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '1')
 
     @responses.activate
     def test_check(self):
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/view/1',
                       json=read_resource('cuckoo_tasks_view'))
-        self.assertEquals(self.sandbox.check('1'), True)
+        self.assertEqual(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
@@ -49,13 +49,13 @@ class TestCuckoo(unittest.TestCase):
     def test_report(self):
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/report/8/json',
                       json=read_resource('cuckoo_tasks_report'))
-        self.assertEquals(self.sandbox.report(8)['info']['id'], 8)
+        self.assertEqual(self.sandbox.report(8)['info']['id'], 8)
 
     @responses.activate
     def test_score(self):
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/report/8/json',
                       json=read_resource('cuckoo_tasks_report'))
-        self.assertEquals(self.sandbox.score(self.sandbox.report(8)), 5)
+        self.assertEqual(self.sandbox.score(self.sandbox.report(8)), 5)
 
     @patch('requests.post')
     @patch('requests.get')
@@ -89,9 +89,9 @@ class TestCuckoo(unittest.TestCase):
         sandbox = sandboxapi.cuckoo.CuckooAPI('cuckoo.mock')
         responses.add(responses.GET, 'http://cuckoo.mock:8090/tasks/list',
                       json=read_resource('cuckoo_tasks_list'))
-        self.assertEquals(len(self.sandbox.analyses()), 2)
+        self.assertEqual(len(self.sandbox.analyses()), 2)
 
         sandbox = sandboxapi.cuckoo.CuckooAPI('cuckoo.mock', 9090, '/test')
         responses.add(responses.GET, 'http://cuckoo.mock:9090/test/tasks/list',
                       json=read_resource('cuckoo_tasks_list'))
-        self.assertEquals(len(self.sandbox.analyses()), 2)
+        self.assertEqual(len(self.sandbox.analyses()), 2)

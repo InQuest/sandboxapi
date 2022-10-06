@@ -23,7 +23,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/submissions',
                       json=read_resource('fireeye_submissions'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
+        self.assertEqual(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
 
     @responses.activate
     def test_check(self):
@@ -31,7 +31,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
                       json=read_resource('fireeye_submissions_status'))
-        self.assertEquals(self.sandbox.check('1'), True)
+        self.assertEqual(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
@@ -56,7 +56,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/results/1',
                       json=read_resource('fireeye_submissions_results'))
-        self.assertEquals(self.sandbox.report(1)['msg'], 'concise')
+        self.assertEqual(self.sandbox.report(1)['msg'], 'concise')
 
     @responses.activate
     def test_score(self):
@@ -64,7 +64,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/results/1',
                       json=read_resource('fireeye_submissions_results'))
-        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 8)
+        self.assertEqual(self.sandbox.score(self.sandbox.report(1)), 8)
 
     # Legacy API support.
     @responses.activate
@@ -73,7 +73,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/submissions',
                       json=read_resource('fireeye_submissions'))
-        self.assertEquals(self.legacy_sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
+        self.assertEqual(self.legacy_sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
 
     @responses.activate
     def test_check(self):
@@ -81,7 +81,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/status/1',
                       json=read_resource('fireeye_submissions_status'))
-        self.assertEquals(self.legacy_sandbox.check('1'), True)
+        self.assertEqual(self.legacy_sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
@@ -106,7 +106,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
                       json=read_resource('fireeye_submissions_results'))
-        self.assertEquals(self.legacy_sandbox.report(1)['msg'], 'concise')
+        self.assertEqual(self.legacy_sandbox.report(1)['msg'], 'concise')
 
     @responses.activate
     def test_score(self):
@@ -114,7 +114,7 @@ class TestFireEye(unittest.TestCase):
                       headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
                       json=read_resource('fireeye_submissions_results'))
-        self.assertEquals(self.legacy_sandbox.score(self.legacy_sandbox.report(1)), 8)
+        self.assertEqual(self.legacy_sandbox.score(self.legacy_sandbox.report(1)), 8)
 
     # Core functionality.
     @patch('requests.post')
@@ -155,7 +155,7 @@ class TestFireEye(unittest.TestCase):
                       status=401)
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
                       json=read_resource('fireeye_submissions_status'))
-        self.assertEquals(self.sandbox.check('1'), True)
+        self.assertEqual(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_reauthenticates_if_logged_out_json_401(self):
@@ -165,4 +165,4 @@ class TestFireEye(unittest.TestCase):
                       json=read_resource('fireeye_unauthorized'))
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
                       json=read_resource('fireeye_submissions_status'))
-        self.assertEquals(self.sandbox.check('1'), True)
+        self.assertEqual(self.sandbox.check('1'), True)

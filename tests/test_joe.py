@@ -6,6 +6,7 @@ except ImportError:
     from mock import patch
 import responses
 import sandboxapi.joe
+import jbxapi
 from . import read_resource
 
 
@@ -16,15 +17,23 @@ class TestJoe(unittest.TestCase):
 
     @responses.activate
     def test_analyze(self):
-        responses.add(responses.POST, 'http://joe.mock/api/v2/submission/new',
-                      json=read_resource('joe_submission_new'))
-        self.assertEquals(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '100001')
+        if not jbxapi.__version__.startswith("2"):
+            responses.add(responses.POST, 'http://joe.mock/api/v2/submission/new',
+                        json=read_resource('joe_submission_new'))
+        else:
+            responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/submit',
+                        json=read_resource('joe_analysis_submit'))
+        self.assertEqual(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), '100001')
 
     @responses.activate
     def test_check(self):
-        responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/info',
-                      json=read_resource('joe_analysis_info'))
-        self.assertEquals(self.sandbox.check('1'), True)
+        if not jbxapi.__version__.startswith("2"):
+            responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/info',
+                        json=read_resource('joe_analysis_info'))
+        else:
+            responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/info',
+                        json=read_resource('joe_analysis_info'))
+        self.assertEqual(self.sandbox.check('1'), True)
 
     @responses.activate
     def test_is_available(self):
@@ -43,13 +52,13 @@ class TestJoe(unittest.TestCase):
     def test_report(self):
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/download',
                       json=read_resource('joe_analysis_download'))
-        self.assertEquals(self.sandbox.report(8)['analysis']['signaturedetections']['strategy'][1]['score'], 1)
+        self.assertEqual(self.sandbox.report(8)['analysis']['signaturedetections']['strategy'][1]['score'], 1)
 
     @responses.activate
     def test_score(self):
         responses.add(responses.POST, 'http://joe.mock/api/v2/analysis/download',
                       json=read_resource('joe_analysis_download'))
-        self.assertEquals(self.sandbox.score(self.sandbox.report(1)), 1)
+        self.assertEqual(self.sandbox.score(self.sandbox.report(1)), 1)
 
     @patch('requests.post')
     @patch('requests.get')
@@ -65,4 +74,4 @@ class TestJoe(unittest.TestCase):
 
         api = sandboxapi.joe.JoeAPI('key', self.sandbox.jbx.apiurl, True,
                                     proxies=proxies)
-        self.assertEquals(api.jbx.session.proxies, proxies)
+        self.assertEqual(api.jbx.session.proxies, proxies)
