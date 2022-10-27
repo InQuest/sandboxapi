@@ -1,16 +1,17 @@
 import io
-import unittest
+from unittest import TestCase
+
 try:
     from unittest.mock import patch
 except ImportError:
     from mock import patch
+
 import responses
 import sandboxapi.joe
 import jbxapi
 from . import read_resource
 
-
-class TestJoe(unittest.TestCase):
+class TestJoe(TestCase):
 
     def setUp(self):
         self.sandbox = sandboxapi.joe.JoeAPI('key', 'http://joe.mock/api', True)

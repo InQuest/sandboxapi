@@ -1,15 +1,16 @@
 import io
-import unittest
+from unittest import TestCase
+
 try:
     from unittest.mock import patch, ANY as MOCK_ANY
 except ImportError:
     from mock import patch, ANY as MOCK_ANY
+
 import responses
 import sandboxapi.cuckoo
 from . import read_resource
 
-
-class TestCuckoo(unittest.TestCase):
+class TestCuckoo(TestCase):
 
     def setUp(self):
         self.sandbox = sandboxapi.cuckoo.CuckooAPI('http://cuckoo.mock:8090/')

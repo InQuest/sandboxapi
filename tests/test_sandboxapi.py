@@ -1,17 +1,13 @@
-import io
-import os
-import json
-import unittest
+from unittest import TestCase
+
 try:
     from unittest.mock import patch, ANY as MOCK_ANY
 except ImportError:
     from mock import patch, ANY as MOCK_ANY
-import responses
+
 import sandboxapi
-from . import read_resource
 
-
-class TestSandboxAPI(unittest.TestCase):
+class TestSandboxAPI(TestCase):
 
     @patch('requests.post')
     @patch('requests.get')

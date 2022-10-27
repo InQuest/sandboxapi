@@ -1,30 +1,36 @@
 import io
-import unittest
+from unittest import TestCase
+
 try:
     from unittest.mock import patch, ANY as MOCK_ANY
 except ImportError:
     from mock import patch, ANY as MOCK_ANY
+
 import responses
-import sandboxapi.fireeye
+from sandboxapi.fireeye import FireEyeAPI
 from . import read_resource
 
+class Init():
 
-class TestFireEye(unittest.TestCase):
+    def setup_test(is_legacy: bool) -> FireEyeAPI:
+        if is_legacy:
+            legacy_sandbox = FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile', legacy_api=True)
+            return legacy_sandbox
+        else:
+            sandbox = FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile')
+            return sandbox
 
-    def setUp(self):
-        self.sandbox = sandboxapi.fireeye.FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile')
-        self.legacy_sandbox = sandboxapi.fireeye.FireEyeAPI('username', 'password',
-                                                            'http://fireeye.mock', 'profile',
-                                                            legacy_api=True)
+class TestFireEye(TestCase):
+    sandbox = Init.setup_test(False)
 
     @responses.activate
     def test_analyze(self):
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
-                      headers={'X-FeApi-Token': 'MOCK'})
+                    headers={'X-FeApi-Token': 'MOCK'})
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/submissions',
-                      json=read_resource('fireeye_submissions'))
+                    json=read_resource('fireeye_submissions'))
         self.assertEqual(self.sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
-
+    
     @responses.activate
     def test_check(self):
         responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
@@ -66,56 +72,6 @@ class TestFireEye(unittest.TestCase):
                       json=read_resource('fireeye_submissions_results'))
         self.assertEqual(self.sandbox.score(self.sandbox.report(1)), 8)
 
-    # Legacy API support.
-    @responses.activate
-    def test_analyze(self):
-        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
-                      headers={'X-FeApi-Token': 'MOCK'})
-        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/submissions',
-                      json=read_resource('fireeye_submissions'))
-        self.assertEqual(self.legacy_sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
-
-    @responses.activate
-    def test_check(self):
-        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
-                      headers={'X-FeApi-Token': 'MOCK'})
-        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/status/1',
-                      json=read_resource('fireeye_submissions_status'))
-        self.assertEqual(self.legacy_sandbox.check('1'), True)
-
-    @responses.activate
-    def test_is_available(self):
-        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
-                      headers={'X-FeApi-Token': 'MOCK'})
-        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
-                      json=read_resource('fireeye_config'))
-        self.assertTrue(self.legacy_sandbox.is_available())
-
-    @responses.activate
-    def test_not_is_available(self):
-        self.assertFalse(self.legacy_sandbox.is_available())
-        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
-                      headers={'X-FeApi-Token': 'MOCK'})
-        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
-                      status=500)
-        self.assertFalse(self.legacy_sandbox.is_available())
-
-    @responses.activate
-    def test_report(self):
-        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
-                      headers={'X-FeApi-Token': 'MOCK'})
-        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
-                      json=read_resource('fireeye_submissions_results'))
-        self.assertEqual(self.legacy_sandbox.report(1)['msg'], 'concise')
-
-    @responses.activate
-    def test_score(self):
-        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
-                      headers={'X-FeApi-Token': 'MOCK'})
-        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
-                      json=read_resource('fireeye_submissions_results'))
-        self.assertEqual(self.legacy_sandbox.score(self.legacy_sandbox.report(1)), 8)
-
     # Core functionality.
     @patch('requests.post')
     @patch('requests.get')
@@ -131,7 +87,7 @@ class TestFireEye(unittest.TestCase):
             'https': 'http://10.10.1.10:1080',
         }
 
-        api = sandboxapi.fireeye.FireEyeAPI('username', 'password',
+        api = FireEyeAPI('username', 'password',
                                             self.sandbox.api_url, 'profile',
                                             proxies=proxies)
         api._request('/test')
@@ -166,3 +122,56 @@ class TestFireEye(unittest.TestCase):
         responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/submissions/status/1',
                       json=read_resource('fireeye_submissions_status'))
         self.assertEqual(self.sandbox.check('1'), True)
+
+class TestFireEyeLegacy(TestCase):
+    legacy_sandbox = Init.setup_test(True)
+
+    # Legacy API support
+    @responses.activate
+    def legacy_test_analyze(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/submissions',
+                      json=read_resource('fireeye_submissions'))
+        self.assertEqual(self.legacy_sandbox.analyze(io.BytesIO('test'.encode('ascii')), 'filename'), 1)
+
+    @responses.activate
+    def legacy_test_check(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/status/1',
+                      json=read_resource('fireeye_submissions_status'))
+        self.assertEqual(self.legacy_sandbox.check('1'), True)
+
+    @responses.activate
+    def legacy_test_is_available(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
+                      json=read_resource('fireeye_config'))
+        self.assertTrue(self.legacy_sandbox.is_available())
+
+    @responses.activate
+    def legacy_test_not_is_available(self):
+        self.assertFalse(self.legacy_sandbox.is_available())
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
+                      status=500)
+        self.assertFalse(self.legacy_sandbox.is_available())
+
+    @responses.activate
+    def legacy_test_report(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
+                      json=read_resource('fireeye_submissions_results'))
+        self.assertEqual(self.legacy_sandbox.report(1)['msg'], 'concise')
+
+    @responses.activate
+    def legacy_test_score(self):
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/submissions/results/1',
+                      json=read_resource('fireeye_submissions_results'))
+        self.assertEqual(self.legacy_sandbox.score(self.legacy_sandbox.report(1)), 8)
