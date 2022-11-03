@@ -1,17 +1,16 @@
 import io
-import os
-import json
-import unittest
+from unittest import TestCase
+
 try:
     from unittest.mock import patch, ANY as MOCK_ANY
 except ImportError:
     from mock import patch, ANY as MOCK_ANY
+
 import responses
 import sandboxapi.vmray
 from . import read_resource
 
-
-class TestVMRay(unittest.TestCase):
+class TestVMRay(TestCase):
 
     def setUp(self):
         self.sandbox = sandboxapi.vmray.VMRayAPI('key', 'http://vmray.mock')

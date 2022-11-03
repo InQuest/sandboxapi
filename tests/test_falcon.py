@@ -1,17 +1,17 @@
 import io
-import os
-import json
-import unittest
+from unittest import TestCase
+
 try:
     from unittest.mock import patch, ANY as MOCK_ANY
 except ImportError:
     from mock import patch, ANY as MOCK_ANY
+
 import responses
 import sandboxapi.falcon
+
 from . import read_resource
 
-
-class TestFalcon(unittest.TestCase):
+class TestFalcon(TestCase):
 
     def setUp(self):
         self.sandbox = sandboxapi.falcon.FalconAPI('key', 'http://falcon.mock/api/v2')

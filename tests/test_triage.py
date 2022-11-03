@@ -1,17 +1,16 @@
 import io
-import os
-import json
-import unittest
+from unittest import TestCase
+
 try:
     from unittest.mock import patch, ANY as MOCK_ANY
 except ImportError:
     from mock import patch, ANY as MOCK_ANY
+
 import responses
 import sandboxapi.triage
 from . import read_resource
 
-
-class TestTriage(unittest.TestCase):
+class TestTriage(TestCase):
     def setUp(self):
         self.sandbox = sandboxapi.triage.TriageAPI("key",
                                                    "http://api.triage.mock")
