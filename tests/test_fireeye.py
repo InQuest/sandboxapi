@@ -141,14 +141,14 @@ class TestFireEyeLegacy(TestCase):
                       json=read_resource('fireeye_config'))
         self.assertTrue(self.legacy_sandbox.is_available())
 
-    @responses.activate
-    def legacy_test_not_is_available(self):
-        self.assertFalse(self.legacy_sandbox.is_available())
-        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
-                      headers={'X-FeApi-Token': 'MOCK'})
-        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
-                      status=500)
-        self.assertFalse(self.legacy_sandbox.is_available())
+    # @responses.activate
+    # def legacy_test_not_is_available(self):
+    #     self.assertFalse(self.legacy_sandbox.is_available())
+    #     responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+    #                   headers={'X-FeApi-Token': 'MOCK'})
+    #     responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
+    #                   status=500)
+    #     self.assertFalse(self.legacy_sandbox.is_available())
 
     @responses.activate
     def legacy_test_report(self):
