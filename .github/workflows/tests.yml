@@ -1,0 +1,25 @@
+name: sandbox-workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["2.7", "3.8", "3.9"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-mock coverage requests-mock responses collective.checkdocs Pygments nose
+      - name: Test scripts
+        run: |
+          coverage run -m pytest
+          nosetests
