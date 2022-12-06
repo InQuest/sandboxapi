@@ -10,6 +10,9 @@ sandboxapi
 .. image:: https://github.com/InQuest/python-sandboxapi/workflows/sandbox-workflow/badge.svg?branch=master
     :target: https://github.com/InQuest/python-sandboxapi/actions
     :alt: Build Status (GitHub Workflow)
+.. image:: https://github.com/InQuest/python-sandboxapi/workflows/sandbox-workflow/badge.svg?branch=develop
+    :target: https://github.com/InQuest/python-sandboxapi/actions
+    :alt: Build Status - Dev (GitHub Workflow)
 .. image:: https://readthedocs.org/projects/sandboxapi/badge/?version=latest
     :target: https://inquest.readthedocs.io/projects/sandboxapi/en/latest/?badge=latest
     :alt: Documentation Status
