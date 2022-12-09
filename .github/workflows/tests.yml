@@ -21,5 +21,5 @@ jobs:
           pip install pytest pytest-mock coverage requests-mock responses collective.checkdocs Pygments nose
       - name: Test scripts
         run: |
-          coverage run -m unittest tests/*
+          coverage run -m unittest discover
           nosetests tests/*
