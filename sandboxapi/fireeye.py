@@ -144,25 +144,22 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
         :rtype:  bool
         :return: True if service is available, False otherwise.
         """
-        # if the availability flag is raised, return True immediately.
-        # NOTE: subsequent API failures will lower this flag. we do this here
-        # to ensure we don't keep hitting FireEye with requests while
-        # availability is there.
-        if self.server_available:
-            return True
 
-        # otherwise, we have to check with the cloud.
-        else:
-            try:
-                response = self._request("/config")
+        try:
+            response = self._request("/config")
 
-                # we've got fireeye.
-                if response.status_code == 200:
-                    self.server_available = True
-                    return True
+            # Successfully connected to FireEye
+            if response.status_code == 200:
+                self.server_available = True
+                return True
 
-            except sandboxapi.SandboxError:
-                pass
+            # Unable to connect to FireEye
+            if response.status_code >= 500:
+                self.server_available = False
+                return False
+        
+        except sandboxapi.SandboxError:
+            pass
 
         self.server_available = False
         return False

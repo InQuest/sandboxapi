@@ -7,11 +7,11 @@ except ImportError:
     from mock import patch, ANY as MOCK_ANY
 
 import responses
-from sandboxapi.fireeye import FireEyeAPI
+import sandboxapi.fireeye
 from . import read_resource
 
 class TestFireEye(TestCase):
-    sandbox = FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile')
+    sandbox = sandboxapi.fireeye.FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile')
 
     @responses.activate
     def test_analyze(self):
@@ -37,14 +37,14 @@ class TestFireEye(TestCase):
                       json=read_resource('fireeye_config'))
         self.assertTrue(self.sandbox.is_available())
 
-    # @responses.activate
-    # def test_not_is_available(self):
-    #     self.assertFalse(self.sandbox.is_available())
-    #     responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
-    #                   headers={'X-FeApi-Token': 'MOCK'})
-    #     responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/config',
-    #                   status=500)
-    #     self.assertFalse(self.sandbox.is_available())
+    @responses.activate
+    def test_not_is_available(self):
+        self.assertFalse(self.sandbox.is_available())
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.2.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.2.0/config',
+                      status=500)
+        self.assertFalse(self.sandbox.is_available())
 
     @responses.activate
     def test_report(self):
@@ -77,7 +77,7 @@ class TestFireEye(TestCase):
             'https': 'http://10.10.1.10:1080',
         }
 
-        api = FireEyeAPI('username', 'password',
+        api = sandboxapi.fireeye.FireEyeAPI('username', 'password',
                                             self.sandbox.api_url, 'profile',
                                             proxies=proxies)
         api._request('/test')
@@ -114,7 +114,7 @@ class TestFireEye(TestCase):
         self.assertEqual(self.sandbox.check('1'), True)
 
 class TestFireEyeLegacy(TestCase):
-    legacy_sandbox = FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile', legacy_api=True)
+    legacy_sandbox = sandboxapi.fireeye.FireEyeAPI('username', 'password', 'http://fireeye.mock', 'profile', legacy_api=True)
 
     # Legacy API support
     @responses.activate
@@ -141,14 +141,14 @@ class TestFireEyeLegacy(TestCase):
                       json=read_resource('fireeye_config'))
         self.assertTrue(self.legacy_sandbox.is_available())
 
-    # @responses.activate
-    # def legacy_test_not_is_available(self):
-    #     self.assertFalse(self.legacy_sandbox.is_available())
-    #     responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
-    #                   headers={'X-FeApi-Token': 'MOCK'})
-    #     responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
-    #                   status=500)
-    #     self.assertFalse(self.legacy_sandbox.is_available())
+    @responses.activate
+    def legacy_test_not_is_available(self):
+        self.assertFalse(self.legacy_sandbox.is_available())
+        responses.add(responses.POST, 'http://fireeye.mock/wsapis/v1.1.0/auth/login',
+                      headers={'X-FeApi-Token': 'MOCK'})
+        responses.add(responses.GET, 'http://fireeye.mock/wsapis/v1.1.0/config',
+                      status=500)
+        self.assertFalse(self.legacy_sandbox.is_available())
 
     @responses.activate
     def legacy_test_report(self):
