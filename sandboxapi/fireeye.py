@@ -157,7 +157,6 @@ class FireEyeAPI(sandboxapi.SandboxAPI):
             if response.status_code >= 500:
                 self.server_available = False
                 return False
-        
         except sandboxapi.SandboxError:
             pass
 
