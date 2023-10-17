@@ -1,32 +1,26 @@
 from __future__ import print_function
 
-# import json
+import sys
+import time
+import json
+
+from requests.auth import HTTPBasicAuth
+
 import sandboxapi
 
+class OpswatAPI(sandboxapi.SandboxAPI):
+    """Opswat Sandbox API wrapper."""
 
-class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
-    """OPSWAT Filescan Sandbox API wrapper."""
-
-    def __init__(self, api_key, url=None, verify_ssl=True, **kwargs):
-        """
-        :type   api_key:    str
-        :param  api_key:    OPSWAT Filescan Sandbox API key
-
-        :type   url         str
-        :param  url         The url (including the port) of the OPSWAT Filescan Sandbox
-                            instance defaults to https://www.filescan.io
-        """
-
-        """Initialize the interface to OPSWAT Filescan Sandbox API."""
+    def __init__(self, apikey, profile, verify_ssl=True, **kwargs):
+        """Initialize the interface to Opswat Sandbox API."""
         sandboxapi.SandboxAPI.__init__(self, **kwargs)
-        self.api_key = api_key
-        self.api_url = url or "https://www.filescan.io"
-        self.headers = {"X-Api-Key": self.api_key}
-        # TODO : isprivate = True ?
+
+        self.api_url = "https://api.metadefender.com/v4"
+        self.profile = profile or 'windows7'
+        self.api_token = apikey
         self.verify_ssl = verify_ssl
 
-    # def analyze(self, handle, filename, password = None):
-    def analyze(self, handle, filename):        
+    def analyze(self, handle, filename):
         """Submit a file for analysis.
 
         :type  handle:   File handle
@@ -35,11 +29,11 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         :param filename: File name.
 
         :rtype:  str
-        :return: flow_id as a string
+        :return: SHA256 as a string
         """
 
-        if not self.api_key:
-            raise sandboxapi.SandboxError("Missing API key")
+        if not self.api_token:
+            raise sandboxapi.SandboxError("Missing token")
 
         # multipart post files.
         files = {"file": (filename, handle)}
@@ -47,28 +41,27 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         # ensure the handle is at offset 0.
         handle.seek(0)
 
+        # add submission options
+        headers = {
+            'apikey': self.api_token,
+            'sandbox': self.profile
+        }
+
         try:
-            # PASSWORD? PRIVATE? TODO
-            params = {"password": "TODO" or None, "is_private": "TODO" or True}
-
-            response = self._request(
-                "/api/scan/file",
-                method="POST",
-                params=params,
-                headers=self.headers,
-                files=files,
-            )
-
-            if response.status_code == 200 and response and response.json():
-                # send file, get flow_id
-                if "flow_id" in response.json():
-                    return response.json()["flow_id"]
-            
-            raise sandboxapi.SandboxError(
-                "api error in analyze ({u}): {r}".format(
-                    u=response.url, r=response.content
-                )
-            )
+            response = self._request("/file", method='POST', headers=headers, files=files)
+            if response.status_code == 200:
+                # good response
+                try:
+                    if 'sha256' in response.json():
+                        sha256 = response.json()['sha256']
+                        response = self._request(
+                            "/hash/{sha256}/sandbox".format(sha256=sha256), headers=headers)
+                        if "scan_in_progress" in response.json():
+                            return response.json()['scan_in_progress']
+                except (ValueError, KeyError) as e:
+                    raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
+            else:
+                raise sandboxapi.SandboxError("api error in analyze ({u}): {r}".format(u=response.url, r=response.content))
         except (ValueError, KeyError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 
@@ -76,22 +69,20 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         """Check if an analysis is complete.
 
         :type  item_id: str
-        :param item_id: flow_id to check.
+        :param item_id: SHA256 to check.
 
         :rtype:  bool
         :return: Boolean indicating if a report is done or not.
         """
-        response = self._request("/api/scan/{flow_id}/report".format(flow_id=item_id))
+        response = self._request(
+            "/sandbox/{sandbox_id}".format(sandbox_id=item_id))
 
         if response.status_code == 404:
             # unknown id
             return False
 
         try:
-            if (
-                "allFinished" not in response.json()
-                and response.json()["allFinished"]
-            ):
+            if "scan_in_progress" not in response.json() and "scan_results" in response.json():
                 return True
 
         except ValueError as e:
@@ -146,13 +137,12 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
             return "Report Unavailable"
 
         headers = {
-            "apikey": self.api_token,
+            'apikey': self.api_token,
         }
 
         # else we try JSON
         response = self._request(
-            "/sandbox/{sandbox_id}".format(sandbox_id=item_id), headers=headers
-        )
+            "/sandbox/{sandbox_id}".format(sandbox_id=item_id), headers=headers)
 
         # if response is JSON, return it as an object
         try:
@@ -166,8 +156,8 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
     def score(self, report):
         """Pass in the report from self.report(), get back an int."""
         score = 0
-        if report["analysis"]["infection_score"]:
-            score = report["analysis"]["infection_score"]
+        if report['analysis']['infection_score']:
+            score = report['analysis']['infection_score']
 
         return score
 
@@ -176,9 +166,8 @@ def opswat_loop(opswat, filename):
     # test run
     with open(arg, "rb") as handle:
         sandbox_id = opswat.analyze(handle, filename)
-        print(
-            "file {f} submitted for analysis, id {i}".format(f=filename, i=sandbox_id)
-        )
+        print("file {f} submitted for analysis, id {i}".format(
+            f=filename, i=sandbox_id))
 
     while not opswat.check(sandbox_id):
         print("not done yet, sleeping 10 seconds...")
@@ -204,12 +193,12 @@ if __name__ == "__main__":
         arg = sys.argv.pop()
         cmd = sys.argv.pop().lower()
         apikey = sys.argv.pop()
-
+    
     else:
         usage()
 
     # instantiate Opswat Sandbox API interface.
-    opswat = OpswatAPI(apikey, "windows7")
+    opswat = OpswatAPI(apikey, 'windows7')
 
     # process command line arguments.
     if "submit" in cmd:
