@@ -2,7 +2,8 @@ from __future__ import print_function
 
 # import json
 import sandboxapi
-
+import sys
+import json
 
 class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
     """OPSWAT Filescan Sandbox API wrapper."""
@@ -26,7 +27,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         self.verify_ssl = verify_ssl
 
     # def analyze(self, handle, filename, password = None):
-    def analyze(self, handle, filename):        
+    def analyze(self, handle, filename):
         """Submit a file for analysis.
 
         :type  handle:   File handle
@@ -63,7 +64,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
                 # send file, get flow_id
                 if "flow_id" in response.json():
                     return response.json()["flow_id"]
-            
+
             raise sandboxapi.SandboxError(
                 "api error in analyze ({u}): {r}".format(
                     u=response.url, r=response.content
@@ -88,10 +89,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
             return False
 
         try:
-            if (
-                "allFinished" not in response.json()
-                and response.json()["allFinished"]
-            ):
+            if "allFinished" not in response.json() and response.json()["allFinished"]:
                 return True
 
         except ValueError as e:
@@ -100,7 +98,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         return False
 
     def is_available(self):
-        """Determine if the Opswat API server is alive.
+        """Determine if the OPSWAT Filescan Sandbox API server is alive.
 
         :rtype:  bool
         :return: True if service is available, False otherwise.
@@ -115,7 +113,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         # otherwise, we have to check with the cloud.
         else:
             try:
-                response = self._request("/status")
+                response = self._request("/api/users/me", headers=self.headers)
 
                 # we've got opswat.
                 if response.status_code == 200:
@@ -134,7 +132,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         Available formats include: json.
 
         :type  item_id:       str
-        :param item_id:       SHA256 number
+        :param item_id:       flow_id number
         :type  report_format: str
         :param report_format: Return format
 
@@ -142,58 +140,54 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         :return: Dictionary representing the JSON parsed data or raw, for other
                  formats / JSON parsing failure.
         """
+
+        filters = [
+            "filter=general",
+            "filter=finalVerdict",
+            "filter=allTags",
+            "filter=overallState",
+            "filter=taskReference",
+            "filter=subtaskReferences",
+            "filter=allSignalGroups",
+        ]
+
+        postfix = "&".join(filters)
+        url_suffix = "/api/scan/{flow_id}/report?{postfix}".format(
+            flow_id=item_id, postfix=postfix
+        )
+
+        response = self._request(url_suffix, headers=self.headers)
+
         if report_format == "html":
             return "Report Unavailable"
 
-        headers = {
-            "apikey": self.api_token,
-        }
-
-        # else we try JSON
-        response = self._request(
-            "/sandbox/{sandbox_id}".format(sandbox_id=item_id), headers=headers
-        )
-
-        # if response is JSON, return it as an object
         try:
             return response.json()
         except ValueError:
             pass
 
         # otherwise, return the raw content.
-        return response.content
+        return response.content.decode("utf-8")
 
     def score(self, report):
         """Pass in the report from self.report(), get back an int."""
-        score = 0
-        if report["analysis"]["infection_score"]:
-            score = report["analysis"]["infection_score"]
+        report_scores = [0]
+        reports = report.get("reports", {})
+        for one_report in reports:
+            score = 0
+            threat_level = one_report.get("finalVerdict",{}).get("threatLevel", 0)
+            report_scores.append(max(0,threat_level)*100)
 
+        score = max(report_scores)
         return score
-
-
-def opswat_loop(opswat, filename):
-    # test run
-    with open(arg, "rb") as handle:
-        sandbox_id = opswat.analyze(handle, filename)
-        print(
-            "file {f} submitted for analysis, id {i}".format(f=filename, i=sandbox_id)
-        )
-
-    while not opswat.check(sandbox_id):
-        print("not done yet, sleeping 10 seconds...")
-        time.sleep(10)
-
-    print("analysis complete. fetching report...")
-    print(opswat.report(sandbox_id))
 
 
 if __name__ == "__main__":
 
-    def usage():
-        msg = "%s: apikey <submit <fh> | available | report <id> | analyze <fh>"
-        print(msg % sys.argv[0])
-        sys.exit(1)
+    # def usage():
+    #     msg = "%s: apikey <submit <fh> | available | report <id> | analyze <fh>"
+    #     print(msg % sys.argv[0])
+    #     sys.exit(1)
 
     if len(sys.argv) == 2:
         cmd = sys.argv.pop().lower()
@@ -209,7 +203,7 @@ if __name__ == "__main__":
         usage()
 
     # instantiate Opswat Sandbox API interface.
-    opswat = OpswatAPI(apikey, "windows7")
+    opswat = OPSWATSandboxAPI(apikey, "windows7")
 
     # process command line arguments.
     if "submit" in cmd:
