@@ -89,7 +89,7 @@ class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
             return False
 
         try:
-            if "allFinished" not in response.json() and response.json()["allFinished"]:
+            if "allFinished" in response.json() and response.json()["allFinished"]:
                 return True
 
         except ValueError as e:
@@ -116,10 +116,9 @@ class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
                 response = self._request("/api/users/me", headers=self.headers)
 
                 # we've got opswat.
-                if response.status_code == 200:
+                if response.status_code == 200 and "accountId" in response.json():
                     self.server_available = True
                     return True
-
             except sandboxapi.SandboxError:
                 pass
 
@@ -173,11 +172,9 @@ class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
         """Pass in the report from self.report(), get back an int."""
         report_scores = [0]
         reports = report.get("reports", {})
-        print("SCORE!")
         for report_key, report_value in reports.items():
             score = 0
             threat_level = report_value.get("finalVerdict",{}).get("threatLevel", 0)
-            print(threat_level)
             report_scores.append(max(0,threat_level)*100)
 
         score = max(report_scores)

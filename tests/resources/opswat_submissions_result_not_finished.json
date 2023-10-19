@@ -1,0 +1,70 @@
+{
+    "flowId": "65316f10ba877ae559118c99",
+    "allFinished": false,
+    "allFilesDownloadFinished": false,
+    "allAdditionalStepsDone": false,
+    "reportsAmount": 1,
+    "priority": "max",
+    "pollPause": 5,
+    "fileSize": 13370880,
+    "fileReadProgressBytes": 13370880,
+    "reports": {
+        "761590d3-9fec-4ab9-846f-12db39b156b2": {
+            "finalVerdict": {
+                "verdict": "UNKNOWN",
+                "threatLevel": 0,
+                "confidence": 1
+            },
+            "allTags": [],
+            "overallState": "in_progress",
+            "taskReference": {
+                "name": "transform-file",
+                "additionalInfo": {
+                    "submitName": "bad_file.exe",
+                    "submitTime": 1697738514610,
+                    "digests": {
+                        "SHA-256": "834d1dbfab8330ea5f1844f6e905ed0ac19d1033ee9a9f1122ad2051c56783dc"
+                    }
+                },
+                "ID": "84e354e5-4d3c-4790-b6be-6b75c9fa9160",
+                "state": "IN_PROGRESS",
+                "opcount": 0,
+                "processTime": 0
+            },
+            "subtaskReferences": [],
+            "allSignalGroups": [],
+            "iocs": {},
+            "filter_errors": [
+                "Resource not found: ['osint', 'file']"
+            ],
+            "file": {
+                "name": "bad_file.exe",
+                "hash": "834d1dbfab8330ea5f1844f6e905ed0ac19d1033ee9a9f1122ad2051c56783dc",
+                "type": null
+            },
+            "filesDownloadFinished": false,
+            "additionalStepsRunning": [
+                "similarity_search"
+            ],
+            "additionalStepsDone": false,
+            "created_date": "10/19/2023, 18:01:53",
+            "defaultOptionsUsed": false,
+            "scanOptions": {
+                "rapid_mode": null,
+                "osint": true,
+                "extended_osint": true,
+                "extracted_files_osint": true,
+                "visualization": true,
+                "files_download": true,
+                "resolve_domains": true,
+                "input_file_yara": true,
+                "extracted_files_yara": true,
+                "whois": true,
+                "ips_meta": true,
+                "images_ocr": true
+            },
+            "estimatedTime": "8",
+            "estimated_progress": 0.40424999594688416
+        }
+    }
+}
