@@ -9,7 +9,9 @@ import time
 class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
     """OPSWAT Filescan Sandbox API wrapper."""
 
-    def __init__(self, api_key, url=None, verify_ssl=True, **kwargs):
+    def __init__(
+        self, api_key, url="https://www.filescan.io", verify_ssl=True, **kwargs
+    ):
         """
         :type   api_key:    str
         :param  api_key:    OPSWAT Filescan Sandbox API key
@@ -22,7 +24,7 @@ class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
         """Initialize the interface to OPSWAT Filescan Sandbox API."""
         sandboxapi.SandboxAPI.__init__(self, **kwargs)
         self.api_key = api_key
-        self.api_url = url or "https://www.filescan.io"
+        self.api_url = url
         self.headers = {"X-Api-Key": self.api_key}
         self.verify_ssl = verify_ssl
 

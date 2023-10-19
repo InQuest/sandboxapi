@@ -247,11 +247,11 @@ OPSWAT Filescan Sandbox
 
 Constructor signature::
 
-    OPSWATFilescanSandboxAPI(apikey, url=None, verify_ssl=True)
+    OPSWATFilescanSandboxAPI(api_key, url=None, verify_ssl=True)
 
 Example::
 
-    OPSWATFilescanSandboxAPI(my-api-key)
+    OPSWATFilescanSandboxAPI('mykey')
 
 OPSWAT Filescan Sandbox. You can use the Activation Key that you received 
 from your OPSWAT Sales Representative, and follow the instructions on the 
