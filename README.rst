@@ -35,7 +35,7 @@ This library currently supports the following sandbox systems:
 * `FireEye AX Series`_
 * `Hatching Triage`_
 * `Joe Sandbox`_
-* `OPSWAT Sandbox`_
+* `OPSWAT Filescan Sandbox`_
 * `VMRay Analyzer`_
 * `WildFire Sandbox`_
 
@@ -242,20 +242,23 @@ Example::
 Currently, only the WildFire cloud sandbox is supported and not the WildFire appliance.
 
 
-OPSWAT Sandbox
-~~~~~~~~~~~~~~
+OPSWAT Filescan Sandbox
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Constructor signature::
 
-    OpswatAPI(apikey, profile, verify_ssl=True)
+    OPSWATFilescanSandboxAPI(apikey, url=None, verify_ssl=True)
 
 Example::
 
-    OpswatAPI(apikey, 'windows7')
+    OPSWATFilescanSandboxAPI(my-api-key)
 
-OPSWAT sandbox on MetaDefender Cloud. Please create an account on `OPSWAT portal`_ to receive a free MetaDefender Cloud apikey.
+OPSWAT Filescan Sandbox. You can use the Activation Key that you received 
+from your OPSWAT Sales Representative, and follow the instructions on the 
+`OPSWAT Licence Activation`_ page or you can create an API key on the 
+`OPSWAT Community Site`_ under API Key tab.
 
-More details in the `OPSWAT API documentation`_.
+More details in the `OPSWAT Filescan Sandbox API documentation`_.
 
 
 Hatching Triage
@@ -297,8 +300,9 @@ number of online analysis services.
 .. _AX Series product page: https://www.fireeye.com/products/malware-analysis.html
 .. _official Joe Sandbox library: https://github.com/joesecurity/joesandboxcloudapi
 .. _official Falcon library: https://github.com/PayloadSecurity/VxAPI
-.. _OPSWAT portal: https://go.opswat.com
-.. _OPSWAT API documentation: https://onlinehelp.opswat.com/mdcloud/10._Dynamic_analysis.html
+.. _OPSWAT Licence Activation: https://docs.opswat.com/filescan/installation/license-activation
+.. _OPSWAT Community Site: https://www.filescan.io/users/profile
+.. _OPSWAT Filescan Sandbox API documentation: https://docs.opswat.com/filescan/opswat-filescan
 .. _malsub: https://github.com/diogo-fernan/malsub
 .. _Triage public cloud: https://tria.ge/
 .. _Triage API documentation: https://tria.ge/docs/

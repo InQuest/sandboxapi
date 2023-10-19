@@ -80,7 +80,9 @@ class TestOPSWAT(TestCase):
         )
 
         self.assertEqual(
-            response["reports"]["f7977db1-6a99-46c3-8567-de1c88c93aa4"]["finalVerdict"]["verdict"],
+            response["reports"]["f7977db1-6a99-46c3-8567-de1c88c93aa4"]["finalVerdict"][
+                "verdict"
+            ],
             "MALICIOUS",
         )
 

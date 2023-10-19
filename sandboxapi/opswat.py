@@ -5,6 +5,7 @@ import sandboxapi
 import sys
 import time
 
+
 class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
     """OPSWAT Filescan Sandbox API wrapper."""
 
@@ -172,19 +173,18 @@ class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
         reports = report.get("reports", {})
         for report_key, report_value in reports.items():
             score = 0
-            threat_level = report_value.get("finalVerdict",{}).get("threatLevel", 0)
-            report_scores.append(max(0,threat_level)*100)
+            threat_level = report_value.get("finalVerdict", {}).get("threatLevel", 0)
+            report_scores.append(max(0, threat_level) * 100)
 
         score = max(report_scores)
         return score
 
 
-def opswat_loop(opswat, filename): 
+def opswat_loop(opswat, filename):
     # test run
     with open(arg, "rb") as handle:
         flow_id = opswat.analyze(handle, filename)
-        print("file {f} submitted for analysis, id {i}".format(
-            f=filename, i=flow_id))
+        print("file {f} submitted for analysis, id {i}".format(f=filename, i=flow_id))
 
     while not opswat.check(flow_id):
         print("not done yet, sleeping 10 seconds...")
@@ -215,7 +215,6 @@ if __name__ == "__main__":
 
     else:
         usage()
-
 
     # instantiate OPSWAT Filescan Sandbox API interface.
     opswat = OPSWATFilescanSandboxAPI(api_key)
