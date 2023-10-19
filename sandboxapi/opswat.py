@@ -23,11 +23,10 @@ class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
         self.api_key = api_key
         self.api_url = url or "https://www.filescan.io"
         self.headers = {"X-Api-Key": self.api_key}
-        # TODO : isprivate = True ?
         self.verify_ssl = verify_ssl
 
     # def analyze(self, handle, filename, password = None):
-    def analyze(self, handle, filename):
+    def analyze(self, handle, filename, password=None, is_private=False):
         """Submit a file for analysis.
 
         :type  handle:   File handle
@@ -49,8 +48,7 @@ class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
         handle.seek(0)
 
         try:
-            # PASSWORD? PRIVATE? TODO
-            params = {"password": "TODO" or None, "is_private": "TODO" or True}
+            params = {"password": password, "is_private": is_private}
 
             response = self._request(
                 "/api/scan/file",
