@@ -3,7 +3,7 @@ from __future__ import print_function
 # import json
 import sandboxapi
 import sys
-import json
+import time
 
 class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
     """OPSWAT Filescan Sandbox API wrapper."""
@@ -182,51 +182,67 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         return score
 
 
+def opswat_loop(opswat, filename): 
+    # test run
+    with open(arg, "rb") as handle:
+        flow_id = opswat.analyze(handle, filename)
+        print("file {f} submitted for analysis, id {i}".format(
+            f=filename, i=flow_id))
+
+    while not opswat.check(flow_id):
+        print("not done yet, sleeping 10 seconds...")
+        time.sleep(10)
+
+    print("Analysis complete. fetching report...")
+    print(opswat.report(flow_id))
+
+
 if __name__ == "__main__":
 
-    # def usage():
-    #     msg = "%s: apikey <submit <fh> | available | report <id> | analyze <fh>"
-    #     print(msg % sys.argv[0])
-    #     sys.exit(1)
+    def usage():
+        msg = "%s: <url> <api_key> <submit <fh> | available | report <id> | score <id> | analyze <fh>"
+        print(msg % sys.argv[0])
+        sys.exit(1)
 
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 4:
         cmd = sys.argv.pop().lower()
-        apikey = sys.argv.pop()
+        api_key = sys.argv.pop()
+        url = sys.argv.pop()
         arg = None
 
-    elif len(sys.argv) >= 3:
+    elif len(sys.argv) == 5:
         arg = sys.argv.pop()
         cmd = sys.argv.pop().lower()
-        apikey = sys.argv.pop()
+        api_key = sys.argv.pop()
+        url = sys.argv.pop()
 
     else:
         usage()
 
-    # instantiate Opswat Sandbox API interface.
-    opswat = OPSWATSandboxAPI(apikey, "windows7")
+
+    # instantiate OPSWAT Filescan Sandbox API interface.
+    opswat = OPSWATSandboxAPI(api_key)
+
+    if arg is None:
+        usage()
 
     # process command line arguments.
     if "submit" in cmd:
-        if arg is None:
-            usage()
-        else:
-            with open(arg, "rb") as handle:
-                print(opswat.analyze(handle, arg))
+        with open(arg, "rb") as handle:
+            print(opswat.analyze(handle, arg))
 
     elif "available" in cmd:
         print(opswat.is_available())
 
     elif "report" in cmd:
-        if arg is None:
-            usage()
-        else:
-            print(opswat.report(arg))
+        print(opswat.report(arg))
 
     elif "analyze" in cmd:
-        if arg is None:
-            usage()
-        else:
-            opswat_loop(opswat, arg)
+        opswat_loop(opswat, arg)
+
+    elif "score" in cmd:
+        score = opswat.score(arg)
+        print(score)
 
     else:
         usage()
