@@ -5,7 +5,7 @@ import sandboxapi
 import sys
 import time
 
-class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
+class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
     """OPSWAT Filescan Sandbox API wrapper."""
 
     def __init__(self, api_key, url=None, verify_ssl=True, **kwargs):
@@ -173,9 +173,11 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         """Pass in the report from self.report(), get back an int."""
         report_scores = [0]
         reports = report.get("reports", {})
-        for one_report in reports:
+        print("SCORE!")
+        for report_key, report_value in reports.items():
             score = 0
-            threat_level = one_report.get("finalVerdict",{}).get("threatLevel", 0)
+            threat_level = report_value.get("finalVerdict",{}).get("threatLevel", 0)
+            print(threat_level)
             report_scores.append(max(0,threat_level)*100)
 
         score = max(report_scores)
@@ -221,7 +223,7 @@ if __name__ == "__main__":
 
 
     # instantiate OPSWAT Filescan Sandbox API interface.
-    opswat = OPSWATSandboxAPI(api_key)
+    opswat = OPSWATFilescanSandboxAPI(api_key)
 
     if arg is None:
         usage()
