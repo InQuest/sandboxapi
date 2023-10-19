@@ -199,7 +199,7 @@ def opswat_loop(opswat, filename):
 if __name__ == "__main__":
 
     def usage():
-        msg = "%s: <url> <api_key> <submit <fh> | available | report <id> | score <id> | analyze <fh>"
+        msg = "%s: <url> <api_key> <submit <fh> | available | report <id> | score <report> | analyze <fh>"
         print(msg % sys.argv[0])
         sys.exit(1)
 
