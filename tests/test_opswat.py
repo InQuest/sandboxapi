@@ -16,7 +16,7 @@ URL = "http://filescanio.mock"
 
 class TestOPSWAT(TestCase):
     def setUp(self):
-        self.sandbox = sandboxapi.opswat.OPSWATFilescanSandboxAPI("key", URL, True)
+        self.sandbox = sandboxapi.opswat.OPSWATSandboxAPI("key", URL, True)
 
     # analyze
     @responses.activate

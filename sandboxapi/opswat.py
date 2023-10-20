@@ -6,7 +6,7 @@ import sys
 import time
 
 
-class OPSWATFilescanSandboxAPI(sandboxapi.SandboxAPI):
+class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
     """OPSWAT Filescan Sandbox API wrapper."""
 
     def __init__(
@@ -219,7 +219,7 @@ if __name__ == "__main__":
         usage()
 
     # instantiate OPSWAT Filescan Sandbox API interface.
-    opswat = OPSWATFilescanSandboxAPI(api_key)
+    opswat = OPSWATSandboxAPI(api_key)
 
     if arg is None:
         usage()
