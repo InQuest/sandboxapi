@@ -1,6 +1,5 @@
 from __future__ import print_function
 
-# import json
 import sandboxapi
 import sys
 import time
@@ -28,7 +27,6 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         self.headers = {"X-Api-Key": self.api_key}
         self.verify_ssl = verify_ssl
 
-    # def analyze(self, handle, filename, password = None):
     def analyze(self, handle, filename, password=None, is_private=False):
         """Submit a file for analysis.
 
@@ -36,6 +34,10 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         :param handle:   Handle to file to upload for analysis.
         :type  filename: str
         :param filename: File name.
+        :type  password: str
+        :param password: Custom password, in case uploaded archive is protected.
+        :type  is_private: boolean
+        :param is_private: If file should not be available for download by other users.
 
         :rtype:  str
         :return: flow_id as a string
@@ -140,7 +142,10 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         :return: Dictionary representing the JSON parsed data or raw, for other
                  formats / JSON parsing failure.
         """
-
+        
+        if report_format == "html":
+            return "Report Unavailable"
+        
         filters = [
             "filter=general",
             "filter=finalVerdict",
@@ -149,6 +154,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
             "filter=taskReference",
             "filter=subtaskReferences",
             "filter=allSignalGroups",
+            "filter=iocs"
         ]
 
         postfix = "&".join(filters)
@@ -157,9 +163,6 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         )
 
         response = self._request(url_suffix, headers=self.headers)
-
-        if report_format == "html":
-            return "Report Unavailable"
 
         try:
             return response.json()
@@ -199,7 +202,7 @@ def opswat_loop(opswat, filename):
 if __name__ == "__main__":
 
     def usage():
-        msg = "%s: <url> <api_key> <submit <fh> | available | report <id> | score <report> | analyze <fh>"
+        msg = "%s: <filescan_url> <api_key> <submit <file_path> | available | report <flow_id> | score <report> | analyze <file_path>"
         print(msg % sys.argv[0])
         sys.exit(1)
 
@@ -218,10 +221,9 @@ if __name__ == "__main__":
     else:
         usage()
 
-    # instantiate OPSWAT Filescan Sandbox API interface.
-    opswat = OPSWATSandboxAPI(api_key)
+    opswat = OPSWATSandboxAPI(api_key, url)
 
-    if arg is None:
+    if arg is None and "available" not in cmd:
         usage()
 
     # process command line arguments.
