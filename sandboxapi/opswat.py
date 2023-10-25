@@ -142,7 +142,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         """
         if report_format == "html":
             return "Report Unavailable"
-        
+
         filters = [
             "filter=general",
             "filter=finalVerdict",
