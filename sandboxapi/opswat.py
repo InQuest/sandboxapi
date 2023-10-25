@@ -11,7 +11,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
     def __init__(
         self, api_key, url="https://www.filescan.io", verify_ssl=True, **kwargs
     ):
-        """
+        """Initialize the interface to OPSWAT Filescan Sandbox API.
         :type   api_key:    str
         :param  api_key:    OPSWAT Filescan Sandbox API key
 
@@ -19,8 +19,6 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         :param  url         The url (including the port) of the OPSWAT Filescan Sandbox
                             instance defaults to https://www.filescan.io
         """
-
-        """Initialize the interface to OPSWAT Filescan Sandbox API."""
         sandboxapi.SandboxAPI.__init__(self, **kwargs)
         self.api_key = api_key
         self.api_url = url
@@ -142,7 +140,6 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         :return: Dictionary representing the JSON parsed data or raw, for other
                  formats / JSON parsing failure.
         """
-        
         if report_format == "html":
             return "Report Unavailable"
         
@@ -176,7 +173,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         """Pass in the report from self.report(), get back an int."""
         report_scores = [0]
         reports = report.get("reports", {})
-        for report_key, report_value in reports.items():
+        for report_value in reports.values():
             score = 0
             threat_level = report_value.get("finalVerdict", {}).get("threatLevel", 0)
             report_scores.append(max(0, threat_level) * 100)
@@ -205,6 +202,10 @@ if __name__ == "__main__":
         msg = "%s: <filescan_url> <api_key> <submit <file_path> | available | report <flow_id> | score <report> | analyze <file_path>"
         print(msg % sys.argv[0])
         sys.exit(1)
+
+    cmd = None
+    api_key = None
+    url = None
 
     if len(sys.argv) == 4:
         cmd = sys.argv.pop().lower()

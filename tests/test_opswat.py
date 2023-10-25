@@ -65,7 +65,7 @@ class TestOPSWAT(TestCase):
     @responses.activate
     def test_report(self):
         id = 1
-        url = f"{URL}/api/scan/{id}/report?filter=general&filter=finalVerdict&filter=allTags&filter=overallState&filter=taskReference&filter=subtaskReferences&filter=allSignalGroups"
+        url = f"{URL}/api/scan/{id}/report?filter=general&filter=finalVerdict&filter=allTags&filter=overallState&filter=taskReference&filter=subtaskReferences&filter=allSignalGroups&filter=iocs"
 
         responses.add(
             responses.GET,
@@ -100,7 +100,7 @@ class TestOPSWAT(TestCase):
         for file_and_score in files_and_score:
             responses.add(
                 responses.GET,
-                f"{URL}/api/scan/{id}/report?filter=general&filter=finalVerdict&filter=allTags&filter=overallState&filter=taskReference&filter=subtaskReferences&filter=allSignalGroups",
+                f"{URL}/api/scan/{id}/report?filter=general&filter=finalVerdict&filter=allTags&filter=overallState&filter=taskReference&filter=subtaskReferences&filter=allSignalGroups&filter=iocs",
                 json=read_resource(file_and_score[0]),
             )
             self.assertEqual(
