@@ -8,6 +8,7 @@ __all__ = [
     'fireeye',
     'joe',
     'triage',
+    'opswat',
     'vmray',
     'falcon',
     'wildfire',
