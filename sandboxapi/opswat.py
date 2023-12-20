@@ -83,7 +83,9 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         :rtype:  bool
         :return: Boolean indicating if a report is done or not.
         """
-        response = self._request("/api/scan/{flow_id}/report".format(flow_id=item_id))
+        response = self._request(
+            "/api/scan/{flow_id}/report".format(flow_id=item_id), headers=self.headers
+        )
 
         if response.status_code == 404:
             # unknown id
@@ -92,6 +94,11 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         try:
             if "allFinished" in response.json() and response.json()["allFinished"]:
                 return True
+            elif "allFinished" not in response.json():
+                    raise sandboxapi.SandboxError(
+                        "api error in check ({u}): {r}".format(
+                            u=response.url, r=response.content
+                        ))
 
         except ValueError as e:
             raise sandboxapi.SandboxError(e)
@@ -151,7 +158,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
             "filter=taskReference",
             "filter=subtaskReferences",
             "filter=allSignalGroups",
-            "filter=iocs"
+            "filter=iocs",
         ]
 
         postfix = "&".join(filters)
