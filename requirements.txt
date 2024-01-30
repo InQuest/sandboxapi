@@ -1,4 +1,3 @@
 requests
 jbxapi
 xmltodict
-python-magic
