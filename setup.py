@@ -12,7 +12,7 @@ requires = requirements.strip().split('\n')
 
 setup(
     name='sandboxapi',
-    version='1.7.1',
+    version='1.8.0',
     include_package_data=True,
     packages=[
         'sandboxapi',
@@ -21,7 +21,7 @@ setup(
     license='GPL',
     description='Minimal, consistent API for building integrations with malware sandboxes.',
     long_description=README,
-    url='https://github.com/InQuest/python-sandboxapi',
+    url='https://github.com/InQuest/sandboxapi',
     author='InQuest Labs',
     author_email='labs@inquest.net',
     classifiers=[

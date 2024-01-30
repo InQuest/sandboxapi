@@ -1,4 +1,4 @@
-name: sandbox-workflow
+name: sandboxapi
 
 on: [push]
 
