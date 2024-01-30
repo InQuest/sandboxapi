@@ -29,11 +29,13 @@ class JoeAPI(sandboxapi.SandboxAPI):
         # ensure the handle is at offset 0.
         handle.seek(0)
 
+        file_data = (filename, handle)
+
         try:
             if not jbxapi.__version__.startswith("2"):
-                return self.jbx.submit_sample(handle, _chunked_upload=self._chunked)['submission_id']
+                return self.jbx.submit_sample(file_data, _chunked_upload=self._chunked)['submission_id']
             else:
-                return self.jbx.submit_sample(handle)['webids'][0]
+                return self.jbx.submit_sample(file_data)['webids'][0]
         except (jbxapi.JoeException, KeyError, IndexError) as e:
             raise sandboxapi.SandboxError("error in analyze: {e}".format(e=e))
 

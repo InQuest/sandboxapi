@@ -90,7 +90,7 @@ html_theme_options = {
     'logo_name': 'true',
     'description': 'Minimal, consistent Python API for building integrations with malware sandboxes.',
     'github_user': 'InQuest',
-    'github_repo': 'python-sandboxapi',
+    'github_repo': 'sandboxapi',
     'github_type': 'star',
     'show_powered_by': 'false',
     'page_width': 'auto',

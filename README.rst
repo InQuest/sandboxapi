@@ -4,24 +4,12 @@ sandboxapi
 .. image:: https://inquest.net/images/inquest-badge.svg
     :target: https://inquest.net/
     :alt: Developed by InQuest
-.. image:: https://app.travis-ci.com/InQuest/python-sandboxapi.svg?branch=master
-    :target: https://app.travis-ci.com/InQuest/python-sandboxapi
-    :alt: Build Status
-.. image:: https://github.com/InQuest/python-sandboxapi/workflows/sandbox-workflow/badge.svg?branch=master
-    :target: https://github.com/InQuest/python-sandboxapi/actions
+.. image:: https://github.com/InQuest/sandboxapi/workflows/sandboxapi/badge.svg?branch=master
+    :target: https://github.com/InQuest/sandboxapi/actions
     :alt: Build Status (GitHub Workflow)
-.. image:: https://github.com/InQuest/python-sandboxapi/workflows/sandbox-workflow/badge.svg?branch=develop
-    :target: https://github.com/InQuest/python-sandboxapi/actions
-    :alt: Build Status - Dev (GitHub Workflow)
 .. image:: https://readthedocs.org/projects/sandboxapi/badge/?version=latest
     :target: https://inquest.readthedocs.io/projects/sandboxapi/en/latest/?badge=latest
     :alt: Documentation Status
-.. image:: https://app.codacy.com/project/badge/Grade/1b08631cbade462792032c577ebb77ad
-    :target: https://www.codacy.com/gh/InQuest/python-sandboxapi/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=InQuest/python-sandboxapi&amp;utm_campaign=Badge_Grade
-    :alt: Code Health
-.. image:: https://api.codacy.com/project/badge/Coverage/1b08631cbade462792032c577ebb77ad
-    :target: https://www.codacy.com/app/rshipp/python-sandboxapi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=InQuest/python-sandboxapi&amp;utm_campaign=Badge_Coverage
-    :alt: Test Coverage
 .. image:: http://img.shields.io/pypi/v/sandboxapi.svg
     :target: https://pypi.python.org/pypi/sandboxapi
     :alt: PyPi Version
