@@ -5,18 +5,18 @@ import sys
 import time
 
 
-class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
-    """OPSWAT Filescan Sandbox API wrapper."""
+class MetaDefenderSandboxAPI(sandboxapi.SandboxAPI):
+    """MetaDefender Sandbox API wrapper."""
 
     def __init__(
         self, api_key, url="https://www.filescan.io", verify_ssl=True, **kwargs
     ):
-        """Initialize the interface to OPSWAT Filescan Sandbox API.
+        """Initialize the interface to MetaDefender Sandbox API.
         :type   api_key:    str
-        :param  api_key:    OPSWAT Filescan Sandbox API key
+        :param  api_key:    MetaDefender Sandbox API key
 
         :type   url         str
-        :param  url         The url (including the port) of the OPSWAT Filescan Sandbox
+        :param  url         The url (including the port) of the MetaDefender Sandbox
                             instance defaults to https://www.filescan.io
         """
         sandboxapi.SandboxAPI.__init__(self, **kwargs)
@@ -95,10 +95,11 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
             if "allFinished" in response.json() and response.json()["allFinished"]:
                 return True
             elif "allFinished" not in response.json():
-                    raise sandboxapi.SandboxError(
-                        "api error in check ({u}): {r}".format(
-                            u=response.url, r=response.content
-                        ))
+                raise sandboxapi.SandboxError(
+                    "api error in check ({u}): {r}".format(
+                        u=response.url, r=response.content
+                    )
+                )
 
         except ValueError as e:
             raise sandboxapi.SandboxError(e)
@@ -106,7 +107,7 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         return False
 
     def is_available(self):
-        """Determine if the OPSWAT Filescan Sandbox API server is alive.
+        """Determine if the MetaDefender Sandbox API server is alive.
 
         :rtype:  bool
         :return: True if service is available, False otherwise.
@@ -189,24 +190,24 @@ class OPSWATSandboxAPI(sandboxapi.SandboxAPI):
         return score
 
 
-def opswat_loop(opswat, filename):
+def md_sandbox_loop(md_sandbox, filename):
     # test run
     with open(arg, "rb") as handle:
-        flow_id = opswat.analyze(handle, filename)
+        flow_id = md_sandbox.analyze(handle, filename)
         print("file {f} submitted for analysis, id {i}".format(f=filename, i=flow_id))
 
-    while not opswat.check(flow_id):
+    while not md_sandbox.check(flow_id):
         print("not done yet, sleeping 10 seconds...")
         time.sleep(10)
 
     print("Analysis complete. fetching report...")
-    print(opswat.report(flow_id))
+    print(md_sandbox.report(flow_id))
 
 
 if __name__ == "__main__":
 
     def usage():
-        msg = "%s: <filescan_url> <api_key> <submit <file_path> | available | report <flow_id> | score <report> | analyze <file_path>"
+        msg = "%s: <sandbox_url> <api_key> <submit <file_path> | available | report <flow_id> | score <report> | analyze <file_path>"
         print(msg % sys.argv[0])
         sys.exit(1)
 
@@ -229,7 +230,7 @@ if __name__ == "__main__":
     else:
         usage()
 
-    opswat = OPSWATSandboxAPI(api_key, url)
+    md_sandbox = MetaDefenderSandboxAPI(api_key, url)
 
     if arg is None and "available" not in cmd:
         usage()
@@ -237,19 +238,19 @@ if __name__ == "__main__":
     # process command line arguments.
     if "submit" in cmd:
         with open(arg, "rb") as handle:
-            print(opswat.analyze(handle, arg))
+            print(md_sandbox.analyze(handle, arg))
 
     elif "available" in cmd:
-        print(opswat.is_available())
+        print(md_sandbox.is_available())
 
     elif "report" in cmd:
-        print(opswat.report(arg))
+        print(md_sandbox.report(arg))
 
     elif "analyze" in cmd:
-        opswat_loop(opswat, arg)
+        md_sandbox_loop(md_sandbox, arg)
 
     elif "score" in cmd:
-        score = opswat.score(arg)
+        score = md_sandbox.score(arg)
         print(score)
 
     else:
