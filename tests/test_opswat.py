@@ -14,9 +14,9 @@ from . import read_resource
 URL = "http://filescanio.mock"
 
 
-class TestOPSWAT(TestCase):
+class TestMetaDefenderSandbox(TestCase):
     def setUp(self):
-        self.sandbox = sandboxapi.opswat.OPSWATSandboxAPI("key", URL, True)
+        self.sandbox = sandboxapi.opswat.MetaDefenderSandboxAPI("key", URL, True)
 
     # analyze
     @responses.activate
