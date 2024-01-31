@@ -23,7 +23,7 @@ This library currently supports the following sandbox systems:
 * `FireEye AX Series`_
 * `Hatching Triage`_
 * `Joe Sandbox`_
-* `OPSWAT Filescan Sandbox`_
+* `MetaDefender Sandbox`_
 * `VMRay Analyzer`_
 * `WildFire Sandbox`_
 
@@ -230,23 +230,23 @@ Example::
 Currently, only the WildFire cloud sandbox is supported and not the WildFire appliance.
 
 
-OPSWAT Filescan Sandbox
-~~~~~~~~~~~~~~~~~~~~~~~
+MetaDefender Sandbox
+~~~~~~~~~~~~~~~~~~~~
 
 Constructor signature::
 
-    OPSWATSandboxAPI(api_key, url=None, verify_ssl=True)
+    MetaDefenderSandboxAPI(api_key, url=None, verify_ssl=True)
 
 Example::
 
-    OPSWATSandboxAPI('mykey')
+    MetaDefenderSandboxAPI('mykey')
 
-OPSWAT Filescan Sandbox. You can use the Activation Key that you received 
+MetaDefender Sandbox (previously known as OPSWAT Filescan Sandbox). You can use the Activation Key that you received 
 from your OPSWAT Sales Representative, and follow the instructions on the 
 `OPSWAT Licence Activation`_ page or you can create an API key on the 
-`OPSWAT Filescan Community Site`_ under API Key tab.
+`MetaDefender Sandbox Community Site`_ under API Key tab.
 
-More details in the `OPSWAT Filescan Sandbox API documentation`_.
+More details in the `MetaDefender Sandbox API documentation`_.
 
 
 Hatching Triage
@@ -278,6 +278,7 @@ number of online analysis services.
 .. _Cuckoo Sandbox: https://www.cuckoosandbox.org/
 .. _Fireeye AX Series: https://www.fireeye.com/products/malware-analysis.html
 .. _Joe Sandbox: https://www.joesecurity.org/
+.. _MetaDefender Sandbox: https://docs.opswat.com/filescan
 .. _VMRay Analyzer: https://www.vmray.com/
 .. _Falcon Sandbox: https://www.falcon-sandbox.com/
 .. _WildFire Sandbox: https://www.paloaltonetworks.com/products/secure-the-network/wildfire
@@ -289,8 +290,8 @@ number of online analysis services.
 .. _official Joe Sandbox library: https://github.com/joesecurity/joesandboxcloudapi
 .. _official Falcon library: https://github.com/PayloadSecurity/VxAPI
 .. _OPSWAT Licence Activation: https://docs.opswat.com/filescan/installation/license-activation
-.. _OPSWAT Filescan Community Site: https://www.filescan.io/users/profile
-.. _OPSWAT Filescan Sandbox API documentation: https://docs.opswat.com/filescan/opswat-filescan
+.. _MetaDefender Sandbox Community Site: https://www.filescan.io/users/profile?active=apikeyinfo
+.. _MetaDefender Sandbox API documentation: https://docs.opswat.com/filescan/metadefender-sandbox-api-reference-v1
 .. _malsub: https://github.com/diogo-fernan/malsub
 .. _Triage public cloud: https://tria.ge/
 .. _Triage API documentation: https://tria.ge/docs/
